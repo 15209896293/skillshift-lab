@@ -24,11 +24,11 @@ Freeze the first Dev OS baseline before writing business platform code.
 
 ## Next Concrete Actions
 
-1. Review the first Dev OS baseline.
-2. Decide whether `wenben/` DOCX planning files should be included in the first Git commit.
-3. Create the first Git commit after approval.
-4. Decide whether to connect a GitHub repository.
-5. Start P0-A task collection and audit preparation.
+1. Review `docs/PROJECT_STAGE_LONG_PLAN.md`.
+2. Commit the long stage plan if approved.
+3. Start formal P0-A audit records for the first five public-source candidate tasks.
+4. Ask the product owner for real local training materials.
+5. Decide whether to connect a GitHub repository before M1 development.
 
 ## Not Yet Started
 

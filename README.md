@@ -45,6 +45,7 @@ SkillShift 采用双轨任务结构。
 | `docs/PROJECT_BRIEF.md` | 新 Agent 进入项目时优先阅读的稳定项目简报 |
 | `docs/CURRENT_STATE.md` | 当前项目阶段、状态和下一步 |
 | `docs/AGENT_DEVELOPMENT_FULL_CHAIN_AUDIT.md` | 面向项目负责人的 Agent 全链路开发审计 |
+| `docs/PROJECT_STAGE_LONG_PLAN.md` | 项目阶段长计划和另一个 Agent 窗口的交接说明 |
 | `docs/DEVELOPMENT_WORKFLOW.md` | Feature、Bug、Research、Refactor、Doc 的工作流程 |
 | `docs/DEV_OS_AUDIT.md` | 当前 Dev OS 审计记录 |
 | `docs/DEV_OS_IMPLEMENTATION_PLAN.md` | Dev OS 建设计划 |
@@ -183,3 +184,5 @@ SkillShift 不机械套完整流程。重大 Feature 走完整规格流程；小
 3. 创建第一版提交前审计。
 4. 开始 P0-A 任务清单模板。
 5. 收集第一批真实传统实训任务。
+
+当前已完成 Git 初始化和 Dev OS 基线提交。后续阶段计划见 `docs/PROJECT_STAGE_LONG_PLAN.md`。
