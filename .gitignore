@@ -1,0 +1,39 @@
+# Operating system files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor and local workspace files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temporary outputs
+*.log
+tmp/
+temp/
+.tmp/
+
+# Dependency folders
+node_modules/
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Local environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+
+# Large or local-only runtime outputs
+artifacts/tmp/
+artifacts/local/

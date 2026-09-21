@@ -1,0 +1,32 @@
+name: Dev OS Check
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  dev-os-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required Dev OS files
+        run: |
+          test -f AGENTS.md
+          test -f README.md
+          test -f docs/PROJECT_BRIEF.md
+          test -f docs/CURRENT_STATE.md
+          test -f docs/DEVELOPMENT_WORKFLOW.md
+          test -f docs/DEV_OS_AUDIT.md
+          test -f docs/DEV_OS_IMPLEMENTATION_PLAN.md
+          test -f docs/AGENT_DEVELOPMENT_FULL_CHAIN_AUDIT.md
+          test -f docs/adr/ADR-TEMPLATE.md
+          test -f docs/research/P0_PROTOCOL.md
+          test -f specs/P0-A/README.md
+
+      - name: Check forbidden completion phrase examples are documented
+        run: |
+          grep -q "TASK ID" AGENTS.md
+          grep -q "Acceptance Criteria" specs/P0-A/README.md
+          grep -q "Do not output AI replacement rate" docs/research/P0_PROTOCOL.md
