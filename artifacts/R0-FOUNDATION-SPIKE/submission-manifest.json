@@ -1,0 +1,31 @@
+{
+  "schema_version": "r0-foundation-spike/v1",
+  "task_version": "synthetic-task/v1",
+  "validator_version": "synthetic-validator/v1",
+  "node_version": "0.1.0-spike",
+  "python_version": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+  "artifact": {
+    "relative_path": "result.txt",
+    "sha256": "1c34f88707b55e6104c4eb20e71ffa3d33e414b71ef689a15fad0640d0ac58cb",
+    "size": 8
+  },
+  "execution": {
+    "run_id": "e0010f9e-92ff-48a4-932f-d49a58fc57ea",
+    "exit_code": 0,
+    "stdout": "synthetic Python validation passed\n",
+    "stderr": "",
+    "timed_out": false,
+    "stopped": false,
+    "stop_confirmed": true,
+    "started_at": 1790223181.364635,
+    "ended_at": 1790223181.4139771
+  },
+  "event_references": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "human_validation_note": "I ran the validator and confirmed the synthetic result artifact.",
+  "sync_status": "NOT_IMPLEMENTED"
+}

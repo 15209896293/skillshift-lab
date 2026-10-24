@@ -1,0 +1,129 @@
+{
+  "browser": "Microsoft Edge via Playwright",
+  "viewport": "1280x900",
+  "fault_boundary": "Existing teacher-history-retry-delay loopback Harness delayed the second A history read then returned 503. Playwright injected the first two A remediation 503 responses and let the third A remediation request reach the local in-memory API.",
+  "remediation_responses": [
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/remediation",
+      "status": 503,
+      "attempt": 1,
+      "injected_at_browser_boundary": true
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/remediation",
+      "status": 503,
+      "attempt": 2,
+      "injected_at_browser_boundary": true
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/remediation",
+      "status": 200,
+      "attempt": 3,
+      "injected_at_browser_boundary": false
+    }
+  ],
+  "history_request_count_before_refresh": 3,
+  "history_request_count_before_remediation_recovery": 6,
+  "history_request_count_after_remediation_recovery": 6,
+  "queue_request_count_before_refresh": 3,
+  "queue_request_count_before_remediation_recovery": 3,
+  "queue_request_count_after_remediation_recovery": 3,
+  "initial_state": {
+    "queueRows": [
+      "教师多任务队列隔离验证 A · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项查看此任务"
+    ],
+    "reviewCount": "2",
+    "historyState": "1 个任务读取失败，历史状态未知；以下仅为 API 返回的复核历史记录；记录本身不能确认页面中某次回执未知的请求。",
+    "historyRows": [
+      "教师多任务队列隔离验证 C · 动作记录：请求补正 · 目标提交 submission-3 第 1 版 · 理由：任务 C：请补充一项固定合成核验步骤。 · 事件序号 10",
+      "教师多任务队列隔离验证 A · 复核历史读取失败，状态未知：读取复核历史没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。"
+    ],
+    "historyRetryVisible": true,
+    "remediationText": "教师多任务队列隔离验证 C · 等待学生回应 · 请求补正 · 原提交 submission-3 · 要求：任务 C：请补充一项固定合成核验步骤。\n教师多任务队列隔离验证 A · 补正读取失败，状态未知：读取补正状态没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。 重试此任务补正状态",
+    "remediationRetryVisible": true,
+    "detailsVisible": false,
+    "viewport": {
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    }
+  },
+  "history_pending_with_remediation_retry_failed": {
+    "queueRows": [
+      "教师多任务队列隔离验证 A · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项查看此任务"
+    ],
+    "reviewCount": "2",
+    "historyState": "正在读取已发布任务的复核历史；本机合成、内存暂存、非生产。",
+    "historyRows": [
+      "教师多任务队列隔离验证 C · 动作记录：请求补正 · 目标提交 submission-3 第 1 版 · 理由：任务 C：请补充一项固定合成核验步骤。 · 事件序号 10",
+      "教师多任务队列隔离验证 A · 复核历史读取失败，状态未知：读取复核历史没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。"
+    ],
+    "historyRetryVisible": false,
+    "remediationText": "教师多任务队列隔离验证 C · 等待学生回应 · 请求补正 · 原提交 submission-3 · 要求：任务 C：请补充一项固定合成核验步骤。\n教师多任务队列隔离验证 A · 补正读取失败，状态未知：读取补正状态没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。 重试此任务补正状态",
+    "remediationRetryVisible": true,
+    "detailsVisible": false,
+    "viewport": {
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    }
+  },
+  "both_regions_unknown": {
+    "queueRows": [
+      "教师多任务队列隔离验证 A · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项查看此任务"
+    ],
+    "reviewCount": "2",
+    "historyState": "1 个任务读取失败，历史状态未知；以下仅为 API 返回的复核历史记录；记录本身不能确认页面中某次回执未知的请求。",
+    "historyRows": [
+      "教师多任务队列隔离验证 C · 动作记录：请求补正 · 目标提交 submission-3 第 1 版 · 理由：任务 C：请补充一项固定合成核验步骤。 · 事件序号 10",
+      "教师多任务队列隔离验证 A · 复核历史读取失败，状态未知：读取复核历史没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。"
+    ],
+    "historyRetryVisible": true,
+    "remediationText": "教师多任务队列隔离验证 C · 等待学生回应 · 请求补正 · 原提交 submission-3 · 要求：任务 C：请补充一项固定合成核验步骤。\n教师多任务队列隔离验证 A · 补正读取失败，状态未知：读取补正状态没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。 重试此任务补正状态",
+    "remediationRetryVisible": true,
+    "detailsVisible": false,
+    "viewport": {
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    }
+  },
+  "remediation_recovered_history_still_failed": {
+    "queueRows": [
+      "教师多任务队列隔离验证 A · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项查看此任务"
+    ],
+    "reviewCount": "2",
+    "historyState": "1 个任务读取失败，历史状态未知；以下仅为 API 返回的复核历史记录；记录本身不能确认页面中某次回执未知的请求。",
+    "historyRows": [
+      "教师多任务队列隔离验证 C · 动作记录：请求补正 · 目标提交 submission-3 第 1 版 · 理由：任务 C：请补充一项固定合成核验步骤。 · 事件序号 10",
+      "教师多任务队列隔离验证 A · 复核历史读取失败，状态未知：读取复核历史没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。"
+    ],
+    "historyRetryVisible": true,
+    "remediationText": "教师多任务队列隔离验证 C · 等待学生回应 · 请求补正 · 原提交 submission-3 · 要求：任务 C：请补充一项固定合成核验步骤。",
+    "remediationRetryVisible": false,
+    "detailsVisible": false,
+    "viewport": {
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    }
+  },
+  "assertions": {
+    "first_history_and_remediation_reads_failed_independently": true,
+    "history_remained_pending_during_remediation_retry": true,
+    "remediation_failure_did_not_replace_history_pending_state": true,
+    "queue_remained_unchanged_during_failures": true,
+    "history_failure_preserved_remediation_retry": true,
+    "remediation_retry_recovered_only_its_region": true,
+    "remediation_recovery_did_not_refetch_history_or_queue": true,
+    "no_horizontal_overflow": true
+  }
+}

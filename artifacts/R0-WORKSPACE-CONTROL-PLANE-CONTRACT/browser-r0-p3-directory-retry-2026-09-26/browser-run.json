@@ -1,0 +1,41 @@
+{
+  "task_id": "R0-P3-C-TEACHER-REVIEW-DIRECTORY-RETRY-098",
+  "date": "2026-09-26",
+  "harness_mode": "teacher-review-directory-fail",
+  "browser": "installed Microsoft Edge via Playwright",
+  "viewport_css_px": {
+    "width": 360,
+    "height": 800
+  },
+  "directory_http_status_order": [
+    200,
+    200,
+    503,
+    200
+  ],
+  "failure_state": "The assignment task list was hidden; the directory state was marked unknown; the dedicated retry was visible; the previously read review-history item remained visible.",
+  "recovery_state": "The dedicated retry restored all three task rows; A and B each showed one pending review, C showed zero; the directory retry was hidden and the API status reported directory-read success.",
+  "document_width_css_px": {
+    "client": 360,
+    "scroll": 360
+  },
+  "body_width_css_px": {
+    "client": 360,
+    "scroll": 360
+  },
+  "screenshots": [
+    "directory-failure-360px.png",
+    "directory-recovered-360px.png"
+  ],
+  "limits": [
+    "Local loopback synthetic API and in-memory state only",
+    "No real identities or user data",
+    "No model calls",
+    "No student code execution",
+    "Not production HTTP or full P4 acceptance"
+  ],
+  "evidence_logs": [
+    "harness.stderr.log (raw loopback HTTP access log)",
+    "harness.stdout.log (Harness startup record)"
+  ]
+}

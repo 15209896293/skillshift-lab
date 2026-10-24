@@ -1,0 +1,294 @@
+{
+  "pcp_13_sensitive_content_scan": {
+    "clean_synthetic_manifest_accepted": true,
+    "field_rule": "field.credential_like_name",
+    "findings_carry_values": false,
+    "module": "apps/agent-first/agent_first/secret_scan.py",
+    "refusals": [
+      {
+        "findings": [
+          {
+            "kind": "credential_like_field",
+            "location": "$.api_key",
+            "rule_id": "field.credential_like_name",
+            "sink": "manifest"
+          }
+        ],
+        "locations": [
+          "$.api_key"
+        ],
+        "rule_ids": [
+          "field.credential_like_name"
+        ],
+        "sink": "manifest"
+      },
+      {
+        "findings": [
+          {
+            "kind": "provider_api_key",
+            "location": "$.outcome",
+            "rule_id": "value.provider_api_key",
+            "sink": "log"
+          }
+        ],
+        "locations": [
+          "$.outcome"
+        ],
+        "rule_ids": [
+          "value.provider_api_key"
+        ],
+        "sink": "log"
+      },
+      {
+        "findings": [
+          {
+            "kind": "password_assignment",
+            "location": "$",
+            "rule_id": "value.password_assignment",
+            "sink": "error"
+          }
+        ],
+        "locations": [
+          "$"
+        ],
+        "rule_ids": [
+          "value.password_assignment"
+        ],
+        "sink": "error"
+      },
+      {
+        "findings": [
+          {
+            "kind": "private_key_block",
+            "location": "$",
+            "rule_id": "value.private_key_block",
+            "sink": "artifact"
+          }
+        ],
+        "locations": [
+          "$"
+        ],
+        "rule_ids": [
+          "value.private_key_block"
+        ],
+        "sink": "artifact"
+      },
+      {
+        "findings": [
+          {
+            "kind": "cloud_access_key",
+            "location": "$",
+            "rule_id": "value.cloud_access_key",
+            "sink": "artifact"
+          }
+        ],
+        "locations": [
+          "$"
+        ],
+        "rule_ids": [
+          "value.cloud_access_key"
+        ],
+        "sink": "artifact"
+      },
+      {
+        "findings": [
+          {
+            "kind": "bearer_token",
+            "location": "$",
+            "rule_id": "value.bearer_token",
+            "sink": "artifact"
+          }
+        ],
+        "locations": [
+          "$"
+        ],
+        "rule_ids": [
+          "value.bearer_token"
+        ],
+        "sink": "artifact"
+      }
+    ],
+    "sinks_covered": [
+      "manifest",
+      "log",
+      "error",
+      "artifact"
+    ],
+    "value_rules": [
+      "value.provider_api_key",
+      "value.cloud_access_key",
+      "value.private_key_block",
+      "value.bearer_token",
+      "value.password_assignment"
+    ]
+  },
+  "pcp_18_log_redaction": {
+    "classified_field_count": 44,
+    "error_sanitization": {
+      "address_scrubbed": true,
+      "bounded": true,
+      "path_scrubbed": true
+    },
+    "field_classes": [
+      {
+        "count": 21,
+        "field_class": "operational"
+      },
+      {
+        "count": 11,
+        "field_class": "personal"
+      },
+      {
+        "count": 8,
+        "field_class": "secret"
+      },
+      {
+        "count": 4,
+        "field_class": "forbidden_inference"
+      }
+    ],
+    "forbidden_inference_rules": [
+      "inference.cheating_verdict",
+      "inference.external_ai_verdict",
+      "inference.ability_verdict",
+      "inference.auto_score",
+      "inference.cheating_verdict_en",
+      "inference.ability_verdict_en",
+      "inference.auto_score_en"
+    ],
+    "module": "apps/agent-first/agent_first/log_redaction.py",
+    "negative_cases": [
+      {
+        "case": "unknown_field",
+        "refused_by": "UnclassifiedLogField"
+      },
+      {
+        "case": "secret_field",
+        "refused_by": "SecretFieldRefused"
+      },
+      {
+        "case": "forbidden_inference_field",
+        "refused_by": "ForbiddenInferenceDetected"
+      },
+      {
+        "case": "cheating_verdict_text",
+        "refused_by": "ForbiddenInferenceDetected"
+      }
+    ],
+    "positive_case": {
+      "kept_fields": [
+        "action",
+        "reason_code",
+        "sequence",
+        "student_id",
+        "text"
+      ],
+      "redacted_fields": [
+        "$.student_id",
+        "$.text"
+      ]
+    },
+    "redaction_placeholder": "[redacted]"
+  },
+  "pcp_20_audit_log": {
+    "action_count": 14,
+    "chain_verified": true,
+    "event_count": 3,
+    "event_ids": [
+      "audit-000001-6c3bbafeef97",
+      "audit-000002-15b305735e40",
+      "audit-000003-ff1bd0e0a385"
+    ],
+    "genesis_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "module": "apps/agent-first/agent_first/audit_log.py",
+    "no_read_access_roles": [
+      "system"
+    ],
+    "operator_visible_events": [
+      "security.secret_leak_rejected"
+    ],
+    "read_policy": [
+      {
+        "allowed_actions": [
+          "guidance.fallback_used",
+          "guidance.requested",
+          "guidance.returned",
+          "student.work_started",
+          "submission.recorded"
+        ],
+        "role": "student"
+      },
+      {
+        "allowed_actions": [
+          "guidance.fallback_used",
+          "review.recorded",
+          "submission.recorded",
+          "task.assigned",
+          "task.created"
+        ],
+        "role": "teacher"
+      },
+      {
+        "allowed_actions": [
+          "budget.limit_rejected",
+          "budget.reserved",
+          "review.recorded",
+          "task.assigned",
+          "task.created"
+        ],
+        "role": "school_admin"
+      },
+      {
+        "allowed_actions": [
+          "audit.read_denied",
+          "audit.read_granted",
+          "budget.limit_rejected",
+          "security.log_record_redacted",
+          "security.secret_leak_rejected"
+        ],
+        "role": "platform_operator"
+      },
+      {
+        "allowed_actions": [
+          "audit.read_denied",
+          "audit.read_granted",
+          "budget.limit_rejected",
+          "budget.reserved",
+          "guidance.fallback_used",
+          "guidance.requested",
+          "guidance.returned",
+          "review.recorded",
+          "security.log_record_redacted",
+          "security.secret_leak_rejected",
+          "student.work_started",
+          "submission.recorded",
+          "task.assigned",
+          "task.created"
+        ],
+        "role": "project_owner"
+      }
+    ],
+    "reason_code_count": 11,
+    "schema_version": "control-plane-audit/v1",
+    "student_visible_events": [
+      "submission.recorded"
+    ]
+  },
+  "report_date": "2026-09-24",
+  "schema_version": "local-safety-contract-evidence/v1",
+  "scope": "local-synthetic-only",
+  "self_scan": {
+    "finding_count": 0,
+    "observed_field_name_false_positive": {
+      "current_section_key": "pcp_13_sensitive_content_scan",
+      "earlier_section_key": "pcp_13_secret_scan",
+      "reason": "the field-name rule matches risky substrings, so a section label containing the word 'secret' is refused as if it held a credential",
+      "resolution": "the section key was renamed; the heuristic stays conservative on purpose",
+      "rule_id": "field.credential_like_name"
+    },
+    "refused_locations": [],
+    "result": "clean",
+    "sink": "artifact"
+  },
+  "task_id": "R0-LOCAL-CONTROL-PLANE-SAFETY-CONTRACT-001"
+}

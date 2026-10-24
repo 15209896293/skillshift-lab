@@ -1,0 +1,30 @@
+:root { color-scheme: light; font-family: "Microsoft YaHei", system-ui, sans-serif; background: #f3f6fb; color: #162235; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+header { padding: 46px max(7vw, 24px) 38px; color: #fff; background: linear-gradient(120deg, #12335c, #2d7592); }
+header h1 { margin: 5px 0 8px; font-size: clamp(28px, 5vw, 44px); }
+header p { margin: 0; max-width: 680px; line-height: 1.6; }
+.eyebrow { letter-spacing: .12em; font-size: 12px; font-weight: 700; opacity: .8; }
+main { width: min(960px, calc(100% - 32px)); margin: 28px auto 48px; }
+.notice { padding: 14px 16px; border-left: 4px solid #e89d30; background: #fff7e7; border-radius: 5px; line-height: 1.6; }
+nav { display: flex; gap: 8px; margin: 24px 0 14px; }
+button, select, input, textarea { font: inherit; }
+button { border: 0; border-radius: 7px; padding: 10px 14px; color: #fff; background: #176b87; cursor: pointer; }
+button:hover { background: #11556d; }
+button.secondary { background: #315b98; }
+button.quiet { margin-left: 8px; color: #315b98; background: transparent; }
+.tab { color: #315b98; background: #e4ecf7; }
+.tab.active { color: #fff; background: #315b98; }
+.panel { display: none; }
+.panel.active { display: grid; gap: 16px; }
+.card { padding: 22px; border: 1px solid #dce4ef; border-radius: 12px; background: #fff; box-shadow: 0 2px 10px #2038590d; }
+h2 { margin: 0 0 8px; font-size: 20px; }
+label { display: block; margin: 16px 0 6px; font-weight: 700; }
+select, input, textarea { width: 100%; padding: 9px; border: 1px solid #b6c5d7; border-radius: 6px; color: #162235; background: #fff; }
+textarea { resize: vertical; }
+.empty, .answer { padding: 12px; border-radius: 7px; background: #f3f6fb; line-height: 1.65; }
+.answer { margin-top: 12px; background: #edf7f2; }
+.small { font-size: 13px; color: #58677a; }
+code { padding: 2px 5px; border-radius: 4px; color: #1f4b75; background: #edf1f6; }
+pre { min-height: 24px; margin: 18px 0; padding: 16px; overflow: auto; border-radius: 8px; color: #dcecff; background: #17283b; white-space: pre-wrap; }
+@media (max-width: 560px) { header { padding-top: 32px; } button { margin-top: 4px; } button.quiet { margin-left: 0; } }

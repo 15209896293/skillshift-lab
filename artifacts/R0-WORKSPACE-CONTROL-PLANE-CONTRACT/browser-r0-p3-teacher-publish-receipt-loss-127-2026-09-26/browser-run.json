@@ -1,0 +1,112 @@
+{
+  "task_id": "R0-P3-127-TEACHER-PUBLISH-RECEIPT-LOSS",
+  "browser": "Microsoft Edge via Playwright",
+  "origin": {
+    "host": "127.0.0.1",
+    "port": 63613
+  },
+  "synthetic_in_memory_only": true,
+  "request_attempt_count": 9,
+  "non_loopback_request_attempts": [],
+  "student_code_executed": false,
+  "assignment_id": "assignment-1",
+  "checks": {
+    "publish_committed_before_browser_response_was_dropped": true,
+    "unknown_publish_state_keeps_original_task_named": true,
+    "only_original_publish_action_is_enabled": true,
+    "one_assignment_and_one_publish_event_before_retry": true,
+    "retry_reaches_confirmed_published_task_card_once": true,
+    "retry_reuses_identical_publish_request_identity": true,
+    "retry_did_not_create_or_publish_duplicate": true,
+    "all_browser_request_attempts_stayed_on_loopback": true,
+    "1280px_no_horizontal_overflow": true
+  },
+  "publish_attempts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 200,
+      "body": "{\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "48b7f8aa-45a0-455c-93ab-48aa577e77cd",
+      "if_match": "1",
+      "upstream_response_dropped": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 200,
+      "body": "{\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "48b7f8aa-45a0-455c-93ab-48aa577e77cd",
+      "if_match": "1",
+      "upstream_response_dropped": false
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/demo/teacher/",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/styles.css",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/app.js",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 201,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200,
+      "netloc": "127.0.0.1:63613"
+    }
+  ],
+  "request_urls": [
+    "http://127.0.0.1:63613/demo/teacher/",
+    "http://127.0.0.1:63613/demo/teacher/styles.css",
+    "http://127.0.0.1:63613/demo/teacher/app.js",
+    "http://127.0.0.1:63613/demo/workspace-client.mjs",
+    "http://127.0.0.1:63613/api/v1/demo/teacher/assignments",
+    "http://127.0.0.1:63613/api/v1/demo/teacher/assignments",
+    "http://127.0.0.1:63613/api/v1/demo/teacher/assignments/assignment-1/publish",
+    "http://127.0.0.1:63613/api/v1/demo/teacher/assignments/assignment-1/publish",
+    "http://127.0.0.1:63613/api/v1/demo/teacher/assignments"
+  ],
+  "workspace_postcondition": {
+    "assignment_count": 1,
+    "assignment_state": "PUBLISHED",
+    "workspace_id": "workspace-1",
+    "published_event_count": 1
+  },
+  "pass": true
+}

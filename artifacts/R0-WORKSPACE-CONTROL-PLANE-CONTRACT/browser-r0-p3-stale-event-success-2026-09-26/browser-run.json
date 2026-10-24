@@ -1,0 +1,54 @@
+{
+  "task_id": "R0-P3-C-STALE-TEACHER-EVENT-SUCCESS-101",
+  "browser": "Microsoft Edge via Playwright",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "fixture": "teacher-multi-queue synthetic loopback; Playwright held the actual response after fetch without changing status/body",
+  "selection": [
+    {
+      "assignment_id": "assignment-1",
+      "title": "教师多任务队列隔离验证 A"
+    },
+    {
+      "assignment_id": "assignment-2",
+      "title": "教师多任务队列隔离验证 B"
+    }
+  ],
+  "held_response": {
+    "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/events?after_sequence=0&limit=50",
+    "status": 200,
+    "event_count": 3
+  },
+  "event_responses": [
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-2/events?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/events?after_sequence=0&limit=50",
+      "status": 200
+    }
+  ],
+  "before_release": {
+    "title": "教师多任务队列隔离验证 B",
+    "timeline": "4\nassignment.published\n\nteacher · assignment-2\n\n服务端顺序 4 · 2026-09-26T10:25:28Z\n5\nstudent.work_started\n\nstudent · workspace-2\n\n服务端顺序 5 · 2026-09-26T10:25:28Z\n6\nsubmission.created\n\nstudent · submission-2\n\n服务端顺序 6 · 2026-09-26T10:25:28Z",
+    "status": "事件读取成功。"
+  },
+  "after_release": {
+    "title": "教师多任务队列隔离验证 B",
+    "timeline": "4\nassignment.published\n\nteacher · assignment-2\n\n服务端顺序 4 · 2026-09-26T10:25:28Z\n5\nstudent.work_started\n\nstudent · workspace-2\n\n服务端顺序 5 · 2026-09-26T10:25:28Z\n6\nsubmission.created\n\nstudent · submission-2\n\n服务端顺序 6 · 2026-09-26T10:25:28Z",
+    "status": "事件读取成功。"
+  },
+  "assertions": {
+    "held_a_response_was_nonempty_200": true,
+    "b_timeline_loaded_before_a_release": true,
+    "stale_a_200_did_not_change_b_selection_timeline_or_status": true
+  },
+  "limits": [
+    "synthetic in-process data",
+    "browser-visible response held at Playwright route boundary",
+    "does not establish server-side delay, production HTTP, identity, or full P4"
+  ]
+}

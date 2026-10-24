@@ -1,0 +1,50 @@
+{
+  "schema_version": "r0-windows-isolation-launcher-spike/v1",
+  "scope": "synthetic Windows primitive probes plus zero-capability AppContainer launches; copied runner ACL is temporary; no network or workspace ACL",
+  "job_tree": {
+    "state": "PASS",
+    "parent_pid": 26604,
+    "child_pid": 25996,
+    "parent_in_job": true,
+    "child_in_job": true,
+    "active_pids_before_terminate": [
+      26604,
+      25996
+    ],
+    "active_pids_after_terminate": [],
+    "parent_exited": true,
+    "child_exited": true,
+    "detail": "synthetic parent and standard CreateProcess child terminated through one Job Object"
+  },
+  "appcontainer_profile": {
+    "state": "PASS",
+    "profile_name": "SkillShift.R0.Probe.a42da1a8043d49a4b5cdafa8e5b74b5a",
+    "create_hresult": "0x00000000",
+    "delete_hresult": "0x00000000",
+    "detail": "zero-capability profile lifecycle completed; no process was launched"
+  },
+  "appcontainer_python": {
+    "state": "FAIL",
+    "profile_name": "SkillShift.R0.PythonProbe.a411998976a34831909086b01e33f969",
+    "create_hresult": "0x00000000",
+    "delete_hresult": "0x00000000",
+    "process_pid": 32400,
+    "token_is_appcontainer": true,
+    "process_in_job": true,
+    "exit_code": 3221225781,
+    "active_pids_after_exit": [],
+    "detail": "WindowsIsolationSpikeError: AppContainer Python evidence incomplete (token=True, job=True, exit=3221225781, active=())"
+  },
+  "copied_runner": {
+    "state": "PASS",
+    "profile_name": "SkillShift.R0.PythonProbe.ac76054f5f8042489998a6351cf6e70c",
+    "create_hresult": "0x00000000",
+    "delete_hresult": "0x00000000",
+    "process_pid": 31968,
+    "token_is_appcontainer": true,
+    "process_in_job": true,
+    "exit_code": 0,
+    "active_pids_after_exit": [],
+    "detail": "zero-capability AppContainer launched synthetic Python under one Job Object; temporary runner directory removed"
+  }
+}

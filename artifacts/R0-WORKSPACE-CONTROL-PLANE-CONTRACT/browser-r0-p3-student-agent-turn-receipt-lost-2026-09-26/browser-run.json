@@ -1,0 +1,76 @@
+{
+  "browser": "Edge via Playwright",
+  "viewport": "390x844",
+  "workspace_id": "workspace-1",
+  "turn_id": "agent-turn-4",
+  "proposal_id": "proposal-4",
+  "unknown_state": {
+    "input": "请给出一个可以检查的金额核对建议。",
+    "send_disabled": false,
+    "message_articles": 0,
+    "proposal_buttons": 0,
+    "api_state": "上一问题的回执尚未确认。请留在当前页面，把原问题放回输入框后重试；刷新会丢失本页重试信息。",
+    "selected_task": "assignment-1",
+    "editor": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+    "width": {
+      "client": 390,
+      "scroll": 390
+    }
+  },
+  "different_question_attempt": {
+    "input_preserved": "请把不同问题作为新回合发送。",
+    "agent_post_count": 1,
+    "api_state": "上一问题的回执尚未确认；请将原问题放回输入框后重试。当前新输入已保留。"
+  },
+  "requests": [
+    {
+      "phase": "first",
+      "status": 200,
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/agent-turns",
+      "body": "{\"question\":\"请给出一个可以检查的金额核对建议。\",\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "56e696af-0a1b-4082-bac3-0e45142d1918",
+      "if_match": "3",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-ad61424079574f72a81dd25c6531efbb\",\"data\":{\"turn\":{\"id\":\"agent-turn-4\",\"provider_mode\":\"scripted-demo\",\"response_text\":\"围绕任务“核对固定合成订单并决定是否采纳页面内存建议。”，先写出你的判断，再用一个可检查的例子验证。提交时说明：你采用了什么建议、如何验证，以及还有什么不确定之处。\",\"availability\":\"AVAILABLE\",\"event_sequence\":4},\"workspace_revision\":4,\"proposed_action\":{\"id\":\"proposal-4\",\"kind\":\"FILE_PATCH_PREVIEW\",\"target_artifact_ref\":\"artifact-main-py-v1\",\"status\":\"PROPOSED\",\"diff\":\"固定差异预览：先计算 expected，再比较金额；不会写入或运行代码。\"}},\"revision\":4}"
+    },
+    {
+      "phase": "retry",
+      "status": 200,
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/agent-turns",
+      "body": "{\"question\":\"请给出一个可以检查的金额核对建议。\",\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "56e696af-0a1b-4082-bac3-0e45142d1918",
+      "if_match": "3",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-25ab7192014a45b1bba0a6c05e79bb6a\",\"data\":{\"turn\":{\"id\":\"agent-turn-4\",\"provider_mode\":\"scripted-demo\",\"response_text\":\"围绕任务“核对固定合成订单并决定是否采纳页面内存建议。”，先写出你的判断，再用一个可检查的例子验证。提交时说明：你采用了什么建议、如何验证，以及还有什么不确定之处。\",\"availability\":\"AVAILABLE\",\"event_sequence\":4},\"workspace_revision\":4,\"proposed_action\":{\"id\":\"proposal-4\",\"kind\":\"FILE_PATCH_PREVIEW\",\"target_artifact_ref\":\"artifact-main-py-v1\",\"status\":\"PROPOSED\",\"diff\":\"固定差异预览：先计算 expected，再比较金额；不会写入或运行代码。\"}},\"revision\":4}"
+    }
+  ],
+  "same_request": true,
+  "same_turn_receipt_data": true,
+  "turn_events": [
+    {
+      "event_id": "event-4",
+      "sequence": 4,
+      "schema_version": "evidence-event/v1",
+      "workspace_id": "workspace-1",
+      "actor_role": "student",
+      "event_type": "agent.turn_created",
+      "resource_ref": "agent-turn-4",
+      "request_id": "req-demo-ad61424079574f72a81dd25c6531efbb",
+      "occurred_at": "2026-09-26T12:31:47Z"
+    }
+  ],
+  "turn_event_count": 1,
+  "question_bubbles": 1,
+  "agent_bubbles": 1,
+  "proposal_buttons": 1,
+  "api_state_after_retry": "本机合成 API 已确认上一 Agent 回合；当前回复来自固定 scripted-demo 内容，没有调用真实模型。",
+  "editor_unchanged": true,
+  "workspace_state": "IN_PROGRESS",
+  "agent_post_count": 2,
+  "pause_posts": 0,
+  "submission_posts": 0,
+  "width": {
+    "client": 390,
+    "scroll": 390
+  }
+}

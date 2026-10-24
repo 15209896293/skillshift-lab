@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-26",
+  "browser": "Microsoft Edge 154 via Playwright",
+  "environment": "loopback synthetic WSGI; route.fetch committed pause then browser route aborted",
+  "result": {
+    "server_committed_pause_status": 200,
+    "browser_receipt": "dropped after server 200",
+    "unknown_state_visible": true,
+    "switch_attempt_reverted_to_a": true,
+    "readback_button_retained_after_blocked_switch": true,
+    "readback_confirmed": "PAUSED",
+    "b_assignment_selected_after_confirmation": "assignment-2",
+    "b_workspace_started": "workspace-2",
+    "b_start_status": 200,
+    "a_state_after_switch": "PAUSED",
+    "viewport": {
+      "width": 390,
+      "client_width": 390,
+      "scroll_width": 390
+    },
+    "horizontal_overflow": false,
+    "browser_network_responses": [
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments/assignment-1",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/remediation",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments/assignment-2",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2",
+        "status": 200
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/start",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/remediation",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/submissions/latest",
+        "status": 200
+      }
+    ]
+  },
+  "limitations": [
+    "synthetic in-memory records only",
+    "interception is browser-boundary evidence, not real network loss",
+    "not durable or production integration",
+    "not full P4"
+  ]
+}

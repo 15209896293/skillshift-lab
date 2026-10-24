@@ -1,0 +1,205 @@
+{
+  "schema_version": "agent-first-demo/v1",
+  "cases": [
+    {
+      "case": "normal_completion",
+      "manifest": {
+        "schema_version": "agent-first-submission/v1",
+        "task": {
+          "id": "synthetic-data-check-v1",
+          "version": "task-template/v1"
+        },
+        "guidance_adapter_version": "scripted-guidance/v1",
+        "guidance_records": [
+          {
+            "adapter_version": "scripted-guidance/v1",
+            "source": "scripted",
+            "availability": "AVAILABLE",
+            "fallback_from": null
+          }
+        ],
+        "status": "CLOSED",
+        "student_response": {
+          "response_id": "response-1",
+          "student_id": "student-synthetic",
+          "text": "我先比对记录中的两个字段，再用原始规则核对这一条记录是否一致。",
+          "responsibility_kind": "verification",
+          "revision": 1
+        },
+        "review_actions": [
+          {
+            "action_id": "review-1",
+            "teacher_id": "teacher-synthetic",
+            "kind": "ACKNOWLEDGE",
+            "reason": "normal_completion 的合成教师复核理由"
+          }
+        ],
+        "event_references": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "case": "explanation_requested",
+      "manifest": {
+        "schema_version": "agent-first-submission/v1",
+        "task": {
+          "id": "synthetic-data-check-v1",
+          "version": "task-template/v1"
+        },
+        "guidance_adapter_version": "scripted-guidance/v1",
+        "guidance_records": [
+          {
+            "adapter_version": "scripted-guidance/v1",
+            "source": "scripted",
+            "availability": "AVAILABLE",
+            "fallback_from": null
+          }
+        ],
+        "status": "CLOSED",
+        "student_response": {
+          "response_id": "response-2",
+          "student_id": "student-synthetic",
+          "text": "我补充了规则来源，并重新核对字段关系；现在可说明原判断为何成立。",
+          "responsibility_kind": "remediation",
+          "revision": 2
+        },
+        "review_actions": [
+          {
+            "action_id": "review-1",
+            "teacher_id": "teacher-synthetic",
+            "kind": "REQUEST_EXPLANATION",
+            "reason": "explanation_requested 的合成教师复核理由"
+          },
+          {
+            "action_id": "review-2",
+            "teacher_id": "teacher-synthetic",
+            "kind": "ACKNOWLEDGE",
+            "reason": "补正后的合成复核理由"
+          }
+        ],
+        "event_references": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "case": "remediation_requested",
+      "manifest": {
+        "schema_version": "agent-first-submission/v1",
+        "task": {
+          "id": "synthetic-data-check-v1",
+          "version": "task-template/v1"
+        },
+        "guidance_adapter_version": "scripted-guidance/v1",
+        "guidance_records": [
+          {
+            "adapter_version": "scripted-guidance/v1",
+            "source": "scripted",
+            "availability": "AVAILABLE",
+            "fallback_from": null
+          }
+        ],
+        "status": "CLOSED",
+        "student_response": {
+          "response_id": "response-2",
+          "student_id": "student-synthetic",
+          "text": "我补充了规则来源，并重新核对字段关系；现在可说明原判断为何成立。",
+          "responsibility_kind": "remediation",
+          "revision": 2
+        },
+        "review_actions": [
+          {
+            "action_id": "review-1",
+            "teacher_id": "teacher-synthetic",
+            "kind": "REQUEST_REMEDIATION",
+            "reason": "remediation_requested 的合成教师复核理由"
+          },
+          {
+            "action_id": "review-2",
+            "teacher_id": "teacher-synthetic",
+            "kind": "ACKNOWLEDGE",
+            "reason": "补正后的合成复核理由"
+          }
+        ],
+        "event_references": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "case": "environment_issue",
+      "manifest": {
+        "schema_version": "agent-first-submission/v1",
+        "task": {
+          "id": "synthetic-data-check-v1",
+          "version": "task-template/v1"
+        },
+        "guidance_adapter_version": "scripted-guidance/v1",
+        "guidance_records": [
+          {
+            "adapter_version": "scripted-guidance/v1",
+            "source": "scripted",
+            "availability": "AVAILABLE",
+            "fallback_from": null
+          }
+        ],
+        "status": "CLOSED",
+        "student_response": {
+          "response_id": "response-2",
+          "student_id": "student-synthetic",
+          "text": "我补充了规则来源，并重新核对字段关系；现在可说明原判断为何成立。",
+          "responsibility_kind": "remediation",
+          "revision": 2
+        },
+        "review_actions": [
+          {
+            "action_id": "review-1",
+            "teacher_id": "teacher-synthetic",
+            "kind": "ENVIRONMENT_ISSUE",
+            "reason": "environment_issue 的合成教师复核理由"
+          },
+          {
+            "action_id": "review-2",
+            "teacher_id": "teacher-synthetic",
+            "kind": "ACKNOWLEDGE",
+            "reason": "补正后的合成复核理由"
+          }
+        ],
+        "event_references": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <base href="/demo/teacher/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f5">
+    <title>SkillShift Studio · 教师工作台</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#tasks" aria-label="SkillShift Studio 教师工作台">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>SkillShift <span class="brand-light">Studio</span></span>
+      </a>
+      <div class="topbar-context"><span class="context-dot"></span>职业项目 · 教师工作台</div>
+      <div class="topbar-right">
+        <span class="prototype-pill"><span aria-hidden="true">●</span> 本机合成原型</span>
+        <span class="avatar" aria-hidden="true">师</span>
+        <span class="profile-label">教师演示</span>
+      </div>
+    </header>
+
+    <aside class="sidebar" aria-label="教师导航">
+      <button class="new-task-button" type="button" data-action="new-task">
+        <span aria-hidden="true">＋</span> 创建项目任务
+      </button>
+      <p class="nav-caption">教学工作</p>
+      <nav class="side-nav">
+        <button class="nav-item is-active" type="button" data-view="tasks" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">▤</span> 任务中心
+        </button>
+        <button class="nav-item" type="button" data-view="reviews">
+          <span class="nav-icon" aria-hidden="true">◷</span> 提交复核
+          <span id="review-count" class="nav-count">0</span>
+        </button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note-icon" aria-hidden="true">✳</div>
+        <p class="sidebar-note-title">让任务贴近真实工作</p>
+        <p class="sidebar-note-copy">学生可以使用 Agent。教师关注任务成果、验证依据和下一步指导。</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div id="api-state" class="api-state" role="status" aria-live="polite">本机合成 API 尚未连接；当前没有已发布/已提交回执。此演示使用固定角色，数据只保存在服务进程内存，非生产。</div>
+      <section id="tasks-view" class="view" aria-labelledby="tasks-heading">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">TEACHING WORKSPACE</p>
+            <h1 id="tasks-heading">任务中心</h1>
+            <p class="page-subtitle">设计一个清晰的职业项目，让学生在 Agent 协作中完成、验证并说明自己的工作。</p>
+          </div>
+          <button class="button button-primary" type="button" data-action="new-task">＋ 创建项目任务</button>
+        </div>
+
+        <section class="welcome-card" aria-label="工作方式说明">
+          <div class="welcome-copy">
+            <span class="welcome-kicker">从一个真实类型的任务开始</span>
+            <h2>不需要先搭一套课程系统</h2>
+            <p>给出任务目标、学生要负责的验证，以及最终交付。SkillShift 会把它组织成学生可与 Agent 协作的项目任务。</p>
+            <button class="text-button" type="button" data-action="new-task">从 Python + CSV 模板创建 <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="art-window">
+              <div class="art-window-top"><i></i><i></i><i></i><span>项目任务</span></div>
+              <div class="art-line art-line-title"></div>
+              <div class="art-line"></div>
+              <div class="art-line art-line-short"></div>
+              <div class="art-agent"><span class="agent-spark">✳</span><span>与 Agent 一起检查</span><span class="agent-arrow">↗</span></div>
+            </div>
+            <div class="art-orbit art-orbit-one"></div>
+            <div class="art-orbit art-orbit-two"></div>
+          </div>
+        </section>
+
+        <div class="section-toolbar">
+          <div>
+            <h2>我的任务</h2>
+            <p>本机合成任务由当前 API 进程暂存；服务重启后清空。</p>
+          </div>
+          <span class="synthetic-label"><span aria-hidden="true">◇</span> 内容均为合成示例</span>
+        </div>
+        <div id="task-list" class="task-list" aria-live="polite">
+          <article class="template-card">
+            <div class="template-icon" aria-hidden="true">▧</div>
+            <div class="template-body">
+              <div class="template-meta"><span class="tag tag-teal">项目模板</span><span class="meta-separator">·</span><span>Python + CSV</span></div>
+              <h3>检查订单数据中的不一致记录</h3>
+              <p>学生需要检查字段关系，找出异常，并说明判断依据与不确定之处。</p>
+              <div class="template-footer"><span class="file-chip"><span aria-hidden="true">▤</span> main.py</span><span class="file-chip"><span aria-hidden="true">▦</span> orders.csv</span><span class="template-note">固定合成示例，不含真实课程材料</span></div>
+            </div>
+            <button class="button button-outline" type="button" data-action="use-template">使用模板 <span aria-hidden="true">→</span></button>
+          </article>
+          <div id="assignment-list-state" class="api-state" role="status" aria-live="polite" hidden></div>
+          <div id="created-tasks" class="created-tasks"></div>
+        </div>
+        <div class="principle-strip"><span class="principle-icon" aria-hidden="true">✓</span><p><strong>学生可以使用 AI。</strong>系统不推断外部 AI 使用、作弊或能力；教师始终负责教学判断。</p></div>
+      </section>
+
+      <section id="editor-view" class="view" aria-labelledby="editor-heading" hidden>
+        <div class="editor-heading-row">
+          <button class="back-button" type="button" data-view="tasks">← 返回任务中心</button>
+          <span class="draft-indicator"><span></span> 本机草稿</span>
+        </div>
+        <div class="page-heading editor-page-heading">
+          <div>
+            <p class="eyebrow">NEW PROJECT TASK</p>
+            <h1 id="editor-heading">创建项目任务</h1>
+            <p class="page-subtitle">先说清楚要解决什么、学生要亲自验证什么。其余保持简单。</p>
+          </div>
+          <div class="heading-actions">
+            <button class="button button-quiet" type="button" data-action="save-draft">保存草稿</button>
+            <button class="button button-primary" type="button" data-action="simulate-publish">预览并发布 <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+
+        <div class="editor-grid">
+          <form id="task-form" class="form-column">
+            <section class="form-card">
+              <div class="form-section-heading"><span class="step-number">01</span><div><h2>任务内容</h2><p>使用教师熟悉的工作语言描述任务。</p></div></div>
+              <label for="task-title">任务名称 <span class="required">*</span></label>
+              <input id="task-title" name="title" maxlength="100" required value="检查订单数据中的不一致记录">
+              <label for="task-goal">学生要完成什么 <span class="required">*</span></label>
+              <textarea id="task-goal" name="goal" rows="4" maxlength="800" required>检查合成订单数据中的金额与数量、单价关系，找出一条不一致记录，并说明你如何验证判断。</textarea>
+              <div class="field-help"><span>写清交付目标即可，不用写 Agent 提示词。</span><span id="goal-count">0 / 800</span></div>
+              <div class="starter-project">
+                <div class="starter-icon" aria-hidden="true">▧</div>
+                <div class="starter-copy"><strong>起始项目</strong><span>固定合成 Python + CSV 模板</span></div>
+                <div class="starter-files"><span>main.py</span><span>orders.csv</span></div>
+                <span class="lock-label">模板只读</span>
+              </div>
+            </section>
+
+            <section class="form-card">
+              <div class="form-section-heading"><span class="step-number">02</span><div><h2>学生需要亲自完成</h2><p>让学生保留判断、验证和说明的责任。</p></div></div>
+              <label for="task-responsibility">学生责任 <span class="required">*</span></label>
+              <textarea id="task-responsibility" name="responsibility" rows="3" maxlength="500" required>指出异常记录，写出至少一个可检查的验证步骤，并说明仍不确定的地方。</textarea>
+              <div class="responsibility-pills" aria-label="学生责任类型">
+                <span class="responsibility-pill is-selected"><span>✓</span> 验证</span>
+                <span class="responsibility-pill is-selected"><span>✓</span> 解释依据</span>
+                <span class="responsibility-pill"><span>＋</span> 纠错或补正</span>
+              </div>
+              <label for="task-deliverable">提交要求 <span class="required">*</span></label>
+              <textarea id="task-deliverable" name="deliverable" rows="3" maxlength="500" required>提交代码或处理结果，并用一段简短说明写明异常记录、验证依据和不确定之处。</textarea>
+            </section>
+
+            <section class="form-card">
+              <div class="form-section-heading"><span class="step-number">03</span><div><h2>AI 协作方式</h2><p>选择适合本次任务的默认协作边界。</p></div></div>
+              <div class="mode-options" role="radiogroup" aria-label="AI 协作方式">
+                <label class="mode-option"><input type="radio" name="mode" value="qa"><span class="mode-radio"></span><span class="mode-copy"><strong>仅问答</strong><small>Agent 解释问题，不提出项目修改。</small></span></label>
+                <label class="mode-option is-selected"><input type="radio" name="mode" value="confirm" checked><span class="mode-radio"></span><span class="mode-copy"><strong>协作需确认</strong><small>Agent 可以提出计划和修改建议，学生检查后决定。</small></span><span class="recommended-tag">建议起步</span></label>
+                <div class="mode-option is-disabled" aria-disabled="true"><span class="mode-radio"></span><span class="mode-copy"><strong>自主协作</strong><small>需代码执行与权限安全验证后开放。</small></span><span class="locked-tag">暂未开放</span></div>
+              </div>
+              <p class="mode-boundary"><span aria-hidden="true">ⓘ</span> 当前是设计原型：不连接真实模型，不读取或运行学生电脑中的文件。</p>
+            </section>
+          </form>
+
+          <aside class="preview-column" aria-label="学生任务预览">
+            <div class="preview-sticky">
+              <div class="preview-header"><div><span class="preview-eyebrow">LIVE PREVIEW</span><h2>学生将看到</h2></div><span class="preview-device" aria-hidden="true">▣</span></div>
+              <div class="student-preview">
+                <div class="student-preview-top"><span class="student-preview-brand"><span class="mini-mark">S</span> SkillShift Studio</span><span class="preview-demo-label">预览</span></div>
+                <div class="student-preview-content">
+                  <div class="preview-course">职业项目 <span>›</span> 数据处理</div>
+                  <span class="tag tag-teal preview-mode">协作需确认</span>
+                  <h3 id="preview-title">检查订单数据中的不一致记录</h3>
+                  <p id="preview-goal">检查合成订单数据中的金额与数量、单价关系，找出一条不一致记录，并说明你如何验证判断。</p>
+                  <div class="preview-project"><span class="file-icon">▧</span><span><strong>起始项目</strong><small>main.py · orders.csv</small></span><span class="chevron">›</span></div>
+                  <div class="preview-responsibility"><strong>你需要亲自完成</strong><p id="preview-responsibility">指出异常记录，写出至少一个可检查的验证步骤，并说明仍不确定的地方。</p></div>
+                  <div class="preview-agent"><div class="agent-avatar">✳</div><div><strong>任务内教育 Agent</strong><p>我可以和你一起梳理检查思路。涉及修改时，你可以先查看建议再决定。</p></div></div>
+                  <div class="preview-submit"><span>提交要求</span><p id="preview-deliverable">提交代码或处理结果，并用一段简短说明写明异常记录、验证依据和不确定之处。</p></div>
+                  <div class="preview-workspace-hint"><span aria-hidden="true">⌘</span><span>学生编码工作台将在下一阶段独立设计；这里仅预览任务说明。</span></div>
+                </div>
+              </div>
+              <div class="preview-footer"><span class="check-icon">✓</span><span>非计分练习 · 允许使用 AI · 教师负责最终反馈</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="reviews-view" class="view" aria-labelledby="reviews-heading" hidden>
+        <div class="page-heading review-page-heading">
+          <div>
+            <p class="eyebrow">TEACHER REVIEW</p>
+            <h1 id="reviews-heading">提交复核</h1>
+            <p class="page-subtitle">查看任务要求、学生提交和具体验证依据，再决定怎样反馈。</p>
+          </div>
+          <span class="synthetic-label"><span aria-hidden="true">◇</span> 本机合成 API 复核队列</span>
+        </div>
+        <div class="review-banner"><span class="banner-icon">i</span><p><strong>复核不是自动评分。</strong>待查看只表示需要教师判断，不代表违规或能力结论。</p></div>
+        <div id="review-empty" class="api-state" role="status">正在读取本机合成复核队列。</div>
+        <button id="review-directory-retry" class="environment-action" type="button" hidden>重试读取任务目录</button>
+        <section id="review-task-list" class="api-state" aria-label="任务复核概览" hidden></section>
+        <div id="review-details" class="review-layout" hidden>
+          <section class="review-submission">
+            <div class="review-section-heading"><div><span class="eyebrow">SYNTHETIC SUBMISSION</span><h2 id="review-assignment-title">待从 API 读取</h2></div><span id="review-submission-state" class="tag tag-amber">读取中</span></div>
+            <div class="review-meta"><span>固定学生演示角色</span><span>·</span><span id="review-collaboration-mode">合成任务</span><span class="meta-spacer"></span><span class="tag tag-muted">非真实学生</span></div>
+            <div class="submission-tabs"><button class="submission-tab is-active" type="button">提交说明</button><button class="submission-tab" type="button">结果文件</button><button class="submission-tab" type="button">代码差异</button></div>
+            <div class="submission-note"><span class="note-label">学生说明 · 本机合成提交</span><p id="review-student-explanation">—</p></div>
+            <div class="data-preview-heading"><strong>提交文本快照</strong><span>allowlist · 内存暂存 · 非生产</span></div>
+            <div id="review-snapshots" class="snapshot-list"></div>
+            <div class="evidence-link"><span class="evidence-link-icon">↗</span><span><strong>任务目标</strong><small id="review-task-goal">—</small></span><span class="evidence-source">API DTO</span></div>
+          </section>
+
+          <aside class="review-side">
+            <section class="timeline-card">
+              <div class="side-heading"><div><span class="eyebrow">TASK EVIDENCE</span><h2>任务相关记录</h2></div><button class="icon-button" type="button" aria-label="关于任务相关记录">i</button></div>
+              <p class="side-caption">仅显示 API 返回的合成事件，不代表代码执行或真实 Agent 行为。</p>
+              <p id="evidence-state" role="status" aria-live="polite">等待事件读取</p><button id="evidence-retry" class="environment-action" type="button" hidden>重读事件</button><ol id="evidence-timeline" class="evidence-timeline"></ol>
+            </section>
+            <section class="decision-card">
+              <div class="decision-heading"><span class="decision-icon">!</span><div><span class="eyebrow">TEACHER DECISION</span><h2>由你决定下一步</h2></div></div>
+              <p class="decision-prompt">选择一项复核动作，并写明至少 8 个非空白字符的具体理由。</p>
+              <label for="feedback-reason">给学生的反馈</label>
+              <textarea id="feedback-reason" rows="3" maxlength="400" placeholder="例如：请说明你如何得到 178 元，并指出你还需要确认什么。"></textarea>
+              <div class="decision-actions"><button class="decision-action action-approve" type="button" data-review="approve"><span>✓</span><span><strong>认可并关闭</strong><small>本轮处理完成</small></span></button><button class="decision-action" type="button" data-review="explanation"><span>↗</span><span><strong>请求说明</strong><small>请解释判断依据</small></span></button><button class="decision-action" type="button" data-review="evidence"><span>▤</span><span><strong>请求补证</strong><small>请提供验证依据</small></span></button><button class="decision-action" type="button" data-review="remediation"><span>✎</span><span><strong>请求补正</strong><small>修改后再次提交</small></span></button><button class="environment-action" type="button" data-review="environment">标记环境问题</button></div>
+              <div id="review-result" class="review-result" role="status" aria-live="polite" hidden></div>
+            </section>
+          </aside>
+        </div>
+        <div class="remediation-note"><span class="remediation-icon">↻</span><div><strong>学生可以回应和重新提交</strong><p>请求说明、补证或补正后，学生会看到具体要求，并可提交解释、补充材料或修订后的成果。</p></div><span id="remediation-status" class="remediation-status">等待 API 操作</span></div>
+        <section class="timeline-card review-history-card" aria-labelledby="review-history-heading">
+          <div class="side-heading"><div><span class="eyebrow">REVIEW HISTORY</span><h2 id="review-history-heading">复核动作历史</h2></div><div><button id="review-history-retry" class="environment-action" type="button" hidden>重试读取</button><button id="review-history-more" class="environment-action" type="button" hidden>加载更多</button></div></div>
+          <p class="side-caption">读取已发布任务的 ReviewAction 元数据。本机合成、内存暂存、非生产；历史记录不能确认刷新前回执未知的某次请求。</p>
+          <p id="review-history-state" role="status" aria-live="polite">等待 API 读取</p>
+          <ol id="review-history-list" class="evidence-timeline" aria-live="polite"></ol>
+        </section>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "schema_version": "synthetic-project-fixture/v1",
+  "project_id": "orders-audit-v1",
+  "fixture_status": "CANDIDATE_CANONICAL_SOURCE",
+  "execution_enabled": false,
+  "files": [
+    {
+      "logical_name": "main.py",
+      "media_type": "text/x-python",
+      "size_bytes": 483,
+      "sha256": "8559de9beff659d172daafd806813f11c51b756d1b114abe548dc65e035187a1"
+    },
+    {
+      "logical_name": "orders.csv",
+      "media_type": "text/csv",
+      "size_bytes": 97,
+      "sha256": "fa25d89edfa82b28b19d1ad0913aa44759d4c4c39516dc44040c5ad999888e79"
+    },
+    {
+      "logical_name": "README.md",
+      "media_type": "text/markdown",
+      "size_bytes": 287,
+      "sha256": "827cc97eb5594a9f693d8ca560c8a1e83a47ed84df9d236b6ea305628b18c141"
+    }
+  ]
+}

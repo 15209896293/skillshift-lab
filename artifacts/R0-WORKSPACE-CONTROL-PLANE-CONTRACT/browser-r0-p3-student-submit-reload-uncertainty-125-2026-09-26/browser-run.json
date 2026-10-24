@@ -1,0 +1,218 @@
+{
+  "task_id": "R0-P3-125-STUDENT-SUBMISSION-RELOAD-UNCERTAINTY",
+  "browser": "Microsoft Edge via Playwright",
+  "origin": {
+    "host": "127.0.0.1",
+    "port": 62891
+  },
+  "synthetic_in_memory_only": true,
+  "external_calls": 0,
+  "fixture_code_executed": false,
+  "assignment_id": "assignment-1",
+  "workspace_id": "workspace-1",
+  "checks": {
+    "server_committed_submission_but_browser_receipt_was_lost": true,
+    "same_page_shows_unknown_and_same_request_retry": true,
+    "reload_did_not_automatically_post_again": true,
+    "reload_did_not_silently_select_task": true,
+    "latest_readback_is_caveated_as_not_proving_original_request": true,
+    "latest_submission_is_visible_after_explicit_reselection": true,
+    "submission_control_not_available_in_review_required_state": true,
+    "student_reload_view_has_no_horizontal_overflow": true,
+    "exactly_one_submission_exists_and_no_new_idempotency_key_was_minted": true,
+    "workspace_remains_review_required_with_one_event_linked_submission": true
+  },
+  "submission_post_records": [
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "status": 201,
+      "idempotency_key": "f5bffc51-29a4-49b2-8957-7ff9b3a9c840",
+      "if_match": "3",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"artifact_refs\":[\"main.py\",\"orders.csv\",\"README.md\"],\"artifact_contents\":{\"main.py\":\"import csv\\n\\n\\ndef find_inconsistent_orders(path):\\n    issues = []\\n    with open(path, newline=\\\"\\\", encoding=\\\"utf-8\\\") as source:\\n        for row in csv.DictReader(source):\\n            quantity = int(row[\\\"quantity\\\"])\\n            unit_price = float(row[\\\"unit_price\\\"])\\n            amount = float(row[\\\"amount\\\"])\\n            if amount != quantity * unit_price:\\n                issues.append(row[\\\"order_id\\\"])\\n    return issues\\n\\n\\n# 固定合成示例：这里只展示代码，不会执行。\\n\",\"orders.csv\":\"order_id,quantity,unit_price,amount\\nO-104,1,45.00,45.00\\nO-105,2,89.00,160.00\\nO-106,3,12.00,36.00\\n\",\"README.md\":\"# 合成订单核对项目\\n\\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\\n\\n提交时请说明：\\n- 你发现了什么；\\n- 如何验证；\\n- 哪些业务规则仍需确认。\\n\\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\\n\"},\"student_explanation\":\"固定合成核对说明：逐项检查金额关系并记录待确认规则。\"}",
+      "submission_id": "submission-1",
+      "response_dropped_after_server_commit": true
+    }
+  ],
+  "workspace_postcondition": {
+    "state": "REVIEW_REQUIRED",
+    "revision": 4,
+    "submission_count": 1,
+    "submission_ids": [
+      "submission-1"
+    ]
+  },
+  "request_count": 32,
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/demo/teacher/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments/assignment-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/start",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "status": 201,
+      "idempotency_key": "f5bffc51-29a4-49b2-8957-7ff9b3a9c840",
+      "if_match": "3",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"artifact_refs\":[\"main.py\",\"orders.csv\",\"README.md\"],\"artifact_contents\":{\"main.py\":\"import csv\\n\\n\\ndef find_inconsistent_orders(path):\\n    issues = []\\n    with open(path, newline=\\\"\\\", encoding=\\\"utf-8\\\") as source:\\n        for row in csv.DictReader(source):\\n            quantity = int(row[\\\"quantity\\\"])\\n            unit_price = float(row[\\\"unit_price\\\"])\\n            amount = float(row[\\\"amount\\\"])\\n            if amount != quantity * unit_price:\\n                issues.append(row[\\\"order_id\\\"])\\n    return issues\\n\\n\\n# 固定合成示例：这里只展示代码，不会执行。\\n\",\"orders.csv\":\"order_id,quantity,unit_price,amount\\nO-104,1,45.00,45.00\\nO-105,2,89.00,160.00\\nO-106,3,12.00,36.00\\n\",\"README.md\":\"# 合成订单核对项目\\n\\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\\n\\n提交时请说明：\\n- 你发现了什么；\\n- 如何验证；\\n- 哪些业务规则仍需确认。\\n\\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\\n\"},\"student_explanation\":\"固定合成核对说明：逐项检查金额关系并记录待确认规则。\"}",
+      "submission_id": "submission-1",
+      "response_dropped_after_server_commit": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments/assignment-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    }
+  ],
+  "screenshots": [
+    "before-refresh-unknown-390px.png",
+    "after-refresh-explicit-readback-390px.png"
+  ],
+  "pass": true
+}

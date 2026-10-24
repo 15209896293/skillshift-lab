@@ -1,0 +1,39 @@
+{
+  "task_id": "R0-TEACHER-TASK-AUTHORING-001",
+  "status": "PASS",
+  "scope": "synthetic local demo only; no login, persistence, model call, external network, student data, or deployment",
+  "browser_case": {
+    "assignment_id": "assignment-1",
+    "task_id": "synthetic-teacher-task-1-v1",
+    "status": "ASSIGNED",
+    "teacher_created_custom_text": true,
+    "student_view_matches_created_task": true,
+    "refresh_restores_latest_task": true,
+    "fields": {
+      "title": "合成任务：检查日期冲突",
+      "goal": "比较两条合成记录的日期，找出冲突并说明可复核步骤。",
+      "student_responsibility": "学生写出比较依据，并标明一项仍需确认的信息。",
+      "submission_requirement": "提交判断、比较步骤和不确定之处。",
+      "collaboration_mode": "引导需确认"
+    }
+  },
+  "verification": {
+    "compileall": "PASS",
+    "test_local_web_prototype": "8/8 PASS",
+    "test_agent_first_vertical_slice": "8/8 PASS",
+    "full_unittest_discovery": "103 total; 102 passed; 1 skipped; exit 0",
+    "node_check": "PASS",
+    "git_diff_check": "PASS",
+    "browser_accessibility_tree": "PASS; teacher and student views showed the same four task fields before and after refresh",
+    "browser_screenshot_inspection": "PASS; layout visually inspected; screenshot not saved"
+  },
+  "known_limits": [
+    "No real teacher usability or workload evidence.",
+    "Teacher and student are fixed synthetic role identifiers; this is not authentication or access control.",
+    "Task data is process-memory only and disappears when this app process stops.",
+    "One unrelated IPv6 wildcard local listener was observed after the bounded demo session; its owner was confirmed unrelated and it was left untouched.",
+    "The sole test skip is real directory symlink attack setup blocked by Windows WinError 1314; Foundation remains PARTIAL."
+  ],
+  "prohibited_data_present": false,
+  "commit": "NONE"
+}

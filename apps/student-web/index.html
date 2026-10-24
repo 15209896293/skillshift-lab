@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <base href="/demo/student/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6f3">
+    <title>SkillShift Studio · 项目工作区</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#workspace" aria-label="SkillShift Studio 学生项目工作区"><span class="brand-mark">S</span><span>SkillShift <span class="brand-light">Studio</span></span></a>
+      <div class="breadcrumb"><span>学习项目</span><span aria-hidden="true">/</span><strong>检查订单数据中的不一致记录</strong></div>
+      <div class="topbar-right"><span class="demo-pill"><i></i>合成学生工作区</span><span class="avatar" aria-hidden="true">学</span></div>
+    </header>
+
+    <main id="workspace" class="workspace">
+      <div id="api-state" class="api-state" role="status" aria-live="polite">正在读取本机合成任务目录；固定学生演示角色，数据仅保存在服务进程内存，非生产。</div>
+      <div id="remediation-state" class="api-state remediation-state" role="status" aria-live="polite" hidden></div>
+      <div id="latest-submission-state" class="api-state" role="status" aria-live="polite" hidden></div>
+      <div class="api-state task-switcher" aria-label="选择任务"><label for="task-picker">我的任务</label> <select id="task-picker" disabled><option value="">正在读取任务…</option></select> <button id="pause-task" type="button" disabled>暂停当前任务</button> <span id="task-picker-state" role="status" aria-live="polite"></span></div>
+      <aside class="task-rail" aria-label="当前任务">
+        <a class="back-link" href="#workspace">← <span>项目任务</span></a>
+        <div class="rail-divider"></div>
+        <span class="rail-label">当前任务</span>
+        <div class="task-rail-card"><span class="task-type-icon">▧</span><strong id="rail-task-title">检查订单数据中的不一致记录</strong><span id="task-state" class="task-status"><i></i>本机合成演示</span></div>
+        <div class="rail-divider"></div>
+        <div class="responsibility-card"><span class="responsibility-icon">✓</span><div><strong>这次你要亲自完成</strong><p>指出异常，说明验证步骤和仍不确定的地方。</p></div></div>
+        <div class="rail-spacer"></div>
+        <div class="privacy-note"><span aria-hidden="true">◌</span><p>只展示这个合成任务。本页面不读取其他文件、应用或浏览活动。</p></div>
+      </aside>
+
+      <section class="work-area" aria-label="项目内容与 Agent">
+        <div class="task-summary">
+          <div class="task-heading"><div><div class="task-kicker"><span class="task-chip">数据处理项目</span><span class="task-chip agent-chip">✳ 允许 Agent 协作</span></div><h1 id="task-title">检查订单数据中的不一致记录</h1></div><span class="task-due">固定演示任务</span></div>
+          <p>检查订单数据里的数量、单价和金额关系，找出不一致记录，并解释你如何验证判断。</p>
+          <div class="task-footer"><span><b>你的交付</b> 项目结果 + 验证说明</span><span><b>协作方式</b> 先看建议，再由你决定</span><button type="button" class="details-button" data-action="task-details">查看完整要求 <span>⌄</span></button></div>
+          <div id="task-details" class="task-details" hidden><strong>提交时请说明</strong><ul><li>你发现了哪条记录、依据是什么；</li><li>你做了哪一步可检查的验证；</li><li>哪些地方仍不确定。</li></ul><span>起始文件为固定合成样例，不需要安装依赖。</span></div>
+        </div>
+
+        <div class="workspace-toolbar">
+          <div class="project-label"><span class="project-icon">▧</span><div><strong>orders-audit</strong><small>合成项目 · 自动保存未启用</small></div></div>
+          <div class="toolbar-actions"><span class="saved-state" id="edit-status">演示文件</span><button class="toolbar-button" type="button" disabled title="代码执行安全 Gate 未开放">▶ 运行 <span class="locked-hint">未开放</span></button><button class="submit-button" type="button" data-action="open-submit">提交成果 <span>→</span></button></div>
+        </div>
+
+        <div class="studio-grid">
+          <aside class="files-pane" aria-label="项目文件">
+            <div class="pane-title"><span>项目文件</span><button type="button" class="more-button" aria-label="更多文件选项" title="演示版本不支持文件操作">···</button></div>
+            <div class="folder-row"><span class="folder-chevron">⌄</span><span class="folder-icon">▰</span><strong>orders-audit</strong></div>
+            <div class="file-list" role="list">
+              <button class="file-item is-active" type="button" data-file="main.py"><span class="file-icon python-icon">Py</span><span>main.py</span><span class="file-dot" aria-label="当前文件"></span></button>
+              <button class="file-item" type="button" data-file="orders.csv"><span class="file-icon csv-icon">▦</span><span>orders.csv</span></button>
+              <button class="file-item" type="button" data-file="README.md"><span class="file-icon readme-icon">M↓</span><span>README.md</span></button>
+            </div>
+            <div class="files-hint"><span>i</span><p>合成起始材料。文件仅在这个页面中展示，不会写入本机。</p></div>
+            <div class="file-summary"><span class="summary-icon">◇</span><div><strong>交付提示</strong><p>提交前说明你检查了什么，而不只是贴上 Agent 的回答。</p></div></div>
+          </aside>
+
+          <section class="editor-pane" aria-label="代码编辑区">
+            <div class="editor-tabs"><div class="editor-tab is-active"><span class="file-icon python-icon">Py</span><span id="active-file-name">main.py</span><i id="dirty-dot" hidden></i></div><span class="editor-context">项目材料 · 可编辑演示</span><button class="editor-menu" type="button" aria-label="编辑器选项">···</button></div>
+            <div id="editor-wrap" class="editor-wrap">
+              <div id="line-numbers" class="line-numbers" aria-hidden="true"></div>
+              <textarea id="code-editor" class="code-editor" aria-label="项目文件编辑器" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+            </div>
+            <div class="editor-footer"><span id="editor-language">Python</span><span>UTF-8</span><span>只在页面内存中编辑</span></div>
+            <section id="diff-card" class="diff-card" hidden aria-label="Agent 修改建议差异">
+              <div class="diff-heading"><div><span class="diff-icon">✳</span><strong>Agent 修改建议</strong><span class="proposal-tag">待你决定</span></div><button type="button" class="close-diff" data-action="close-diff" aria-label="关闭差异">×</button></div>
+              <p id="proposal-summary">等待本机合成 API 返回建议摘要。</p>
+              <p>下方代码差异是固定页面示意，不是 API 返回的补丁或真实文件修改。</p>
+              <pre class="diff-code"><span class="diff-context">  for row in rows:</span>
+<span class="diff-remove">-     if row["amount"] != row["quantity"] * row["unit_price"]:</span>
+<span class="diff-add">+     expected = row["quantity"] * row["unit_price"]</span>
+<span class="diff-add">+     if row["amount"] != expected:</span>
+<span class="diff-add">+         print("需要核对", row["order_id"], expected)</span></pre>
+              <div id="proposal-status" class="proposal-status" role="status" aria-live="polite">API 只记录你的决定；页面内存中的演示编辑不会写回服务端，也不会运行。</div>
+              <div class="proposal-actions"><button type="button" class="proposal-reject" data-action="reject">拒绝建议</button><button type="button" class="proposal-accept" data-action="accept">接受并查看修改</button><button type="button" class="proposal-takeover" data-action="takeover">我来接管编辑</button></div>
+            </section>
+          </section>
+
+          <aside class="agent-pane" aria-label="任务内 Agent">
+            <div class="agent-header"><div class="agent-heading-icon">✳</div><div><strong>项目 Agent</strong><small><span class="online-dot"></span>任务内协作 · 演示模式</small></div><button class="agent-menu" type="button" aria-label="Agent 信息">···</button></div>
+            <div class="agent-boundary"><span>◇</span><p>可讨论思路并查看修改建议；是否采用由你决定。当前无真实模型、文件工具或代码运行。</p></div>
+            <div id="agent-messages" class="agent-messages" aria-live="polite">
+              <div class="day-divider"><span>任务开始</span></div>
+              <p id="agent-empty">等待本机 scripted-demo API 回复；没有预置为本次对话的成功记录。</p>
+              <div class="quick-prompts"><button type="button" data-prompt="帮我看一下数据里哪里不一致">帮我找不一致</button><button type="button" data-prompt="给我一个核对思路">给我核对思路</button></div>
+            </div>
+            <div class="agent-composer-wrap"><div class="composer-caption"><span>向任务 Agent 提问</span><span class="demo-caption">本机 scripted-demo</span></div><div class="agent-composer"><textarea id="agent-input" rows="2" maxlength="500" placeholder="描述你卡住的地方……" aria-label="向任务 Agent 提问"></textarea><button id="send-agent" type="button" aria-label="发送问题">↑</button></div><p class="composer-footnote">回复为固定合成内容，不调用真实模型。请勿输入真实个人信息或密钥。</p></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="submit-dialog" class="submit-dialog" aria-labelledby="submit-title">
+      <form method="dialog" id="submission-form">
+        <div class="dialog-top"><span class="dialog-mark">✓</span><button class="dialog-close" value="cancel" aria-label="关闭">×</button></div>
+        <p class="dialog-eyebrow">TASK SUBMISSION</p><h2 id="submit-title">提交你的项目成果</h2><p class="dialog-intro">除了项目结果，请简短说明你的验证过程和仍不确定之处。</p>
+        <label for="submission-note">验证与说明 <span>*</span></label><textarea id="submission-note" rows="5" maxlength="1000" required placeholder="我发现了……我通过……进行验证。仍不确定的是……"></textarea>
+        <div class="submission-check"><span>✓</span><p>提交是本机合成演示状态，不会发送给教师或写入后台。</p></div>
+        <div class="dialog-actions"><button class="cancel-button" value="cancel">继续编辑</button><button id="confirm-submit" class="confirm-button" value="submit">提交到本机合成 API <span>→</span></button></div>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

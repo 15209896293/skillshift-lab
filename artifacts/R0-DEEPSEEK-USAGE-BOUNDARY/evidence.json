@@ -1,0 +1,34 @@
+{
+  "task_id": "R0-DEEPSEEK-USAGE-BOUNDARY-001",
+  "status": "PARTIAL",
+  "scope": "synthetic fake-response tests only; no network and no live credentials",
+  "synthetic_cases": {
+    "oversized_utf8_input_rejected_without_echo": true,
+    "consistent_usage_parsed": true,
+    "missing_inconsistent_boolean_or_wrong_metadata_rejected": true,
+    "cost_snapshot": "deepseek-v4.1-flash-2026-09-10-r1",
+    "peak_estimate_fen": 551,
+    "offpeak_estimate_fen": 276,
+    "rounding_up_verified": true,
+    "provider_usage_excluded_from_submission_manifest": true
+  },
+  "verification": {
+    "compileall": "PASS",
+    "test_deepseek_contract": "6/6 PASS",
+    "test_deepseek_usage_contract": "3/3 PASS",
+    "test_deepseek_runtime_contract": "5/5 PASS",
+    "test_agent_first_vertical_slice": "8/8 PASS",
+    "full_unittest_discovery": "103 total; 102 passed; 1 skipped; exit 0",
+    "windows_isolation_module": "7/7 passed; exit 0",
+    "frozen_agent_first_demo_regeneration": "PASS; generated JSON is byte-identical to committed workspace Artifact",
+    "artifact_self_scan": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "not_verified": [
+    "provider live response shape or cache accounting",
+    "actual account invoice reconciliation",
+    "production settlement, alert thresholds, monthly reset",
+    "input length suitable for classroom use"
+  ],
+  "prohibited_data_present": false
+}

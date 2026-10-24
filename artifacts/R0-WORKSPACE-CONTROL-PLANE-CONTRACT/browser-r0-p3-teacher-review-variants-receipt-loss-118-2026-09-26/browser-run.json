@@ -1,0 +1,331 @@
+{
+  "browser": "Microsoft Edge via Playwright",
+  "viewport": "390x844",
+  "fault_boundary": "Each review POST reached the local in-memory API and returned 201; Playwright then aborted the response to the teacher page. The teacher UI confirmed by API readback.",
+  "lost_response_posts": [
+    {
+      "status": 201,
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/submissions/submission-1/review-actions",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"kind\":\"REQUEST_EXPLANATION\",\"reason\":\"请说明你如何核对订单金额，并写出仍待确认的规则。\"}",
+      "idempotency_key": "20381e20-2f96-475f-87d9-aa2a96443358",
+      "if_match": "4",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-fa1ac9c3140a4761a57ea052eba9961e\",\"data\":{\"review_action\":{\"id\":\"review-2\",\"submission_id\":\"submission-1\",\"submission_version\":1,\"kind\":\"REQUEST_EXPLANATION\",\"reason\":\"请说明你如何核对订单金额，并写出仍待确认的规则。\",\"created_event_sequence\":11},\"workspace_revision\":5},\"revision\":5}"
+    },
+    {
+      "status": 201,
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/submissions/submission-2/review-actions",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"kind\":\"REQUEST_EVIDENCE\",\"reason\":\"请补充可复核的计算步骤和对应订单证据。\"}",
+      "idempotency_key": "7097af86-0460-4cac-bf61-d767bb223cec",
+      "if_match": "4",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-af67848da6684713ae73cd9b65ea3e4a\",\"data\":{\"review_action\":{\"id\":\"review-3\",\"submission_id\":\"submission-2\",\"submission_version\":1,\"kind\":\"REQUEST_EVIDENCE\",\"reason\":\"请补充可复核的计算步骤和对应订单证据。\",\"created_event_sequence\":12},\"workspace_revision\":5},\"revision\":5}"
+    }
+  ],
+  "readback_A_request_explanation": {
+    "queue": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-5b2d352e5459486ebff5b358a4545774",
+      "data": {
+        "submissions": []
+      }
+    },
+    "remediation": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-0d442ab71a0146778e942c61c717067b",
+      "data": {
+        "remediations": [
+          {
+            "id": "remediation-2",
+            "review_action_id": "review-2",
+            "submission_id": "submission-1",
+            "requested_action": "REQUEST_EXPLANATION",
+            "reason": "请说明你如何核对订单金额，并写出仍待确认的规则。",
+            "state": "OPEN"
+          }
+        ]
+      }
+    },
+    "events": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-42dd8d310ea5436ba815c4a7ee62153c",
+      "data": {
+        "events": [
+          {
+            "event_id": "event-1",
+            "sequence": 1,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-1",
+            "actor_role": "teacher",
+            "event_type": "assignment.published",
+            "resource_ref": "assignment-1",
+            "request_id": "req-demo-da39a3769606409ab2a23cb9d95fc014",
+            "occurred_at": "2026-09-26T12:59:18Z"
+          },
+          {
+            "event_id": "event-2",
+            "sequence": 2,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-1",
+            "actor_role": "student",
+            "event_type": "student.work_started",
+            "resource_ref": "workspace-1",
+            "request_id": "req-demo-4164be66b50d4dc585e9bcd14cec4856",
+            "occurred_at": "2026-09-26T12:59:18Z"
+          },
+          {
+            "event_id": "event-3",
+            "sequence": 3,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-1",
+            "actor_role": "student",
+            "event_type": "submission.created",
+            "resource_ref": "submission-1",
+            "request_id": "req-demo-c065f8a8029d481e9bf7d39d5381ede6",
+            "occurred_at": "2026-09-26T12:59:18Z"
+          },
+          {
+            "event_id": "event-11",
+            "sequence": 11,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-1",
+            "actor_role": "teacher",
+            "event_type": "review.action_recorded",
+            "resource_ref": "review-2",
+            "request_id": "req-demo-fa1ac9c3140a4761a57ea052eba9961e",
+            "occurred_at": "2026-09-26T12:59:31Z"
+          }
+        ],
+        "next_sequence": 11,
+        "has_more": false
+      }
+    },
+    "history": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-d112dba0f49b497aaccf1e70b59843f7",
+      "data": {
+        "review_actions": [
+          {
+            "id": "review-2",
+            "submission_id": "submission-1",
+            "submission_version": 1,
+            "kind": "REQUEST_EXPLANATION",
+            "reason": "请说明你如何核对订单金额，并写出仍待确认的规则。",
+            "created_event_sequence": 11
+          }
+        ],
+        "next_sequence": 11,
+        "has_more": false
+      }
+    },
+    "submissionId": "submission-1"
+  },
+  "readback_B_request_evidence": {
+    "queue": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-61f2b38505084403872d9154a47c58ca",
+      "data": {
+        "submissions": []
+      }
+    },
+    "remediation": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-f5208c7f77fd4935bc3b1a68502a84c9",
+      "data": {
+        "remediations": [
+          {
+            "id": "remediation-3",
+            "review_action_id": "review-3",
+            "submission_id": "submission-2",
+            "requested_action": "REQUEST_EVIDENCE",
+            "reason": "请补充可复核的计算步骤和对应订单证据。",
+            "state": "OPEN"
+          }
+        ]
+      }
+    },
+    "events": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-5cf92f148405497a9559a63fb98ce8e8",
+      "data": {
+        "events": [
+          {
+            "event_id": "event-4",
+            "sequence": 4,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-2",
+            "actor_role": "teacher",
+            "event_type": "assignment.published",
+            "resource_ref": "assignment-2",
+            "request_id": "req-demo-8c524047be2148f7a4bf4de85e2248fb",
+            "occurred_at": "2026-09-26T12:59:18Z"
+          },
+          {
+            "event_id": "event-5",
+            "sequence": 5,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-2",
+            "actor_role": "student",
+            "event_type": "student.work_started",
+            "resource_ref": "workspace-2",
+            "request_id": "req-demo-0edd22a256f04e4e89913d8b19dcbb6a",
+            "occurred_at": "2026-09-26T12:59:18Z"
+          },
+          {
+            "event_id": "event-6",
+            "sequence": 6,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-2",
+            "actor_role": "student",
+            "event_type": "submission.created",
+            "resource_ref": "submission-2",
+            "request_id": "req-demo-e272dea258374856b09eb782b49441ec",
+            "occurred_at": "2026-09-26T12:59:18Z"
+          },
+          {
+            "event_id": "event-12",
+            "sequence": 12,
+            "schema_version": "evidence-event/v1",
+            "workspace_id": "workspace-2",
+            "actor_role": "teacher",
+            "event_type": "review.action_recorded",
+            "resource_ref": "review-3",
+            "request_id": "req-demo-af67848da6684713ae73cd9b65ea3e4a",
+            "occurred_at": "2026-09-26T12:59:32Z"
+          }
+        ],
+        "next_sequence": 12,
+        "has_more": false
+      }
+    },
+    "history": {
+      "schema_version": "skillshift-api/v1",
+      "request_id": "req-demo-395916186d0d4f5284188612287e0194",
+      "data": {
+        "review_actions": [
+          {
+            "id": "review-3",
+            "submission_id": "submission-2",
+            "submission_version": 1,
+            "kind": "REQUEST_EVIDENCE",
+            "reason": "请补充可复核的计算步骤和对应订单证据。",
+            "created_event_sequence": 12
+          }
+        ],
+        "next_sequence": 12,
+        "has_more": false
+      }
+    },
+    "submissionId": "submission-2"
+  },
+  "matching_A": {
+    "review_actions": [
+      {
+        "id": "review-2",
+        "submission_id": "submission-1",
+        "submission_version": 1,
+        "kind": "REQUEST_EXPLANATION",
+        "reason": "请说明你如何核对订单金额，并写出仍待确认的规则。",
+        "created_event_sequence": 11
+      }
+    ],
+    "open_remediations": [
+      {
+        "id": "remediation-2",
+        "review_action_id": "review-2",
+        "submission_id": "submission-1",
+        "requested_action": "REQUEST_EXPLANATION",
+        "reason": "请说明你如何核对订单金额，并写出仍待确认的规则。",
+        "state": "OPEN"
+      }
+    ],
+    "matching_events": [
+      {
+        "event_id": "event-11",
+        "sequence": 11,
+        "schema_version": "evidence-event/v1",
+        "workspace_id": "workspace-1",
+        "actor_role": "teacher",
+        "event_type": "review.action_recorded",
+        "resource_ref": "review-2",
+        "request_id": "req-demo-fa1ac9c3140a4761a57ea052eba9961e",
+        "occurred_at": "2026-09-26T12:59:31Z"
+      }
+    ]
+  },
+  "matching_B": {
+    "review_actions": [
+      {
+        "id": "review-3",
+        "submission_id": "submission-2",
+        "submission_version": 1,
+        "kind": "REQUEST_EVIDENCE",
+        "reason": "请补充可复核的计算步骤和对应订单证据。",
+        "created_event_sequence": 12
+      }
+    ],
+    "open_remediations": [
+      {
+        "id": "remediation-3",
+        "review_action_id": "review-3",
+        "submission_id": "submission-2",
+        "requested_action": "REQUEST_EVIDENCE",
+        "reason": "请补充可复核的计算步骤和对应订单证据。",
+        "state": "OPEN"
+      }
+    ],
+    "matching_events": [
+      {
+        "event_id": "event-12",
+        "sequence": 12,
+        "schema_version": "evidence-event/v1",
+        "workspace_id": "workspace-2",
+        "actor_role": "teacher",
+        "event_type": "review.action_recorded",
+        "resource_ref": "review-3",
+        "request_id": "req-demo-af67848da6684713ae73cd9b65ea3e4a",
+        "occurred_at": "2026-09-26T12:59:32Z"
+      }
+    ]
+  },
+  "queue_after_A": [
+    "教师多任务队列隔离验证 A · PUBLISHED · 待复核 0 项\n查看此任务",
+    "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项\n查看此任务",
+    "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项\n查看此任务"
+  ],
+  "queue_after_B": [
+    "教师多任务队列隔离验证 A · PUBLISHED · 待复核 0 项\n查看此任务",
+    "教师多任务队列隔离验证 B · PUBLISHED · 待复核 0 项\n查看此任务",
+    "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项\n查看此任务"
+  ],
+  "student_after_explicit_A_selection": {
+    "selected_title": "教师多任务队列隔离验证 A",
+    "workspace_state": "等待你补正",
+    "remediation": "教师补正请求（REQUEST_EXPLANATION）：请说明你如何核对订单金额，并写出仍待确认的规则。",
+    "viewport": {
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390
+    }
+  },
+  "student_after_explicit_B_selection": {
+    "selected_title": "教师多任务队列隔离验证 B",
+    "workspace_state": "等待你补正",
+    "remediation": "教师补正请求（REQUEST_EVIDENCE）：请补充可复核的计算步骤和对应订单证据。",
+    "viewport": {
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390
+    }
+  },
+  "assertions": {
+    "only_one_post_per_variant": true,
+    "both_api_writes_committed": true,
+    "each_variant_has_one_matching_action_remediation_event": true,
+    "review_ids_match_readback": true,
+    "queue_after_A_isolated": true,
+    "queue_after_B_isolated": true,
+    "student_A_sees_its_explanation_request": true,
+    "student_B_sees_its_evidence_request": true,
+    "no_horizontal_overflow": true
+  },
+  "observed_student_state_wording": "Both REQUEST_EXPLANATION and REQUEST_EVIDENCE are currently shown as FEEDBACK_REQUIRED / 等待你补正. The browser run observes this shared state mapping; it does not independently validate wording or instructional clarity."
+}

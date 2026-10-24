@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillshift.invalid/contracts/workspace-api-v1.schema.json",
+  "title": "SkillShift local synthetic workspace API wire DTOs",
+  "description": "Strict wire shapes for the local synthetic adapter only; not production identity, retention, or artifact integrity policy.",
+  "$defs": {
+    "RequestId": {"type": "string", "pattern": "^req-demo-[0-9a-f]{32}$"},
+    "SuccessEnvelope": {
+      "type": "object", "required": ["schema_version", "request_id", "data"], "additionalProperties": false,
+      "properties": {
+        "schema_version": {"const": "skillshift-api/v1"}, "request_id": {"$ref": "#/$defs/RequestId"},
+        "data": {"$ref": "#/$defs/ResponseData"}, "revision": {"type": "integer", "minimum": 1}
+      }
+    },
+    "ErrorEnvelope": {
+      "type": "object", "required": ["schema_version", "request_id", "error"], "additionalProperties": false,
+      "properties": {
+        "schema_version": {"const": "skillshift-api/v1"}, "request_id": {"$ref": "#/$defs/RequestId"},
+        "error": {"$ref": "#/$defs/ApiError"}
+      }
+    },
+    "ApiError": {
+      "type": "object", "required": ["code", "message", "retryable"], "additionalProperties": false,
+      "properties": {"code": {"type": "string"}, "message": {"type": "string"}, "retryable": {"type": "boolean"}}
+    },
+    "ResponseData": {
+      "oneOf": [
+        {"$ref": "#/$defs/HealthData"}, {"$ref": "#/$defs/AssignmentListData"},
+        {"$ref": "#/$defs/Assignment"}, {"$ref": "#/$defs/AssignmentPublishData"},
+        {"$ref": "#/$defs/ReviewQueueData"}, {"$ref": "#/$defs/Workspace"},
+        {"$ref": "#/$defs/WorkspaceStartData"}, {"$ref": "#/$defs/AgentTurnData"},
+        {"$ref": "#/$defs/ProposedActionDecisionData"}, {"$ref": "#/$defs/SubmissionData"},
+        {"$ref": "#/$defs/LatestSubmissionData"},
+        {"$ref": "#/$defs/ReviewActionData"}, {"$ref": "#/$defs/ReviewHistoryData"}, {"$ref": "#/$defs/RemediationListData"},
+        {"$ref": "#/$defs/EventPage"}
+      ]
+    },
+    "HealthData": {
+      "type": "object", "required": ["mode", "status"], "additionalProperties": false,
+      "properties": {"mode": {"const": "local-synthetic-demo"}, "status": {"const": "ok"}}
+    },
+    "AssignmentListData": {
+      "type": "object", "required": ["assignments"], "additionalProperties": false,
+      "properties": {"assignments": {"type": "array", "items": {"$ref": "#/$defs/Assignment"}}}
+    },
+    "AssignmentPublishData": {
+      "type": "object", "required": ["assignment", "workspace", "event"], "additionalProperties": false,
+      "properties": {
+        "assignment": {"$ref": "#/$defs/Assignment"}, "workspace": {"$ref": "#/$defs/Workspace"},
+        "event": {"$ref": "#/$defs/EvidenceEvent"}
+      }
+    },
+    "ReviewQueueData": {
+      "type": "object", "required": ["submissions"], "additionalProperties": false,
+      "properties": {
+        "submissions": {"type": "array", "items": {"$ref": "#/$defs/SubmissionView"}}
+      }
+    },
+    "SubmissionView": {
+      "$ref": "#/$defs/Submission"
+    },
+    "WorkspaceStartData": {
+      "type": "object", "required": ["workspace", "event"], "additionalProperties": false,
+      "properties": {"workspace": {"$ref": "#/$defs/Workspace"}, "event": {"$ref": "#/$defs/EvidenceEvent"}}
+    },
+    "AgentTurnData": {
+      "type": "object", "required": ["turn", "workspace_revision"], "additionalProperties": false,
+      "properties": {
+        "turn": {"$ref": "#/$defs/AgentTurn"}, "workspace_revision": {"type": "integer", "minimum": 1},
+        "proposed_action": {"$ref": "#/$defs/ProposedAction"}
+      }
+    },
+    "ProposedActionDecisionData": {
+      "type": "object", "required": ["proposed_action", "workspace_revision"], "additionalProperties": false,
+      "properties": {"proposed_action": {"$ref": "#/$defs/ProposedAction"}, "workspace_revision": {"type": "integer", "minimum": 1}}
+    },
+    "SubmissionData": {
+      "type": "object", "required": ["submission", "workspace_revision"], "additionalProperties": false,
+      "properties": {"submission": {"$ref": "#/$defs/Submission"}, "workspace_revision": {"type": "integer", "minimum": 1}}
+    },
+    "LatestSubmissionData": {
+      "type": "object", "required": ["submission"], "additionalProperties": false,
+      "properties": {"submission": {"anyOf": [{"$ref": "#/$defs/Submission"}, {"type": "null"}]}}
+    },
+    "ReviewActionData": {
+      "type": "object", "required": ["review_action", "workspace_revision"], "additionalProperties": false,
+      "properties": {"review_action": {"$ref": "#/$defs/ReviewAction"}, "workspace_revision": {"type": "integer", "minimum": 1}}
+    },
+    "ReviewHistoryData": {
+      "type": "object", "required": ["review_actions", "next_sequence", "has_more"], "additionalProperties": false,
+      "properties": {
+        "review_actions": {"type": "array", "maxItems": 50, "items": {"$ref": "#/$defs/ReviewAction"}},
+        "next_sequence": {"type": "integer", "minimum": 0}, "has_more": {"type": "boolean"}
+      }
+    },
+    "RemediationListData": {
+      "type": "object", "required": ["remediations"], "additionalProperties": false,
+      "properties": {"remediations": {"type": "array", "items": {"$ref": "#/$defs/Remediation"}}}
+    },
+    "EmptyRequest": {
+      "type": "object", "required": ["schema_version"], "additionalProperties": false,
+      "properties": {"schema_version": {"const": "skillshift-api/v1"}}
+    },
+    "AssignmentCreateRequest": {
+      "type": "object", "required": ["schema_version", "title", "goal", "student_responsibility", "submission_requirement", "starter_project_id", "collaboration_mode"], "additionalProperties": false,
+      "properties": {
+        "schema_version": {"const": "skillshift-api/v1"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 128, "x-maxUtf8Bytes": 128},
+        "goal": {"type": "string", "minLength": 1, "maxLength": 4096, "x-maxUtf8Bytes": 4096},
+        "student_responsibility": {"type": "string", "minLength": 1, "maxLength": 2048, "x-maxUtf8Bytes": 2048},
+        "submission_requirement": {"type": "string", "minLength": 1, "maxLength": 2048, "x-maxUtf8Bytes": 2048},
+        "starter_project_id": {"const": "orders-audit-v1"},
+        "collaboration_mode": {"enum": ["QA_ONLY", "PROPOSE_WITH_STUDENT_CONFIRMATION"]}
+      }
+    },
+    "AgentTurnRequest": {
+      "type": "object", "required": ["schema_version", "question"], "additionalProperties": false,
+      "properties": {"schema_version": {"const": "skillshift-api/v1"}, "question": {"type": "string", "minLength": 1, "maxLength": 2048, "x-maxUtf8Bytes": 2048}}
+    },
+    "ProposedActionDecisionRequest": {
+      "type": "object", "required": ["schema_version", "decision"], "additionalProperties": false,
+      "properties": {"schema_version": {"const": "skillshift-api/v1"}, "decision": {"enum": ["ACCEPTED", "REJECTED", "STUDENT_TAKEOVER"]}}
+    },
+    "SubmissionCreateRequest": {
+      "type": "object", "required": ["schema_version", "artifact_refs", "artifact_contents", "student_explanation"], "additionalProperties": false,
+      "properties": {
+        "schema_version": {"const": "skillshift-api/v1"},
+        "artifact_refs": {"type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["main.py", "orders.csv", "README.md"]}},
+        "artifact_contents": {"type": "object", "minProperties": 1, "maxProperties": 3, "propertyNames": {"enum": ["main.py", "orders.csv", "README.md"]}, "additionalProperties": {"type": "string", "maxLength": 8192, "x-maxUtf8Bytes": 8192}},
+        "student_explanation": {"type": "string", "minLength": 20, "maxLength": 4096, "x-maxUtf8Bytes": 4096}
+      }
+    },
+    "ReviewActionRequest": {
+      "type": "object", "required": ["schema_version", "kind", "reason"], "additionalProperties": false,
+      "properties": {
+        "schema_version": {"const": "skillshift-api/v1"},
+        "kind": {"enum": ["ACKNOWLEDGE", "REQUEST_EXPLANATION", "REQUEST_EVIDENCE", "REQUEST_REMEDIATION", "ENVIRONMENT_ISSUE"]},
+        "reason": {"type": "string", "minLength": 8, "maxLength": 1024, "pattern": "^(?=(?:.*\\S){8}).+$", "x-maxUtf8Bytes": 1024}
+      }
+    },
+    "Task": {
+      "type": "object", "required": ["task_id", "version", "title", "goal", "collaboration_mode", "student_responsibility", "submission_requirements", "starter_project_id", "execution_enabled", "id"], "additionalProperties": false,
+      "properties": {
+        "task_id": {"type": "string", "minLength": 1}, "version": {"type": "integer", "minimum": 1},
+        "title": {"type": "string", "minLength": 1, "maxLength": 128, "x-maxUtf8Bytes": 128}, "goal": {"type": "string", "minLength": 1, "maxLength": 4096, "x-maxUtf8Bytes": 4096},
+        "collaboration_mode": {"enum": ["QA_ONLY", "PROPOSE_WITH_STUDENT_CONFIRMATION"]},
+        "student_responsibility": {"type": "string", "minLength": 1, "maxLength": 2048, "x-maxUtf8Bytes": 2048},
+        "submission_requirements": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1, "maxLength": 2048, "x-maxUtf8Bytes": 2048}},
+        "starter_project_id": {"const": "orders-audit-v1"}, "execution_enabled": {"const": false},
+        "id": {"type": "string", "minLength": 1}
+      }
+    },
+    "ArtifactReference": {
+      "type": "object", "required": ["id", "logical_name", "media_type", "source", "integrity_status"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "logical_name": {"enum": ["main.py", "orders.csv", "README.md"]},
+        "media_type": {"enum": ["text/x-python", "text/csv", "text/markdown"]},
+        "source": {"const": "FIXED_SYNTHETIC"}, "integrity_status": {"const": "NOT_COMPUTED"}
+      }
+    },
+    "ArtifactSnapshot": {
+      "type": "object", "required": ["logical_name", "media_type", "size_bytes", "sha256", "content"], "additionalProperties": false,
+      "properties": {
+        "logical_name": {"enum": ["main.py", "orders.csv", "README.md"]},
+        "media_type": {"enum": ["text/x-python", "text/csv", "text/markdown"]},
+        "size_bytes": {"type": "integer", "minimum": 0, "maximum": 8192},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "content": {"type": "string", "maxLength": 8192, "x-maxUtf8Bytes": 8192}
+      }
+    },
+    "Workspace": {
+      "type": "object", "required": ["id", "assignment_id", "assignment_version", "state", "revision", "execution_enabled", "artifact_refs"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "assignment_id": {"type": "string", "minLength": 1},
+        "assignment_version": {"type": "integer", "minimum": 1},
+        "state": {"enum": ["ASSIGNED", "IN_PROGRESS", "PAUSED", "REVIEW_REQUIRED", "FEEDBACK_REQUIRED", "RESUBMITTED", "CLOSED"]},
+        "revision": {"type": "integer", "minimum": 1}, "execution_enabled": {"const": false},
+        "artifact_refs": {"type": "array", "items": {"$ref": "#/$defs/ArtifactReference"}}
+      }
+    },
+    "Assignment": {
+      "type": "object", "required": ["id", "version", "state", "revision", "task", "workspace", "demo_notice"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "version": {"type": "integer", "minimum": 1},
+        "state": {"enum": ["DRAFT", "PUBLISHED", "ARCHIVED"]}, "revision": {"type": "integer", "minimum": 1},
+        "task": {"$ref": "#/$defs/Task"}, "workspace": {"oneOf": [{"$ref": "#/$defs/Workspace"}, {"type": "null"}]},
+        "demo_notice": {"type": "string", "minLength": 1}
+      }
+    },
+    "EvidenceEvent": {
+      "type": "object", "required": ["event_id", "sequence", "schema_version", "workspace_id", "actor_role", "event_type", "resource_ref", "request_id", "occurred_at"], "additionalProperties": false,
+      "properties": {
+        "event_id": {"type": "string", "minLength": 1}, "sequence": {"type": "integer", "minimum": 1},
+        "schema_version": {"const": "evidence-event/v1"}, "workspace_id": {"type": "string", "minLength": 1},
+        "actor_role": {"enum": ["teacher", "student"]}, "event_type": {"type": "string", "minLength": 1},
+        "resource_ref": {"type": "string", "minLength": 1}, "request_id": {"$ref": "#/$defs/RequestId"},
+        "occurred_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "EventPage": {
+      "type": "object", "required": ["events", "next_sequence", "has_more"], "additionalProperties": false,
+      "properties": {
+        "events": {"type": "array", "maxItems": 50, "items": {"$ref": "#/$defs/EvidenceEvent"}},
+        "next_sequence": {"type": "integer", "minimum": 0}, "has_more": {"type": "boolean"}
+      }
+    },
+    "AgentTurn": {
+      "type": "object", "required": ["id", "provider_mode", "response_text", "availability", "event_sequence"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "provider_mode": {"const": "scripted-demo"},
+        "response_text": {"type": "string"}, "availability": {"enum": ["AVAILABLE", "UNAVAILABLE"]},
+        "event_sequence": {"type": "integer", "minimum": 1}
+      }
+    },
+    "ProposedAction": {
+      "type": "object", "required": ["id", "kind", "target_artifact_ref", "status", "diff"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "kind": {"const": "FILE_PATCH_PREVIEW"},
+        "target_artifact_ref": {"type": "string", "minLength": 1},
+        "status": {"enum": ["PROPOSED", "ACCEPTED", "REJECTED", "STUDENT_TAKEOVER"]},
+        "diff": {"type": "string", "maxLength": 4096}, "decision_event_sequence": {"type": "integer", "minimum": 1}
+      }
+    },
+    "Submission": {
+      "type": "object", "required": ["id", "workspace_id", "assignment_version", "version", "artifact_refs", "artifact_snapshots", "student_explanation", "state"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "workspace_id": {"type": "string", "minLength": 1},
+        "assignment_version": {"type": "integer", "minimum": 1}, "version": {"type": "integer", "minimum": 1},
+        "artifact_refs": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"$ref": "#/$defs/ArtifactReference"}},
+        "artifact_snapshots": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"$ref": "#/$defs/ArtifactSnapshot"}},
+        "student_explanation": {"type": "string", "minLength": 20, "maxLength": 4096, "x-maxUtf8Bytes": 4096},
+        "state": {"enum": ["SUBMITTED", "RESUBMITTED", "FEEDBACK_REQUIRED", "ACCEPTED"]},
+        "created_event_sequence": {"type": "integer", "minimum": 1}
+      }
+    },
+    "ReviewAction": {
+      "type": "object", "required": ["id", "submission_id", "submission_version", "kind", "reason", "created_event_sequence"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "submission_id": {"type": "string", "minLength": 1},
+        "submission_version": {"type": "integer", "minimum": 1},
+        "kind": {"enum": ["ACKNOWLEDGE", "REQUEST_EXPLANATION", "REQUEST_EVIDENCE", "REQUEST_REMEDIATION", "ENVIRONMENT_ISSUE"]},
+        "reason": {"type": "string", "minLength": 8, "maxLength": 1024, "pattern": "^(?=(?:.*\\S){8}).+$", "x-maxUtf8Bytes": 1024}, "created_event_sequence": {"type": "integer", "minimum": 1}
+      }
+    },
+    "Remediation": {
+      "type": "object", "required": ["id", "review_action_id", "submission_id", "requested_action", "reason", "state"], "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1}, "review_action_id": {"type": "string", "minLength": 1},
+        "submission_id": {"type": "string", "minLength": 1},
+        "requested_action": {"enum": ["REQUEST_EXPLANATION", "REQUEST_EVIDENCE", "REQUEST_REMEDIATION", "ENVIRONMENT_ISSUE"]},
+        "reason": {"type": "string", "minLength": 8, "maxLength": 1024, "pattern": "^(?=(?:.*\\S){8}).+$", "x-maxUtf8Bytes": 1024},
+        "state": {"enum": ["OPEN", "RESPONDED", "CLOSED"]}, "response_submission_id": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

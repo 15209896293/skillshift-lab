@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SkillShift · 合成教学闭环演示</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header>
+      <p class="eyebrow">SKILLSHIFT R0 · LOCAL DEMO</p>
+      <h1>教师与学生协作闭环</h1>
+      <p>仅限本机、固定合成任务。不会连接模型、学校系统或学生电脑。</p>
+    </header>
+    <main>
+      <section class="notice" aria-label="演示边界">
+        <strong>合成演示</strong>：这里的“教师”和“学生”是固定测试角色；刷新会重新载入最近任务，重启服务后数据清空。
+      </section>
+      <nav aria-label="角色视图">
+        <button class="tab active" data-panel="teacher">教师端</button>
+        <button class="tab" data-panel="student">学生端</button>
+      </nav>
+      <section id="teacher" class="panel active">
+        <div class="card">
+          <h2>1. 创建合成任务</h2>
+          <p>从示例开始，填写任务目标、学生要负责的部分和提交要求。本演示不含评分、监控或真实材料。</p>
+          <label for="task-title">任务名称</label>
+          <input id="task-title" maxlength="64" value="识别并解释一条不一致的数据记录">
+          <label for="task-goal">任务目标</label>
+          <textarea id="task-goal" rows="3">识别给定表格中的一条不一致记录，并说明你如何检查判断。</textarea>
+          <label for="task-responsibility">学生需要亲自完成</label>
+          <textarea id="task-responsibility" rows="2">提交判断、一个可检查的验证步骤和不确定之处。</textarea>
+          <label for="task-submission">提交要求</label>
+          <textarea id="task-submission" rows="2">一段任务关联的验证或解释文本。</textarea>
+          <button id="create-assignment">创建并发布合成任务</button>
+        </div>
+        <div class="card">
+          <h2>2. 查看提交与处理</h2>
+          <div id="teacher-status" class="empty">请先创建任务。</div>
+          <label for="review-kind">处理方式</label>
+          <select id="review-kind">
+            <option value="ACKNOWLEDGE">认可并关闭</option>
+            <option value="REQUEST_EXPLANATION">请求说明</option>
+            <option value="REQUEST_REMEDIATION">请求补正</option>
+            <option value="ENVIRONMENT_ISSUE">标记环境问题</option>
+          </select>
+          <label for="review-reason">可解释理由</label>
+          <textarea id="review-reason" rows="3" placeholder="例如：请补充判断所依据的任务规则。"></textarea>
+          <button id="send-review" class="secondary">发送教师反馈</button>
+          <button id="view-manifest" class="quiet">查看最小提交包</button>
+        </div>
+      </section>
+      <section id="student" class="panel">
+        <div class="card">
+          <h2>任务</h2>
+          <div id="student-status" class="empty">教师发布后，任务会显示在这里。</div>
+          <button id="start-work">开始任务</button>
+        </div>
+        <div class="card">
+          <h2>向教育 Agent 提问</h2>
+          <label for="question">你的问题</label>
+          <textarea id="question" rows="2" placeholder="例如：我应该先检查什么？"></textarea>
+          <button id="ask-guidance" class="secondary">获取任务内引导</button>
+          <div id="guidance-result" class="answer" aria-live="polite"></div>
+        </div>
+        <div class="card">
+          <h2>提交你的验证或说明</h2>
+          <label for="responsibility-kind">本次承担的责任</label>
+          <select id="responsibility-kind">
+            <option value="verification">验证</option>
+            <option value="explanation">解释</option>
+            <option value="correction">纠错</option>
+            <option value="remediation">补正</option>
+          </select>
+          <label for="response-text">你的任务关联响应</label>
+          <textarea id="response-text" rows="5" placeholder="写清楚你的判断、一个可检查的步骤，以及仍不确定的地方。"></textarea>
+          <button id="submit-response">提交给教师复核</button>
+        </div>
+      </section>
+      <pre id="result" aria-live="polite"></pre>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

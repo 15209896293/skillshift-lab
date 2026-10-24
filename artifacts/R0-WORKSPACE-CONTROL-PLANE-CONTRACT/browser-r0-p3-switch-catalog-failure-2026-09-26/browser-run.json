@@ -1,0 +1,108 @@
+{
+  "date": "2026-09-26",
+  "browser": "Microsoft Edge 154 via Playwright",
+  "fault": "loopback WSGI synthetic 503 on third student assignment directory read (task switch)",
+  "environment": "synthetic in-memory only",
+  "result": {
+    "directory_statuses": [
+      200,
+      200,
+      503,
+      200
+    ],
+    "failure_state": "\u8bfb\u53d6\u5931\u8d25 \u00b7 \u672a\u77e5",
+    "old_workspace_hidden_during_failure": true,
+    "requests_to_b_before_retry": [],
+    "retry_kept_explicit_b_choice": true,
+    "recovered_title": "\u5b66\u751f\u4efb\u52a1\u5207\u6362\u5931\u8d25\u9694\u79bb B",
+    "previous_a_title": "\u5b66\u751f\u4efb\u52a1\u5207\u6362\u5931\u8d25\u9694\u79bb A",
+    "workspace_id_for_b": "workspace-2",
+    "start_requests": [
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/start",
+        "status": 200
+      }
+    ],
+    "only_b_start": true,
+    "viewport": 390,
+    "horizontal_overflow": false,
+    "network": [
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments/assignment-1",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/remediation",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+        "status": 200
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/pause",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 503
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments/assignment-2",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2",
+        "status": 200
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/start",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/remediation",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-2/submissions/latest",
+        "status": 200
+      }
+    ]
+  },
+  "limitations": [
+    "not production integration",
+    "fixed demo role and synthetic assignments",
+    "not full P4"
+  ]
+}

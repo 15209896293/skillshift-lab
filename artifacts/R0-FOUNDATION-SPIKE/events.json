@@ -1,0 +1,54 @@
+[
+  {
+    "sequence": 1,
+    "event_type": "workspace.bound",
+    "occurred_at": 1790223181.3581488,
+    "payload": {
+      "workspace_id": "synthetic_python_task"
+    },
+    "schema_version": "r0-foundation-spike/v1"
+  },
+  {
+    "sequence": 2,
+    "event_type": "agent.run_created",
+    "occurred_at": 1790223181.3585327,
+    "payload": {
+      "workspace": "synthetic_python_task",
+      "script": "validate.py"
+    },
+    "schema_version": "r0-foundation-spike/v1"
+  },
+  {
+    "sequence": 3,
+    "event_type": "agent.tool_called",
+    "occurred_at": 1790223181.3585365,
+    "payload": {
+      "tool": "run_command",
+      "script": "validate.py"
+    },
+    "schema_version": "r0-foundation-spike/v1"
+  },
+  {
+    "sequence": 4,
+    "event_type": "runtime.command_finished",
+    "occurred_at": 1790223181.4140608,
+    "payload": {
+      "run_id": "e0010f9e-92ff-48a4-932f-d49a58fc57ea",
+      "exit_code": 0,
+      "timed_out": false,
+      "stopped": false,
+      "stop_confirmed": true
+    },
+    "schema_version": "r0-foundation-spike/v1"
+  },
+  {
+    "sequence": 5,
+    "event_type": "submission.package_created",
+    "occurred_at": 1790223181.4156399,
+    "payload": {
+      "manifest": "submission-manifest.json",
+      "artifact_sha256": "1c34f88707b55e6104c4eb20e71ffa3d33e414b71ef689a15fad0640d0ac58cb"
+    },
+    "schema_version": "r0-foundation-spike/v1"
+  }
+]

@@ -1,0 +1,103 @@
+/* ============================================================
+   SkillShift Studio — shadcn/ui Design System
+   ============================================================ */
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #94a3b8;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+
+  --chart-1: #0ea5e9;
+  --chart-2: #22c55e;
+  --chart-3: #6366f1;
+  --chart-4: #f59e0b;
+  --chart-5: #ec4899;
+
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0f172a;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #94a3b8;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+
+  --font-sans: "Inter", "Manrope", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "Microsoft YaHei", "微软雅黑", "PingFang SC",
+               "Hiragino Sans GB", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Menlo", "Consolas",
+               "Liberation Mono", "Courier New", monospace;
+
+  /* Semantic aliases */
+  --ss-background: var(--background);
+  --ss-foreground: var(--foreground);
+  --ss-card: var(--card);
+  --ss-card-foreground: var(--card-foreground);
+  --ss-primary: var(--primary);
+  --ss-primary-foreground: var(--primary-foreground);
+  --ss-secondary: var(--secondary);
+  --ss-secondary-foreground: var(--secondary-foreground);
+  --ss-muted: var(--muted);
+  --ss-muted-foreground: var(--muted-foreground);
+  --ss-accent: var(--accent);
+  --ss-accent-foreground: var(--accent-foreground);
+  --ss-destructive: var(--destructive);
+  --ss-border: var(--border);
+  --ss-input: var(--input);
+  --ss-ring: var(--ring);
+  --ss-radius-sm: var(--radius-sm);
+  --ss-radius-md: var(--radius-md);
+  --ss-radius-lg: var(--radius-lg);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}

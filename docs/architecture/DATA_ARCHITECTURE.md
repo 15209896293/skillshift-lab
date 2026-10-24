@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Long-term data-governance reference. The active R0 entity and event model is in `TECHNICAL_SPEC.md`.
 
 ## Core Rule
 

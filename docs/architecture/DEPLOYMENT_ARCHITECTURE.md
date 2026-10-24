@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Historical multi-environment proposal. It does not select the current R0 provider; see `TECHNICAL_SPEC.md`.
 
 ## Deployment Principle
 
@@ -36,4 +36,4 @@ It should use:
 
 ## Current Boundary
 
-Do not build multiple deployment modes before a single vertical slice is proven.
+R0 uses a non-Docker local restricted-process provider for synthetic or project-owner-authorized examples only. Managed Sandbox, School Node, and Personal Node remain later proposals.

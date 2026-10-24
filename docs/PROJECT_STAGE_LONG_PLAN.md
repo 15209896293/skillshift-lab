@@ -1,5 +1,7 @@
 # SkillShift Lab Project Stage Long Plan
 
+> **Status: historical P0 research route, preserved and paused.** It does not define the current R0 product priority. For the active product baseline, read `product/R0_PRODUCT_REPOSITIONING_DECISION.md`, `product/R0_AGENT_FIRST_DELIVERY_DECISION.md`, relevant Active R0 specifications, and `PROJECT_STATUS_2026-10-09.md`. `../SkillShift_Studio_软件工程总纲_V3.0.md` is Draft and does not override the accepted decisions.
+
 ## Purpose
 
 This document is the long-range execution plan for SkillShift Lab.

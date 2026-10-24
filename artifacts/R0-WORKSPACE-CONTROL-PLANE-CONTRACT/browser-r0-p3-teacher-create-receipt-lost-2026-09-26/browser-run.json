@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-26",
+  "browser": "Microsoft Edge 154 via Playwright",
+  "environment": "loopback synthetic WSGI, empty in-memory seed",
+  "fault": "first POST create route fetched to real API then browser receipt dropped",
+  "request_identity": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"title\":\"Task107 Receipt Recovery Synthetic\",\"goal\":\"\u68c0\u67e5\u5408\u6210\u8ba2\u5355\u6570\u636e\u4e2d\u7684\u91d1\u989d\u4e0e\u6570\u91cf\u3001\u5355\u4ef7\u5173\u7cfb\uff0c\u627e\u51fa\u4e00\u6761\u4e0d\u4e00\u81f4\u8bb0\u5f55\uff0c\u5e76\u8bf4\u660e\u4f60\u5982\u4f55\u9a8c\u8bc1\u5224\u65ad\u3002\",\"student_responsibility\":\"\u6307\u51fa\u5f02\u5e38\u8bb0\u5f55\uff0c\u5199\u51fa\u81f3\u5c11\u4e00\u4e2a\u53ef\u68c0\u67e5\u7684\u9a8c\u8bc1\u6b65\u9aa4\uff0c\u5e76\u8bf4\u660e\u4ecd\u4e0d\u786e\u5b9a\u7684\u5730\u65b9\u3002\",\"submission_requirement\":\"\u63d0\u4ea4\u4ee3\u7801\u6216\u5904\u7406\u7ed3\u679c\uff0c\u5e76\u7528\u4e00\u6bb5\u7b80\u77ed\u8bf4\u660e\u5199\u660e\u5f02\u5e38\u8bb0\u5f55\u3001\u9a8c\u8bc1\u4f9d\u636e\u548c\u4e0d\u786e\u5b9a\u4e4b\u5904\u3002\",\"starter_project_id\":\"orders-audit-v1\",\"collaboration_mode\":\"PROPOSE_WITH_STUDENT_CONFIRMATION\"}",
+      "headers": {
+        "accept": "application/json",
+        "content-type": "application/json; charset=utf-8",
+        "dnt": "1",
+        "idempotency-key": "9436a36d-a199-4bd2-af73-c8bdac57c8d0",
+        "origin": "http://127.0.0.1:8767",
+        "referer": "http://127.0.0.1:8767/demo/teacher/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+        "sec-ch-ua": "\"Chromium\";v=\"154\", \"Microsoft Edge\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\""
+      },
+      "upstream_status": 201,
+      "upstream_receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-b41ceb8e9b5f4183b0a37b26672c3e67\",\"data\":{\"id\":\"assignment-1\",\"version\":1,\"state\":\"DRAFT\",\"revision\":1,\"task\":{\"task_id\":\"synthetic-task-1-v1\",\"version\":1,\"title\":\"Task107 Receipt Recovery Synthetic\",\"goal\":\"\u68c0\u67e5\u5408\u6210\u8ba2\u5355\u6570\u636e\u4e2d\u7684\u91d1\u989d\u4e0e\u6570\u91cf\u3001\u5355\u4ef7\u5173\u7cfb\uff0c\u627e\u51fa\u4e00\u6761\u4e0d\u4e00\u81f4\u8bb0\u5f55\uff0c\u5e76\u8bf4\u660e\u4f60\u5982\u4f55\u9a8c\u8bc1\u5224\u65ad\u3002\",\"collaboration_mode\":\"PROPOSE_WITH_STUDENT_CONFIRMATION\",\"student_responsibility\":\"\u6307\u51fa\u5f02\u5e38\u8bb0\u5f55\uff0c\u5199\u51fa\u81f3\u5c11\u4e00\u4e2a\u53ef\u68c0\u67e5\u7684\u9a8c\u8bc1\u6b65\u9aa4\uff0c\u5e76\u8bf4\u660e\u4ecd\u4e0d\u786e\u5b9a\u7684\u5730\u65b9\u3002\",\"starter_project_id\":\"orders-audit-v1\",\"submission_requirements\":[\"\u63d0\u4ea4\u4ee3\u7801\u6216\u5904\u7406\u7ed3\u679c\uff0c\u5e76\u7528\u4e00\u6bb5\u7b80\u77ed\u8bf4\u660e\u5199\u660e\u5f02\u5e38\u8bb0\u5f55\u3001\u9a8c\u8bc1\u4f9d\u636e\u548c\u4e0d\u786e\u5b9a\u4e4b\u5904\u3002\"],\"execution_enabled\":false,\"id\":\"assignment-1\"},\"workspace\":null,\"demo_notice\":\"\u4ec5\u9650\u56fa\u5b9a\u5408\u6210\u672c\u673a\u6f14\u793a\uff1b\u5237\u65b0/\u670d\u52a1\u91cd\u542f\u6062\u590d\u8fb9\u754c\u4ee5\u672c\u673a\u9002\u914d\u5668\u4e3a\u51c6\u3002\"}}"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"title\":\"Task107 Receipt Recovery Synthetic\",\"goal\":\"\u68c0\u67e5\u5408\u6210\u8ba2\u5355\u6570\u636e\u4e2d\u7684\u91d1\u989d\u4e0e\u6570\u91cf\u3001\u5355\u4ef7\u5173\u7cfb\uff0c\u627e\u51fa\u4e00\u6761\u4e0d\u4e00\u81f4\u8bb0\u5f55\uff0c\u5e76\u8bf4\u660e\u4f60\u5982\u4f55\u9a8c\u8bc1\u5224\u65ad\u3002\",\"student_responsibility\":\"\u6307\u51fa\u5f02\u5e38\u8bb0\u5f55\uff0c\u5199\u51fa\u81f3\u5c11\u4e00\u4e2a\u53ef\u68c0\u67e5\u7684\u9a8c\u8bc1\u6b65\u9aa4\uff0c\u5e76\u8bf4\u660e\u4ecd\u4e0d\u786e\u5b9a\u7684\u5730\u65b9\u3002\",\"submission_requirement\":\"\u63d0\u4ea4\u4ee3\u7801\u6216\u5904\u7406\u7ed3\u679c\uff0c\u5e76\u7528\u4e00\u6bb5\u7b80\u77ed\u8bf4\u660e\u5199\u660e\u5f02\u5e38\u8bb0\u5f55\u3001\u9a8c\u8bc1\u4f9d\u636e\u548c\u4e0d\u786e\u5b9a\u4e4b\u5904\u3002\",\"starter_project_id\":\"orders-audit-v1\",\"collaboration_mode\":\"PROPOSE_WITH_STUDENT_CONFIRMATION\"}",
+      "headers": {
+        "accept": "application/json",
+        "content-type": "application/json; charset=utf-8",
+        "dnt": "1",
+        "idempotency-key": "9436a36d-a199-4bd2-af73-c8bdac57c8d0",
+        "origin": "http://127.0.0.1:8767",
+        "referer": "http://127.0.0.1:8767/demo/teacher/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
+        "sec-ch-ua": "\"Chromium\";v=\"154\", \"Microsoft Edge\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\""
+      }
+    }
+  ],
+  "result": {
+    "create_attempts": 2,
+    "first_server_status": 201,
+    "same_json_body": true,
+    "same_idempotency_key": true,
+    "pending_controls": {
+      "message": "\u5f85\u5904\u7406\u539f\u4efb\u52a1\u201cTask107 Receipt Recovery Synthetic\u201d\uff1a\u521b\u5efa\u56de\u6267\u672a\u786e\u8ba4\uff1b\u91cd\u8bd5\u5c06\u539f\u6837\u53d1\u9001\u540c\u4e00\u4efb\u52a1 DTO\u3002 \u5f53\u524d\u5c1d\u8bd5 DTO \u4e0e\u4efb\u52a1\u5165\u53e3\u5df2\u51bb\u7ed3\u3002 \u521b\u5efa\u4efb\u52a1\u6ca1\u6709\u6536\u5230 API \u6210\u529f\u56de\u6267\uff1b\u8bf7\u6c42\u72b6\u6001\u672a\u786e\u8ba4\uff0c\u8bf7\u5237\u65b0\u6838\u5bf9\u540e\u518d\u64cd\u4f5c\u3002",
+      "form_disabled": true,
+      "new_task_disabled": true,
+      "save_disabled": true,
+      "publish_enabled": true,
+      "retry_label": "\u91cd\u8bd5\u539f\u53d1\u5e03\u8bf7\u6c42"
+    },
+    "retry_create_status": 201,
+    "publish_status": 200,
+    "assignments_after_recovery": 1,
+    "published_assignment_title": "Task107 Receipt Recovery Synthetic",
+    "published_assignment_id": "assignment-1",
+    "workspace_assignment_id": "assignment-1",
+    "publish_post_count": 1,
+    "browser_requests": [
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+        "status": 200
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+        "status": 201
+      },
+      {
+        "method": "POST",
+        "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/publish",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+        "status": 200
+      }
+    ]
+  },
+  "limitations": [
+    "synthetic demo DTO only",
+    "browser-boundary receipt loss, not real packet loss",
+    "not production or durable storage"
+  ]
+}

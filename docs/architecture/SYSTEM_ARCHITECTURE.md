@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Historical long-term proposal. It does not define the current R0 baseline; see `TECHNICAL_SPEC.md`.
 
 ## Architecture Principle
 
@@ -23,8 +23,4 @@ The student should enter through a browser or PWA. The task may run in a Managed
 
 ## Current Boundary
 
-This is a long-term architecture proposal.
-
-Do not implement all planes in the first version.
-
-The first engineering slice after Gate 0 should be one SQL/MySQL vertical slice.
+This is a long-term architecture reference. R0 is a general AI Agent Workspace with a non-Docker local restricted-process provider and a Python + CSV Golden Path; teacher, evaluation, research, and multi-node planes are not R0 implementation scope.

@@ -1,0 +1,187 @@
+{
+  "task_id": "R0-P3-121-LOOPBACK-HTTP-SMOKE",
+  "listener": {
+    "host": "127.0.0.1",
+    "port": 50936,
+    "actual_address": [
+      "127.0.0.1",
+      50936
+    ]
+  },
+  "synthetic_only": true,
+  "external_calls": 0,
+  "fixture_python_executed": false,
+  "checks": {
+    "health_over_loopback_http": true,
+    "static_page_teacher_served": true,
+    "static_page_student_served": true,
+    "stale_publish_conflict_had_no_side_effect": true,
+    "teacher_created_and_published": true,
+    "student_discovered_and_started": true,
+    "allowlist_submission_idempotency_replay_did_not_duplicate": true,
+    "teacher_remediation_readback": true,
+    "student_resubmitted_v2": true,
+    "teacher_ack_and_student_readback": true,
+    "evidence_events_http_readback": true,
+    "execution_remained_disabled": true,
+    "all_mutations_sent_idempotency_and_revision": true
+  },
+  "exchange_count": 22,
+  "exchanges": [
+    {
+      "method": "GET",
+      "path": "/api/v1/health",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 201,
+      "idempotency_key_sent": true,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 409,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 200,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/start",
+      "status": 200,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "status": 201,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "status": 201,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/review-queue",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/workspaces/workspace-1",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/submissions/submission-1/review-actions",
+      "status": 201,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "status": 201,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/workspaces/workspace-1",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/submissions/submission-2/review-actions",
+      "status": 201,
+      "idempotency_key_sent": true,
+      "if_match_sent": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/events?after_sequence=0&limit=50",
+      "status": 200,
+      "idempotency_key_sent": false,
+      "if_match_sent": false
+    }
+  ],
+  "pass": true
+}

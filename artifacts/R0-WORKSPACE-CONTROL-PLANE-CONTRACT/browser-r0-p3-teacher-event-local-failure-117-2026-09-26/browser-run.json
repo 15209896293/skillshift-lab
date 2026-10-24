@@ -1,0 +1,75 @@
+{
+  "browser": "Microsoft Edge via Playwright",
+  "viewport": "1280x900",
+  "fault_boundary": "Playwright fulfilled one synthetic 503 for A's teacher events GET; the local WSGI API served all other requests and the subsequent event retry.",
+  "event_requests": [
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/events?after_sequence=0&limit=50",
+      "status": 503,
+      "injected_at_browser_boundary": true
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/events?after_sequence=0&limit=50",
+      "status": 200,
+      "injected_at_browser_boundary": false
+    }
+  ],
+  "review_queue_reads_before_retry": 6,
+  "review_queue_reads_after_retry": 6,
+  "unknown_state": {
+    "viewport": {
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    },
+    "detailsVisible": true,
+    "title": "教师多任务队列隔离验证 A",
+    "submissionState": "第 1 版 · SUBMITTED",
+    "explanation": "任务 A：我已核对固定合成订单记录，并记录仍待确认之处。",
+    "queueRows": [
+      "教师多任务队列隔离验证 A · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项查看此任务"
+    ],
+    "evidenceState": "事件状态未知，读取失败：读取事件没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。",
+    "retryVisible": true,
+    "retryLabel": "重读事件",
+    "timeline": [],
+    "reviewCount": "2"
+  },
+  "recovered_state": {
+    "viewport": {
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "scrollWidth": 1280
+    },
+    "detailsVisible": true,
+    "title": "教师多任务队列隔离验证 A",
+    "submissionState": "第 1 版 · SUBMITTED",
+    "explanation": "任务 A：我已核对固定合成订单记录，并记录仍待确认之处。",
+    "queueRows": [
+      "教师多任务队列隔离验证 A · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项查看此任务",
+      "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项查看此任务"
+    ],
+    "evidenceState": "事件读取成功。",
+    "retryVisible": false,
+    "retryLabel": "重读事件",
+    "timeline": [
+      "1assignment.publishedteacher · assignment-1服务端顺序 1 · 2026-09-26T12:53:26Z",
+      "2student.work_startedstudent · workspace-1服务端顺序 2 · 2026-09-26T12:53:26Z",
+      "3submission.createdstudent · submission-1服务端顺序 3 · 2026-09-26T12:53:26Z"
+    ],
+    "reviewCount": "2"
+  },
+  "assertions": {
+    "A_details_visible_during_event_failure": true,
+    "A_submission_state_not_unknown": true,
+    "three_task_queue_retained": true,
+    "event_region_unknown_and_retryable": true,
+    "event_retry_returned_success": true,
+    "queue_not_refetched_by_event_retry": true,
+    "A_details_preserved_after_retry": true,
+    "no_horizontal_overflow": true
+  }
+}

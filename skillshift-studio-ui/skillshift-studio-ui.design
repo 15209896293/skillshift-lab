@@ -1,0 +1,109 @@
+{
+  "data": [
+    {
+      "id": "page-student-home",
+      "title": "学生首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760000000000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-2318f814",
+          "measuredAt": 1791470894638
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 1317,
+          "height": 861
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/student-home.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-student-workbench",
+      "title": "学生项目工作台",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760000001000,
+      "canvasData": {
+        "x": 444,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-ebf2dd3d",
+          "measuredAt": 1791470894638
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/student-workbench.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-teacher-designer",
+      "title": "教师任务设计器",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760000002000,
+      "canvasData": {
+        "x": 924,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-879f12f0",
+          "measuredAt": 1791470894638
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/teacher-designer.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-teacher-review",
+      "title": "教师复核工作台",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1760000003000,
+      "canvasData": {
+        "x": 1404,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1570,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-e59c2a78",
+          "measuredAt": 1791470894638
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/teacher-review.html",
+        "interactions": []
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "SkillShift Studio",
+    "designLibrary": null,
+    "showEdge": true,
+    "visualEditorEnabled": false
+  }
+}

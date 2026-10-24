@@ -1,0 +1,125 @@
+{
+  "browser": "Edge via Playwright",
+  "viewport": "390x844",
+  "workspace_id": "workspace-1",
+  "task_options": [
+    "请选择任务",
+    "学生 Agent 延迟回执隔离 A",
+    "学生 Agent 延迟回执隔离 B"
+  ],
+  "unknown_state": {
+    "api_state": "提交结果暂未确认；页面已冻结本次提交内容。可重试同一提交以读取原回执，请勿修改后当作新提交。",
+    "button": "重试同一提交",
+    "note_disabled": true,
+    "textarea_disabled": true,
+    "modal_open": true,
+    "viewport": {
+      "w": 390,
+      "cw": 390,
+      "sw": 390
+    }
+  },
+  "request_records": [
+    {
+      "phase": "first",
+      "status": 201,
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "method": "POST",
+      "post_data": "{\"schema_version\":\"skillshift-api/v1\",\"artifact_refs\":[\"main.py\",\"orders.csv\",\"README.md\"],\"artifact_contents\":{\"main.py\":\"import csv\\n\\n\\ndef find_inconsistent_orders(path):\\n    issues = []\\n    with open(path, newline=\\\"\\\", encoding=\\\"utf-8\\\") as source:\\n        for row in csv.DictReader(source):\\n            quantity = int(row[\\\"quantity\\\"])\\n            unit_price = float(row[\\\"unit_price\\\"])\\n            amount = float(row[\\\"amount\\\"])\\n            if amount != quantity * unit_price:\\n                issues.append(row[\\\"order_id\\\"])\\n    return issues\\n\\n\\n# 固定合成示例：这里只展示代码，不会执行。\\n\",\"orders.csv\":\"order_id,quantity,unit_price,amount\\nO-104,1,45.00,45.00\\nO-105,2,89.00,160.00\\nO-106,3,12.00,36.00\\n\",\"README.md\":\"# 合成订单核对项目\\n\\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\\n\\n提交时请说明：\\n- 你发现了什么；\\n- 如何验证；\\n- 哪些业务规则仍需确认。\\n\\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\\n\"},\"student_explanation\":\"固定合成提交：已逐项核对快照，不确定处已记录。\"}",
+      "idempotency_key": "ad10d8da-2341-4385-a269-1dd5d99e9447",
+      "if_match": "3",
+      "response_body": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-54390da5600b450198f536afe865f02d\",\"data\":{\"submission\":{\"id\":\"submission-1\",\"workspace_id\":\"workspace-1\",\"assignment_version\":1,\"version\":1,\"artifact_refs\":[{\"id\":\"artifact-main-py-v1\",\"logical_name\":\"main.py\",\"media_type\":\"text/x-python\",\"source\":\"FIXED_SYNTHETIC\",\"integrity_status\":\"NOT_COMPUTED\"},{\"id\":\"artifact-orders-csv-v1\",\"logical_name\":\"orders.csv\",\"media_type\":\"text/csv\",\"source\":\"FIXED_SYNTHETIC\",\"integrity_status\":\"NOT_COMPUTED\"},{\"id\":\"artifact-README-md-v1\",\"logical_name\":\"README.md\",\"media_type\":\"text/markdown\",\"source\":\"FIXED_SYNTHETIC\",\"integrity_status\":\"NOT_COMPUTED\"}],\"artifact_snapshots\":[{\"logical_name\":\"main.py\",\"media_type\":\"text/x-python\",\"size_bytes\":483,\"sha256\":\"8559de9beff659d172daafd806813f11c51b756d1b114abe548dc65e035187a1\",\"content\":\"import csv\\n\\n\\ndef find_inconsistent_orders(path):\\n    issues = []\\n    with open(path, newline=\\\"\\\", encoding=\\\"utf-8\\\") as source:\\n        for row in csv.DictReader(source):\\n            quantity = int(row[\\\"quantity\\\"])\\n            unit_price = float(row[\\\"unit_price\\\"])\\n            amount = float(row[\\\"amount\\\"])\\n            if amount != quantity * unit_price:\\n                issues.append(row[\\\"order_id\\\"])\\n    return issues\\n\\n\\n# 固定合成示例：这里只展示代码，不会执行。\\n\"},{\"logical_name\":\"orders.csv\",\"media_type\":\"text/csv\",\"size_bytes\":97,\"sha256\":\"fa25d89edfa82b28b19d1ad0913aa44759d4c4c39516dc44040c5ad999888e79\",\"content\":\"order_id,quantity,unit_price,amount\\nO-104,1,45.00,45.00\\nO-105,2,89.00,160.00\\nO-106,3,12.00,36.00\\n\"},{\"logical_name\":\"README.md\",\"media_type\":\"text/markdown\",\"size_bytes\":287,\"sha256\":\"827cc97eb5594a9f693d8ca560c8a1e83a47ed84df9d236b6ea305628b18c141\",\"content\":\"# 合成订单核对项目\\n\\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\\n\\n提交时请说明：\\n- 你发现了什么；\\n- 如何验证；\\n- 哪些业务规则仍需确认。\\n\\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\\n\"}],\"student_explanation\":\"固定合成提交：已逐项核对快照，不确定处已记录。\",\"state\":\"SUBMITTED\",\"created_event_sequence\":4},\"workspace_revision\":4},\"revision\":4}"
+    },
+    {
+      "phase": "retry",
+      "status": 201,
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "method": "POST",
+      "post_data": "{\"schema_version\":\"skillshift-api/v1\",\"artifact_refs\":[\"main.py\",\"orders.csv\",\"README.md\"],\"artifact_contents\":{\"main.py\":\"import csv\\n\\n\\ndef find_inconsistent_orders(path):\\n    issues = []\\n    with open(path, newline=\\\"\\\", encoding=\\\"utf-8\\\") as source:\\n        for row in csv.DictReader(source):\\n            quantity = int(row[\\\"quantity\\\"])\\n            unit_price = float(row[\\\"unit_price\\\"])\\n            amount = float(row[\\\"amount\\\"])\\n            if amount != quantity * unit_price:\\n                issues.append(row[\\\"order_id\\\"])\\n    return issues\\n\\n\\n# 固定合成示例：这里只展示代码，不会执行。\\n\",\"orders.csv\":\"order_id,quantity,unit_price,amount\\nO-104,1,45.00,45.00\\nO-105,2,89.00,160.00\\nO-106,3,12.00,36.00\\n\",\"README.md\":\"# 合成订单核对项目\\n\\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\\n\\n提交时请说明：\\n- 你发现了什么；\\n- 如何验证；\\n- 哪些业务规则仍需确认。\\n\\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\\n\"},\"student_explanation\":\"固定合成提交：已逐项核对快照，不确定处已记录。\"}",
+      "idempotency_key": "ad10d8da-2341-4385-a269-1dd5d99e9447",
+      "if_match": "3",
+      "response_body": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-8cce7a12780c44429c8515a910b7b57a\",\"data\":{\"submission\":{\"id\":\"submission-1\",\"workspace_id\":\"workspace-1\",\"assignment_version\":1,\"version\":1,\"artifact_refs\":[{\"id\":\"artifact-main-py-v1\",\"logical_name\":\"main.py\",\"media_type\":\"text/x-python\",\"source\":\"FIXED_SYNTHETIC\",\"integrity_status\":\"NOT_COMPUTED\"},{\"id\":\"artifact-orders-csv-v1\",\"logical_name\":\"orders.csv\",\"media_type\":\"text/csv\",\"source\":\"FIXED_SYNTHETIC\",\"integrity_status\":\"NOT_COMPUTED\"},{\"id\":\"artifact-README-md-v1\",\"logical_name\":\"README.md\",\"media_type\":\"text/markdown\",\"source\":\"FIXED_SYNTHETIC\",\"integrity_status\":\"NOT_COMPUTED\"}],\"artifact_snapshots\":[{\"logical_name\":\"main.py\",\"media_type\":\"text/x-python\",\"size_bytes\":483,\"sha256\":\"8559de9beff659d172daafd806813f11c51b756d1b114abe548dc65e035187a1\",\"content\":\"import csv\\n\\n\\ndef find_inconsistent_orders(path):\\n    issues = []\\n    with open(path, newline=\\\"\\\", encoding=\\\"utf-8\\\") as source:\\n        for row in csv.DictReader(source):\\n            quantity = int(row[\\\"quantity\\\"])\\n            unit_price = float(row[\\\"unit_price\\\"])\\n            amount = float(row[\\\"amount\\\"])\\n            if amount != quantity * unit_price:\\n                issues.append(row[\\\"order_id\\\"])\\n    return issues\\n\\n\\n# 固定合成示例：这里只展示代码，不会执行。\\n\"},{\"logical_name\":\"orders.csv\",\"media_type\":\"text/csv\",\"size_bytes\":97,\"sha256\":\"fa25d89edfa82b28b19d1ad0913aa44759d4c4c39516dc44040c5ad999888e79\",\"content\":\"order_id,quantity,unit_price,amount\\nO-104,1,45.00,45.00\\nO-105,2,89.00,160.00\\nO-106,3,12.00,36.00\\n\"},{\"logical_name\":\"README.md\",\"media_type\":\"text/markdown\",\"size_bytes\":287,\"sha256\":\"827cc97eb5594a9f693d8ca560c8a1e83a47ed84df9d236b6ea305628b18c141\",\"content\":\"# 合成订单核对项目\\n\\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\\n\\n提交时请说明：\\n- 你发现了什么；\\n- 如何验证；\\n- 哪些业务规则仍需确认。\\n\\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\\n\"}],\"student_explanation\":\"固定合成提交：已逐项核对快照，不确定处已记录。\",\"state\":\"SUBMITTED\",\"created_event_sequence\":4},\"workspace_revision\":4},\"revision\":4}"
+    }
+  ],
+  "same_request": true,
+  "latest": {
+    "schema_version": "skillshift-api/v1",
+    "request_id": "req-demo-c8a0a82bb21849c58c1f4b154a5e2d78",
+    "data": {
+      "submission": {
+        "id": "submission-1",
+        "workspace_id": "workspace-1",
+        "assignment_version": 1,
+        "version": 1,
+        "artifact_refs": [
+          {
+            "id": "artifact-main-py-v1",
+            "logical_name": "main.py",
+            "media_type": "text/x-python",
+            "source": "FIXED_SYNTHETIC",
+            "integrity_status": "NOT_COMPUTED"
+          },
+          {
+            "id": "artifact-orders-csv-v1",
+            "logical_name": "orders.csv",
+            "media_type": "text/csv",
+            "source": "FIXED_SYNTHETIC",
+            "integrity_status": "NOT_COMPUTED"
+          },
+          {
+            "id": "artifact-README-md-v1",
+            "logical_name": "README.md",
+            "media_type": "text/markdown",
+            "source": "FIXED_SYNTHETIC",
+            "integrity_status": "NOT_COMPUTED"
+          }
+        ],
+        "artifact_snapshots": [
+          {
+            "logical_name": "main.py",
+            "media_type": "text/x-python",
+            "size_bytes": 483,
+            "sha256": "8559de9beff659d172daafd806813f11c51b756d1b114abe548dc65e035187a1",
+            "content": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n"
+          },
+          {
+            "logical_name": "orders.csv",
+            "media_type": "text/csv",
+            "size_bytes": 97,
+            "sha256": "fa25d89edfa82b28b19d1ad0913aa44759d4c4c39516dc44040c5ad999888e79",
+            "content": "order_id,quantity,unit_price,amount\nO-104,1,45.00,45.00\nO-105,2,89.00,160.00\nO-106,3,12.00,36.00\n"
+          },
+          {
+            "logical_name": "README.md",
+            "media_type": "text/markdown",
+            "size_bytes": 287,
+            "sha256": "827cc97eb5594a9f693d8ca560c8a1e83a47ed84df9d236b6ea305628b18c141",
+            "content": "# 合成订单核对项目\n\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\n\n提交时请说明：\n- 你发现了什么；\n- 如何验证；\n- 哪些业务规则仍需确认。\n\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\n"
+          }
+        ],
+        "student_explanation": "固定合成提交：已逐项核对快照，不确定处已记录。",
+        "state": "SUBMITTED",
+        "created_event_sequence": 4
+      }
+    }
+  },
+  "submission_created_events": [
+    {
+      "event_id": "event-4",
+      "sequence": 4,
+      "schema_version": "evidence-event/v1",
+      "workspace_id": "workspace-1",
+      "actor_role": "student",
+      "event_type": "submission.created",
+      "resource_ref": "submission-1",
+      "request_id": "req-demo-54390da5600b450198f536afe865f02d",
+      "occurred_at": "2026-09-26T11:43:09Z"
+    }
+  ],
+  "final_state_label": "等待教师复核",
+  "viewport_final": {
+    "w": 390,
+    "cw": 390,
+    "sw": 390
+  }
+}

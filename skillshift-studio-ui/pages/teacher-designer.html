@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent 协作任务设计器 - SkillShift Studio</title>
+    <style id="theme-vars">
+/* ============================================================
+   SkillShift Studio — shadcn/ui Design System
+   ============================================================ */
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #94a3b8;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+
+  --chart-1: #0ea5e9;
+  --chart-2: #22c55e;
+  --chart-3: #6366f1;
+  --chart-4: #f59e0b;
+  --chart-5: #ec4899;
+
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0f172a;
+  --sidebar-primary-foreground: #f8fafc;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #94a3b8;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+
+  --font-sans: "Inter", "Manrope", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "Microsoft YaHei", "微软雅黑", "PingFang SC",
+               "Hiragino Sans GB", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Menlo", "Consolas",
+               "Liberation Mono", "Courier New", monospace;
+
+  /* Semantic aliases */
+  --ss-background: var(--background);
+  --ss-foreground: var(--foreground);
+  --ss-card: var(--card);
+  --ss-card-foreground: var(--card-foreground);
+  --ss-primary: var(--primary);
+  --ss-primary-foreground: var(--primary-foreground);
+  --ss-secondary: var(--secondary);
+  --ss-secondary-foreground: var(--secondary-foreground);
+  --ss-muted: var(--muted);
+  --ss-muted-foreground: var(--muted-foreground);
+  --ss-accent: var(--accent);
+  --ss-accent-foreground: var(--accent-foreground);
+  --ss-destructive: var(--destructive);
+  --ss-border: var(--border);
+  --ss-input: var(--input);
+  --ss-ring: var(--ring);
+  --ss-radius-sm: var(--radius-sm);
+  --ss-radius-md: var(--radius-md);
+  --ss-radius-lg: var(--radius-lg);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--ss-background);
+    --color-foreground: var(--ss-foreground);
+    --color-card: var(--ss-card);
+    --color-card-foreground: var(--ss-card-foreground);
+    --color-primary: var(--ss-primary);
+    --color-primary-foreground: var(--ss-primary-foreground);
+    --color-secondary: var(--ss-secondary);
+    --color-secondary-foreground: var(--ss-secondary-foreground);
+    --color-muted: var(--ss-muted);
+    --color-muted-foreground: var(--ss-muted-foreground);
+    --color-accent: var(--ss-accent);
+    --color-accent-foreground: var(--ss-accent-foreground);
+    --color-destructive: var(--ss-destructive);
+    --color-border: var(--ss-border);
+    --color-input: var(--ss-input);
+    --color-ring: var(--ss-ring);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --radius-sm: var(--ss-radius-sm);
+    --radius-md: var(--ss-radius-md);
+    --radius-lg: var(--ss-radius-lg);
+  }
+  @layer base {
+    body { background: var(--ss-background); color: var(--ss-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--ss-background); }
+      .text-background { color: var(--ss-background); }
+      .border-background { border-color: var(--ss-background); }
+      .ring-background { --tw-ring-color: var(--ss-background); }
+      .bg-foreground { background-color: var(--ss-foreground); }
+      .text-foreground { color: var(--ss-foreground); }
+      .border-foreground { border-color: var(--ss-foreground); }
+      .ring-foreground { --tw-ring-color: var(--ss-foreground); }
+      .bg-card { background-color: var(--ss-card); }
+      .text-card { color: var(--ss-card); }
+      .border-card { border-color: var(--ss-card); }
+      .ring-card { --tw-ring-color: var(--ss-card); }
+      .bg-card-foreground { background-color: var(--ss-card-foreground); }
+      .text-card-foreground { color: var(--ss-card-foreground); }
+      .border-card-foreground { border-color: var(--ss-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--ss-card-foreground); }
+      .bg-primary { background-color: var(--ss-primary); }
+      .text-primary { color: var(--ss-primary); }
+      .border-primary { border-color: var(--ss-primary); }
+      .ring-primary { --tw-ring-color: var(--ss-primary); }
+      .bg-primary-foreground { background-color: var(--ss-primary-foreground); }
+      .text-primary-foreground { color: var(--ss-primary-foreground); }
+      .border-primary-foreground { border-color: var(--ss-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--ss-primary-foreground); }
+      .bg-secondary { background-color: var(--ss-secondary); }
+      .text-secondary { color: var(--ss-secondary); }
+      .border-secondary { border-color: var(--ss-secondary); }
+      .ring-secondary { --tw-ring-color: var(--ss-secondary); }
+      .bg-secondary-foreground { background-color: var(--ss-secondary-foreground); }
+      .text-secondary-foreground { color: var(--ss-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--ss-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--ss-secondary-foreground); }
+      .bg-muted { background-color: var(--ss-muted); }
+      .text-muted { color: var(--ss-muted); }
+      .border-muted { border-color: var(--ss-muted); }
+      .ring-muted { --tw-ring-color: var(--ss-muted); }
+      .bg-muted-foreground { background-color: var(--ss-muted-foreground); }
+      .text-muted-foreground { color: var(--ss-muted-foreground); }
+      .border-muted-foreground { border-color: var(--ss-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--ss-muted-foreground); }
+      .bg-accent { background-color: var(--ss-accent); }
+      .text-accent { color: var(--ss-accent); }
+      .border-accent { border-color: var(--ss-accent); }
+      .ring-accent { --tw-ring-color: var(--ss-accent); }
+      .bg-accent-foreground { background-color: var(--ss-accent-foreground); }
+      .text-accent-foreground { color: var(--ss-accent-foreground); }
+      .border-accent-foreground { border-color: var(--ss-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--ss-accent-foreground); }
+      .bg-destructive { background-color: var(--ss-destructive); }
+      .text-destructive { color: var(--ss-destructive); }
+      .border-destructive { border-color: var(--ss-destructive); }
+      .ring-destructive { --tw-ring-color: var(--ss-destructive); }
+      .bg-border { background-color: var(--ss-border); }
+      .text-border { color: var(--ss-border); }
+      .border-border { border-color: var(--ss-border); }
+      .ring-border { --tw-ring-color: var(--ss-border); }
+      .bg-input { background-color: var(--ss-input); }
+      .text-input { color: var(--ss-input); }
+      .border-input { border-color: var(--ss-input); }
+      .ring-input { --tw-ring-color: var(--ss-input); }
+      .bg-ring { background-color: var(--ss-ring); }
+      .text-ring { color: var(--ss-ring); }
+      .border-ring { border-color: var(--ss-ring); }
+      .ring-ring { --tw-ring-color: var(--ss-ring); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-chart-1 { background-color: var(--chart-1); }
+      .text-chart-1 { color: var(--chart-1); }
+      .border-chart-1 { border-color: var(--chart-1); }
+      .ring-chart-1 { --tw-ring-color: var(--chart-1); }
+      .bg-chart-2 { background-color: var(--chart-2); }
+      .text-chart-2 { color: var(--chart-2); }
+      .border-chart-2 { border-color: var(--chart-2); }
+      .ring-chart-2 { --tw-ring-color: var(--chart-2); }
+      .bg-chart-3 { background-color: var(--chart-3); }
+      .text-chart-3 { color: var(--chart-3); }
+      .border-chart-3 { border-color: var(--chart-3); }
+      .ring-chart-3 { --tw-ring-color: var(--chart-3); }
+      .bg-chart-4 { background-color: var(--chart-4); }
+      .text-chart-4 { color: var(--chart-4); }
+      .border-chart-4 { border-color: var(--chart-4); }
+      .ring-chart-4 { --tw-ring-color: var(--chart-4); }
+      .bg-chart-5 { background-color: var(--chart-5); }
+      .text-chart-5 { color: var(--chart-5); }
+      .border-chart-5 { border-color: var(--chart-5); }
+      .ring-chart-5 { --tw-ring-color: var(--chart-5); }
+      .bg-sidebar { background-color: var(--sidebar); }
+      .text-sidebar { color: var(--sidebar); }
+      .border-sidebar { border-color: var(--sidebar); }
+      .ring-sidebar { --tw-ring-color: var(--sidebar); }
+      .bg-sidebar-foreground { background-color: var(--sidebar-foreground); }
+      .text-sidebar-foreground { color: var(--sidebar-foreground); }
+      .border-sidebar-foreground { border-color: var(--sidebar-foreground); }
+      .ring-sidebar-foreground { --tw-ring-color: var(--sidebar-foreground); }
+      .bg-sidebar-primary { background-color: var(--sidebar-primary); }
+      .text-sidebar-primary { color: var(--sidebar-primary); }
+      .border-sidebar-primary { border-color: var(--sidebar-primary); }
+      .ring-sidebar-primary { --tw-ring-color: var(--sidebar-primary); }
+      .bg-sidebar-primary-foreground { background-color: var(--sidebar-primary-foreground); }
+      .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+      .border-sidebar-primary-foreground { border-color: var(--sidebar-primary-foreground); }
+      .ring-sidebar-primary-foreground { --tw-ring-color: var(--sidebar-primary-foreground); }
+      .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+      .text-sidebar-accent { color: var(--sidebar-accent); }
+      .border-sidebar-accent { border-color: var(--sidebar-accent); }
+      .ring-sidebar-accent { --tw-ring-color: var(--sidebar-accent); }
+      .bg-sidebar-accent-foreground { background-color: var(--sidebar-accent-foreground); }
+      .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+      .border-sidebar-accent-foreground { border-color: var(--sidebar-accent-foreground); }
+      .ring-sidebar-accent-foreground { --tw-ring-color: var(--sidebar-accent-foreground); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body><div role="note" style="position:sticky;top:0;z-index:9999;padding:10px 16px;background:#fff7e6;border-bottom:1px solid #ead9ac;color:#735b22;font:13px/1.5 system-ui,sans-serif">早期静态设计探索稿：其中课程库、AI 评分等内容不属于当前 R0 已确认范围。当前参考请查看 <a href="../../apps/studio-web/public/concepts/teacher-course-overview.html">教师工作台</a> 与 <a href="../../apps/studio-web/public/concepts/teacher-authoring-and-model-settings.html">作业设计 UI</a>。</div>
+    <div class="app-layout">
+        <!-- ==================== Sidebar ==================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="team-switcher">
+                    <div class="team-logo">S</div>
+                    <div class="team-info">
+                        <div class="team-name">SkillShift Studio</div>
+                        <div class="team-role">教师端</div>
+                    </div>
+                    <svg class="team-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-group-label">工作区</div>
+                    <div class="nav-group">
+                        <a class="nav-item active" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11H7a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"/><path d="M9 11V7a3 3 0 0 1 6 0v4"/></svg>
+                            <span>任务管理</span>
+                        </a>
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v0z"/><path d="m9 14 2 2 4-4"/></svg>
+                            <span>作业复核</span>
+                            <span class="nav-badge">8</span>
+                        </a>
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>班级管理</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-group-label">数据分析</div>
+                    <div class="nav-group">
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                            <span>学习分析</span>
+                        </a>
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                            <span>Agent使用统计</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-group-label">系统</div>
+                    <div class="nav-group">
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+                            <span>课程库</span>
+                        </a>
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M8 12h8"/><path d="M8 16h8"/></svg>
+                            <span>模板中心</span>
+                        </a>
+                        <a class="nav-item" href="#">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <span>设置</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar">LM</div>
+                    <div class="user-info">
+                        <div class="user-name">李老师</div>
+                        <div class="user-email">teacher@school.edu</div>
+                    </div>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--muted-foreground);"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ==================== Main Area ==================== -->
+        <div class="main-area">
+            <!-- Header -->
+            <header class="header" id="header">
+                <nav class="top-nav">
+                    <div class="top-nav-item active">任务管理</div>
+                    <div class="top-nav-item">作业复核</div>
+                    <div class="top-nav-item">班级管理</div>
+                </nav>
+                <div class="header-actions">
+                    <button class="icon-btn" aria-label="搜索">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="主题切换">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </button>
+                    <button class="icon-btn" aria-label="通知">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <div class="header-avatar" title="李老师"></div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="content" id="main-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title-block">
+                        <h1>Agent 协作任务设计器</h1>
+                        <p>配置 Agent 协作规则与任务内容</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            预览
+                        </button>
+                        <button class="btn btn-secondary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            保存草稿
+                        </button>
+                        <button class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            发布任务
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stepper -->
+                <div class="stepper" id="stepper">
+                    <div class="step completed">
+                        <div class="step-circle">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="step-title">基础信息</div>
+                        <div class="step-desc">任务属性设置</div>
+                    </div>
+                    <div class="step current">
+                        <div class="step-circle">2</div>
+                        <div class="step-title">Agent 协作</div>
+                        <div class="step-desc">定义能力范围</div>
+                        <div class="step-progress"><div class="step-progress-bar"></div></div>
+                    </div>
+                    <div class="step pending">
+                        <div class="step-circle">3</div>
+                        <div class="step-title">评分标准</div>
+                        <div class="step-desc">配置评分项</div>
+                    </div>
+                    <div class="step pending">
+                        <div class="step-circle">4</div>
+                        <div class="step-title">发布设置</div>
+                        <div class="step-desc">发布与通知</div>
+                    </div>
+                </div>
+
+                <!-- Main Grid -->
+                <div class="main-grid">
+                    <!-- Left Column - Config -->
+                    <div class="config-column">
+                        <!-- Card 1: Basic Info -->
+                        <div class="card" id="card-basic-info">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">基本信息</div>
+                                    <div class="card-desc">设置任务的基础属性</div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="form-grid">
+                                    <div class="form-item">
+                                        <label class="form-label">任务名称</label>
+                                        <input type="text" class="form-input" value="Python数据清洗与异常诊断">
+                                    </div>
+                                    <div class="form-item">
+                                        <label class="form-label">所属课程</label>
+                                        <select class="form-select">
+                                            <option>数据处理基础</option>
+                                            <option>Python 程序设计</option>
+                                            <option>数据分析入门</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-item">
+                                        <label class="form-label">任务类型</label>
+                                        <select class="form-select">
+                                            <option>编程练习</option>
+                                            <option>综合项目</option>
+                                            <option>实验报告</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-item">
+                                        <label class="form-label">难度等级</label>
+                                        <div class="segmented">
+                                            <button class="segmented-item">入门</button>
+                                            <button class="segmented-item active">进阶</button>
+                                            <button class="segmented-item">挑战</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-grid mt-4">
+                                    <div class="form-item">
+                                        <label class="form-label">开始时间</label>
+                                        <input type="datetime-local" class="form-input" value="2026-10-10T08:00">
+                                    </div>
+                                    <div class="form-item">
+                                        <label class="form-label">截止时间</label>
+                                        <input type="datetime-local" class="form-input" value="2026-10-17T23:59">
+                                    </div>
+                                </div>
+
+                                <div class="form-item mt-4">
+                                    <label class="form-label">任务描述</label>
+                                    <div class="editor-toolbar">
+                                        <button class="toolbar-btn" title="粗体">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/></svg>
+                                        </button>
+                                        <button class="toolbar-btn" title="斜体">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/><line x1="15" x2="9" y1="4" y2="20"/></svg>
+                                        </button>
+                                        <div class="toolbar-divider"></div>
+                                        <button class="toolbar-btn" title="无序列表">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+                                        </button>
+                                        <button class="toolbar-btn" title="有序列表">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="21" y1="6" y2="6"/><line x1="10" x2="21" y1="12" y2="12"/><line x1="10" x2="21" y1="18" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+                                        </button>
+                                        <div class="toolbar-divider"></div>
+                                        <button class="toolbar-btn" title="代码">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                        </button>
+                                        <button class="toolbar-btn" title="链接">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                                        </button>
+                                        <button class="toolbar-btn" title="引用">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                                        </button>
+                                    </div>
+                                    <textarea class="form-textarea editor-textarea" rows="6">本任务要求学生使用 Python 对一份包含缺失值、异常值和格式不一致的销售数据集进行清洗。学生需要：
+
+1. 使用 pandas 读取 CSV 数据文件
+2. 识别并处理缺失值（删除 / 填充策略）
+3. 检测并处理异常值（IQR 方法 / Z-score）
+4. 统一数据格式（日期、金额、分类字段）
+5. 输出清洗后的数据并撰写处理报告
+
+Agent 可在学生遇到困难时提供代码建议和概念解释，但不会直接给出完整答案。</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Agent Collaboration -->
+                        <div class="card" id="card-agent-config">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">Agent 协作配置</div>
+                                    <div class="card-desc">定义学生可使用的 Agent 能力范围</div>
+                                </div>
+                                <span class="card-link">重置默认</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="section-label">协作模式</div>
+                                <div class="section-sub">选择适合本任务的 Agent 协作深度</div>
+
+                                <div class="radio-cards">
+                                    <div class="radio-card checked">
+                                        <div class="radio-card-header">
+                                            <div class="radio-dot"></div>
+                                            <div class="radio-card-title">标准协作</div>
+                                        </div>
+                                        <div class="radio-card-desc">Agent 可提供代码建议、解释概念、排查错误</div>
+                                        <span class="radio-card-tag">大多数练习</span>
+                                    </div>
+                                    <div class="radio-card">
+                                        <div class="radio-card-header">
+                                            <div class="radio-dot"></div>
+                                            <div class="radio-card-title">指导者模式</div>
+                                        </div>
+                                        <div class="radio-card-desc">Agent 只提供提示和思路引导</div>
+                                        <span class="radio-card-tag">独立思考任务</span>
+                                    </div>
+                                    <div class="radio-card">
+                                        <div class="radio-card-header">
+                                            <div class="radio-dot"></div>
+                                            <div class="radio-card-title">评审者模式</div>
+                                        </div>
+                                        <div class="radio-card-desc">Agent 仅在提交后给出评审意见</div>
+                                        <span class="radio-card-tag">综合项目考核</span>
+                                    </div>
+                                </div>
+
+                                <div class="section-label">Agent 能力开关</div>
+                                <div class="section-sub">精细控制 Agent 的各项能力</div>
+
+                                <div class="switch-grid">
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">代码解释</div>
+                                                <div class="switch-desc">逐行解释代码含义</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch on"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">错误诊断</div>
+                                                <div class="switch-desc">分析并定位代码错误</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch on"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">代码生成</div>
+                                                <div class="switch-desc">生成新的代码片段</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch on"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">重构建议</div>
+                                                <div class="switch-desc">优化代码结构与质量</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch on"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22h6a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6"/><path d="m3 9 3-3 3 3"/><path d="M6 6v14"/><path d="M3 15h6"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">直接修改代码</div>
+                                                <div class="switch-desc">Agent 直接编辑学生代码</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">提供完整答案</div>
+                                                <div class="switch-desc">输出完整解决方案</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">联网搜索</div>
+                                                <div class="switch-desc">允许 Agent 搜索网络资源</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch"><div class="switch-thumb"></div></div>
+                                    </div>
+                                    <div class="switch-item">
+                                        <div class="switch-item-left">
+                                            <div class="switch-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+                                            </div>
+                                            <div class="switch-text">
+                                                <div class="switch-name">文件操作</div>
+                                                <div class="switch-desc">读取和管理任务文件</div>
+                                            </div>
+                                        </div>
+                                        <div class="switch on"><div class="switch-thumb"></div></div>
+                                    </div>
+                                </div>
+
+                                <div class="section-label">工具权限</div>
+                                <div class="section-sub">Agent 可使用的系统级工具</div>
+
+                                <div class="perm-cards">
+                                    <div class="perm-card">
+                                        <div class="perm-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+                                        </div>
+                                        <span class="perm-label">文件系统</span>
+                                        <span class="perm-badge success">读写</span>
+                                    </div>
+                                    <div class="perm-card">
+                                        <div class="perm-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                        </div>
+                                        <span class="perm-label">网络访问</span>
+                                        <span class="perm-badge error">禁用</span>
+                                    </div>
+                                    <div class="perm-card">
+                                        <div class="perm-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                        </div>
+                                        <span class="perm-label">代码执行</span>
+                                        <span class="perm-badge info">允许</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Scoring Criteria -->
+                        <div class="card" id="card-scoring">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">评分标准</div>
+                                    <div class="card-desc">配置评分项与AI辅助评分</div>
+                                </div>
+                                <button class="btn btn-secondary btn-sm">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                                    添加项
+                                </button>
+                            </div>
+                            <div class="card-content">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30%;">评分项</th>
+                                            <th style="width: 35%;">权重</th>
+                                            <th style="width: 20%;">AI辅助评分</th>
+                                            <th style="width: 15%;">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="table-criteria-name">代码正确性</div>
+                                            </td>
+                                            <td>
+                                                <div class="weight-cell">
+                                                    <div class="slider-wrap">
+                                                        <div class="slider-fill" style="width: 50%;"></div>
+                                                        <div class="slider-thumb" style="left: 50%;"></div>
+                                                    </div>
+                                                    <span class="weight-value">50%</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="switch on" style="margin: 0;"><div class="switch-thumb"></div></div>
+                                            </td>
+                                            <td><button class="table-action">编辑</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="table-criteria-name">代码质量</div>
+                                            </td>
+                                            <td>
+                                                <div class="weight-cell">
+                                                    <div class="slider-wrap">
+                                                        <div class="slider-fill" style="width: 20%;"></div>
+                                                        <div class="slider-thumb" style="left: 20%;"></div>
+                                                    </div>
+                                                    <span class="weight-value">20%</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="switch on" style="margin: 0;"><div class="switch-thumb"></div></div>
+                                            </td>
+                                            <td><button class="table-action">编辑</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="table-criteria-name">过程记录</div>
+                                            </td>
+                                            <td>
+                                                <div class="weight-cell">
+                                                    <div class="slider-wrap">
+                                                        <div class="slider-fill" style="width: 20%;"></div>
+                                                        <div class="slider-thumb" style="left: 20%;"></div>
+                                                    </div>
+                                                    <span class="weight-value">20%</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="switch on" style="margin: 0;"><div class="switch-thumb"></div></div>
+                                            </td>
+                                            <td><button class="table-action">编辑</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="table-criteria-name">创新思考</div>
+                                            </td>
+                                            <td>
+                                                <div class="weight-cell">
+                                                    <div class="slider-wrap">
+                                                        <div class="slider-fill" style="width: 10%;"></div>
+                                                        <div class="slider-thumb" style="left: 10%;"></div>
+                                                    </div>
+                                                    <span class="weight-value">10%</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="switch" style="margin: 0;"><div class="switch-thumb"></div></div>
+                                            </td>
+                                            <td><button class="table-action">编辑</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="card-footer-row">
+                                    <div class="footer-left">
+                                        <div class="switch on"><div class="switch-thumb"></div></div>
+                                        <label>启用 AI 辅助评分</label>
+                                    </div>
+                                    <div class="footer-right">
+                                        Agent 将按评分标准生成初步评分建议，教师可调整
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Preview -->
+                    <div class="preview-column">
+                        <div class="preview-panel">
+                            <div class="card" id="card-preview">
+                                <div class="card-header">
+                                    <div>
+                                        <div class="card-title">学生端预览</div>
+                                    </div>
+                                    <div class="preview-tabs">
+                                        <button class="preview-tab active">桌面</button>
+                                        <button class="preview-tab">平板</button>
+                                        <button class="preview-tab">手机</button>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="preview-frame">
+                                        <div class="preview-topbar">
+                                            <span class="preview-dot red"></span>
+                                            <span class="preview-dot yellow"></span>
+                                            <span class="preview-dot green"></span>
+                                        </div>
+                                        <div class="preview-body">
+                                            <div class="preview-code">
+                                                <div class="code-line long"></div>
+                                                <div class="code-line med"></div>
+                                                <div class="code-line short indent-1"></div>
+                                                <div class="code-line long indent-1"></div>
+                                                <div class="code-line med indent-2 dark"></div>
+                                                <div class="code-line short indent-2"></div>
+                                                <div class="code-line long indent-1"></div>
+                                                <div class="code-line med"></div>
+                                                <div class="code-line short dark"></div>
+                                                <div class="code-line long"></div>
+                                                <div class="code-line med indent-1"></div>
+                                                <div class="code-line short indent-1"></div>
+                                            </div>
+                                            <div class="preview-agent">
+                                                <div class="agent-line long"></div>
+                                                <div class="agent-line med"></div>
+                                                <div class="agent-bubble">
+                                                    <div class="code-line short"></div>
+                                                    <div class="code-line med"></div>
+                                                </div>
+                                                <div class="agent-line short"></div>
+                                            </div>
+                                        </div>
+                                        <div class="preview-watermark">PREVIEW</div>
+                                    </div>
+                                    <p class="preview-note">当前配置下学生可见以上内容 · 以实际效果为准</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <style>
+/* ============================================================
+   SkillShift Studio — Teacher Designer (shadcn/ui style)
+   Primary: slate-900 (#0f172a)
+   ============================================================ */
+
+:root {
+  /* ---------- Brand / Primary (slate-900) ---------- */
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --primary-hover: #1e293b;
+  --primary-active: #020617;
+
+  /* ---------- Background ---------- */
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  /* ---------- Card ---------- */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  /* ---------- Sidebar ---------- */
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+
+  /* ---------- Muted ---------- */
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  /* ---------- Border / Input ---------- */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0f172a;
+
+  /* ---------- Accent ---------- */
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  /* ---------- Destructive ---------- */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* ---------- Status Colors ---------- */
+  --success: #22c55e;
+  --success-foreground: #ffffff;
+  --warning: #f59e0b;
+  --warning-foreground: #ffffff;
+  --error: #ef4444;
+  --error-foreground: #ffffff;
+  --info: #3b82f6;
+  --info-foreground: #ffffff;
+
+  /* ---------- Radius ---------- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+
+  /* ---------- Typography ---------- */
+  --font-sans: "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "Microsoft YaHei", "微软雅黑", "PingFang SC",
+               "Hiragino Sans GB", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 24px;
+
+  /* ---------- Shadow ---------- */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+/* ============================================================
+   Reset / Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+
+/* ============================================================
+   Layout Shell
+   ============================================================ */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+
+.team-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.team-switcher:hover { background: var(--sidebar-accent); }
+
+.team-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.team-info {
+  flex: 1;
+  min-width: 0;
+}
+.team-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.3;
+}
+.team-role {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+
+.team-chevron {
+  color: var(--muted-foreground);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-group-label {
+  padding: 0 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+.nav-item:hover {
+  background: var(--sidebar-accent);
+  color: var(--foreground);
+}
+.nav-item.active {
+  background: var(--sidebar-accent);
+  color: var(--foreground);
+  font-weight: 500;
+}
+.nav-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.nav-item .nav-badge {
+  margin-left: auto;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 6px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-footer {
+  padding: 12px;
+  border-top: 1px solid var(--sidebar-border);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.user-card:hover { background: var(--sidebar-accent); }
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+.user-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-email {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Main Area ---------- */
+.main-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+.header {
+  height: 64px;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.top-nav-item {
+  position: relative;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: color 0.15s;
+  font-weight: 500;
+}
+.top-nav-item:hover { color: var(--foreground); }
+.top-nav-item.active {
+  color: var(--foreground);
+}
+.top-nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px 2px 0 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  transition: background 0.15s, color 0.15s;
+  position: relative;
+}
+.icon-btn:hover {
+  background: var(--accent);
+  color: var(--foreground);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+
+.notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--error);
+  border: 2px solid var(--background);
+  border-radius: 50%;
+}
+
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  cursor: pointer;
+  margin-left: 4px;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.header-avatar:hover { border-color: var(--border); }
+
+/* ---------- Content ---------- */
+.content {
+  flex: 1;
+  background: #fafafa;
+  padding: 24px;
+}
+
+/* ---------- Page Title Row ---------- */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.page-title-block h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.page-title-block p {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+}
+
+.page-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+.btn svg { width: 16px; height: 16px; }
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+.btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.btn-primary:active { background: var(--primary-active); }
+
+.btn-secondary {
+  background: var(--background);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+.btn-secondary:hover { background: var(--accent); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground);
+  border-color: transparent;
+}
+.btn-ghost:hover { background: var(--accent); }
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: var(--text-xs);
+}
+
+.btn-icon-sm {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+/* ---------- Stepper ---------- */
+.stepper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 20px);
+  right: calc(-50% + 20px);
+  height: 2px;
+  background: var(--border);
+}
+
+.step.completed:not(:last-child)::after {
+  background: var(--success);
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+}
+
+.step.completed .step-circle {
+  background: var(--success);
+  color: #fff;
+}
+.step.current .step-circle {
+  background: var(--primary);
+  color: #fff;
+}
+.step.pending .step-circle {
+  background: var(--background);
+  border: 2px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.step-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 2px;
+  text-align: center;
+}
+.step.pending .step-title {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+.step.current .step-title {
+  font-weight: 600;
+}
+
+.step-desc {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.step-progress {
+  margin-top: 8px;
+  width: 60px;
+  height: 4px;
+  background: var(--muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.step-progress-bar {
+  height: 100%;
+  width: 65%;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+/* ---------- Main Grid ---------- */
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--card-foreground);
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: var(--text-sm);
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+.card-link {
+  font-size: var(--text-sm);
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0;
+  padding: 2px 0;
+}
+.card-link:hover { text-decoration: underline; }
+
+.card-content {
+  padding: 20px;
+}
+
+/* ---------- Form ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.form-input {
+  width: 100%;
+  padding: 7px 12px;
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--input);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-select {
+  width: 100%;
+  padding: 7px 32px 7px 12px;
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--input);
+  border-radius: var(--radius-sm);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-select:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+/* ---------- Segmented Control ---------- */
+.segmented {
+  display: inline-flex;
+  background: var(--muted);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  width: 100%;
+}
+
+.segmented-item {
+  flex: 1;
+  padding: 6px 12px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--radius-sm) - 2px);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-align: center;
+}
+.segmented-item:hover { color: var(--foreground); }
+.segmented-item.active {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ---------- Textarea ---------- */
+.form-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px 12px;
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--input);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  line-height: 1.6;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+/* ---------- Editor Toolbar ---------- */
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  background: var(--muted);
+  border: 1px solid var(--input);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.toolbar-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.toolbar-btn:hover {
+  background: var(--background);
+  color: var(--foreground);
+}
+.toolbar-btn svg { width: 15px; height: 15px; }
+
+.toolbar-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 4px;
+}
+
+.editor-textarea {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: none;
+}
+
+/* ---------- Radio Card Group ---------- */
+.radio-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.radio-card {
+  position: relative;
+  padding: 16px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.radio-card:hover {
+  border-color: #cbd5e1;
+}
+.radio-card.checked {
+  border-color: var(--primary);
+  border-width: 2px;
+  padding: 15px;
+  background: #fafbfc;
+}
+
+.radio-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.radio-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+}
+.radio-card.checked .radio-dot {
+  border-color: var(--primary);
+}
+.radio-card.checked .radio-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.radio-card-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.radio-card-desc {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.radio-card-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--muted);
+  color: #475569;
+  border-radius: var(--radius-full);
+}
+
+/* ---------- Section Label ---------- */
+.section-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-bottom: 12px;
+  margin-top: -8px;
+}
+
+/* ---------- Switch Grid ---------- */
+.switch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.switch-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.switch-item-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.switch-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+.switch-icon svg { width: 16px; height: 16px; }
+
+.switch-text {
+  flex: 1;
+  min-width: 0;
+}
+.switch-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 2px;
+}
+.switch-desc {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  line-height: 1.4;
+}
+
+/* ---------- Switch ---------- */
+.switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: #cbd5e1;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.switch.on {
+  background: var(--primary);
+}
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.switch.on .switch-thumb {
+  transform: translateX(16px);
+}
+
+/* ---------- Permission Cards ---------- */
+.perm-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.perm-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.perm-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+}
+.perm-icon svg { width: 14px; height: 14px; }
+
+.perm-label {
+  font-size: var(--text-sm);
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.perm-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+.perm-badge.success {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.perm-badge.error {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.perm-badge.info {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+/* ---------- Table ---------- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.data-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: #f8fafc; }
+
+.table-criteria-name {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* ---------- Slider ---------- */
+.weight-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+}
+
+.slider-wrap {
+  flex: 1;
+  height: 4px;
+  background: var(--muted);
+  border-radius: var(--radius-full);
+  position: relative;
+}
+.slider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.weight-value {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--foreground);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ---------- Table Action ---------- */
+.table-action {
+  font-size: var(--text-sm);
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.table-action:hover { text-decoration: underline; }
+
+/* ---------- Footer Row ---------- */
+.card-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-left label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.footer-right {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+/* ---------- Preview Panel ---------- */
+.preview-panel {
+  position: sticky;
+  top: 88px;
+}
+
+.preview-tabs {
+  display: inline-flex;
+  background: var(--muted);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.preview-tab {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--radius-sm) - 2px);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.preview-tab.active {
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.preview-frame {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  background: #f8fafc;
+}
+
+.preview-topbar {
+  height: 28px;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 6px;
+}
+.preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+}
+.preview-dot.red { background: #ef4444; }
+.preview-dot.yellow { background: #f59e0b; }
+.preview-dot.green { background: #22c55e; }
+
+.preview-body {
+  display: flex;
+  height: calc(100% - 28px);
+}
+
+.preview-code {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.code-line {
+  height: 6px;
+  border-radius: 2px;
+  background: #e2e8f0;
+}
+.code-line.dark { background: #cbd5e1; }
+.code-line.short { width: 60%; }
+.code-line.med { width: 80%; }
+.code-line.long { width: 95%; }
+.code-line.indent-1 { margin-left: 12px; }
+.code-line.indent-2 { margin-left: 24px; }
+
+.preview-agent {
+  width: 35%;
+  background: linear-gradient(180deg, #ede9fe, #f5f3ff);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 1px solid #ddd6fe;
+}
+.agent-line {
+  height: 5px;
+  border-radius: 2px;
+  background: #c4b5fd;
+}
+.agent-line.short { width: 50%; }
+.agent-line.med { width: 80%; }
+.agent-line.long { width: 95%; }
+.agent-bubble {
+  margin-top: 4px;
+  padding: 6px 8px;
+  background: #fff;
+  border-radius: 6px 6px 6px 0;
+  border: 1px solid #ddd6fe;
+}
+.agent-bubble .code-line {
+  height: 4px;
+  background: #ddd6fe;
+}
+
+.preview-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--primary);
+  opacity: 0.06;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.preview-note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- Spacing helpers ---------- */
+.mt-4 { margin-top: 16px; }
+.mt-5 { margin-top: 20px; }
+.mt-6 { margin-top: 24px; }
+.mb-4 { margin-bottom: 16px; }
+.gap-4 { gap: 16px; }
+
+/* ---------- Card stack spacing ---------- */
+.config-column > .card + .card {
+  margin-top: 20px;
+}
+
+    </style>
+</body>
+</html>
+

@@ -1,0 +1,85 @@
+{
+  "browser": "Edge via Playwright",
+  "viewport": "390x844",
+  "workspace_id": "workspace-1",
+  "proposal_id": "proposal-4",
+  "proposal_generation_status": "拒绝决定已记录到本机合成 API；项目文件没有变化。",
+  "api_state_after_retry": "本机合成 API 已确认提案决定；下面显示的是本机合成记录。页面内存演示不会写回文件，也不会运行代码。",
+  "unknown_state": {
+    "proposal_visible": true,
+    "proposal_status": "拒绝建议仍未确认。请留在当前页面，使用原按钮重试同一请求；刷新会丢失本页重试信息。",
+    "api_state": "拒绝建议仍未确认。请留在当前页面，使用原按钮重试同一请求；刷新会丢失本页重试信息。",
+    "decision_disabled": {
+      "reject": false,
+      "accept": true,
+      "takeover": true
+    },
+    "send_disabled": true,
+    "pause_disabled": false,
+    "submit_disabled": true,
+    "editor_before": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+    "editor_disabled": false,
+    "selected_title": "学生建议决定回执丢失验证 A",
+    "viewport": {
+      "w": 390,
+      "cw": 390,
+      "sw": 390
+    }
+  },
+  "while_unknown_switch_pause_and_submit_attempt": {
+    "selected_title": "学生建议决定回执丢失验证 A",
+    "picker_value": "assignment-1",
+    "api_state": "拒绝建议仍未确认。请留在当前页面，使用原按钮重试同一请求；刷新会丢失本页重试信息。",
+    "editor": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+    "pause_button_disabled": false,
+    "submission_dialog_open": false
+  },
+  "decision_requests": [
+    {
+      "phase": "first",
+      "status": 200,
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/proposed-actions/proposal-4/decision",
+      "body": "{\"decision\":\"REJECTED\",\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "d8e134ad-1fff-4fbd-862c-7f59ba3ed201",
+      "if_match": "4",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-02f4ed832a934048a78c6b48fa382e73\",\"data\":{\"proposed_action\":{\"id\":\"proposal-4\",\"kind\":\"FILE_PATCH_PREVIEW\",\"target_artifact_ref\":\"artifact-main-py-v1\",\"status\":\"REJECTED\",\"diff\":\"固定差异预览：先计算 expected，再比较金额；不会写入或运行代码。\",\"decision_event_sequence\":5},\"workspace_revision\":5},\"revision\":5}"
+    },
+    {
+      "phase": "retry",
+      "status": 200,
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/proposed-actions/proposal-4/decision",
+      "body": "{\"decision\":\"REJECTED\",\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "d8e134ad-1fff-4fbd-862c-7f59ba3ed201",
+      "if_match": "4",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-d2ab40bb722844c3b8f82d855bc90883\",\"data\":{\"proposed_action\":{\"id\":\"proposal-4\",\"kind\":\"FILE_PATCH_PREVIEW\",\"target_artifact_ref\":\"artifact-main-py-v1\",\"status\":\"REJECTED\",\"diff\":\"固定差异预览：先计算 expected，再比较金额；不会写入或运行代码。\",\"decision_event_sequence\":5},\"workspace_revision\":5},\"revision\":5}"
+    }
+  ],
+  "same_request": true,
+  "same_decision_receipt": true,
+  "decision_event_matches": [
+    {
+      "event_id": "event-5",
+      "sequence": 5,
+      "schema_version": "evidence-event/v1",
+      "workspace_id": "workspace-1",
+      "actor_role": "student",
+      "event_type": "agent.proposed_action_decided",
+      "resource_ref": "proposal-4",
+      "request_id": "req-demo-02f4ed832a934048a78c6b48fa382e73",
+      "occurred_at": "2026-09-26T12:23:53Z"
+    }
+  ],
+  "event_count_for_decision": 1,
+  "editor_after_retry": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+  "workspace_state": "IN_PROGRESS",
+  "pause_POSTs": 0,
+  "submission_POSTs": 0,
+  "second_proposal_decision_attempts": 2,
+  "viewport_final": {
+    "w": 390,
+    "cw": 390,
+    "sw": 390
+  }
+}

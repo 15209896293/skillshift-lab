@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-26",
+  "browser": "Microsoft Edge 154 via Playwright",
+  "environment": "loopback synthetic WSGI only",
+  "results": {
+    "teacher": {
+      "accessible_names": [
+        "\u91cd\u8bd5\u201c\u6559\u5e08\u591a\u4efb\u52a1\u961f\u5217\u9694\u79bb\u9a8c\u8bc1 A\u201d\u7684\u590d\u6838\u961f\u5217",
+        "\u67e5\u770b\u201c\u6559\u5e08\u591a\u4efb\u52a1\u961f\u5217\u9694\u79bb\u9a8c\u8bc1 B\u201d\u7684\u590d\u6838\u8be6\u60c5",
+        "\u67e5\u770b\u201c\u6559\u5e08\u591a\u4efb\u52a1\u961f\u5217\u9694\u79bb\u9a8c\u8bc1 C\u201d\u7684\u590d\u6838\u8be6\u60c5"
+      ],
+      "keyboard_activated_row_matches_detail": true,
+      "selected_title": "\u6559\u5e08\u591a\u4efb\u52a1\u961f\u5217\u9694\u79bb\u9a8c\u8bc1 B"
+    },
+    "student": {
+      "explicitly_selected_assignment": "A",
+      "state": "IN_PROGRESS maps to \u8fdb\u884c\u4e2d in selector and rail",
+      "pause_enabled": true,
+      "submit_enabled": true,
+      "viewports": [
+        390,
+        1280
+      ],
+      "horizontal_overflow": false
+    }
+  },
+  "limitations": [
+    "not production integration",
+    "no real identities or learner data",
+    "not a WCAG conformance audit"
+  ]
+}

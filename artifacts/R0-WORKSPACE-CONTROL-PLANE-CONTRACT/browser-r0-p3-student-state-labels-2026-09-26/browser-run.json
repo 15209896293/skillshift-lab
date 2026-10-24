@@ -1,0 +1,58 @@
+{
+  "task_id": "R0-P3-A-STUDENT-STATE-LABEL-BROWSER-102",
+  "browser": "Microsoft Edge via Playwright",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "results": [
+    {
+      "mode": "events",
+      "assignment_id": "assignment-1",
+      "initial_state_label": " 等待教师复核 · 合成",
+      "expected_final_state_label": "等待教师复核",
+      "task_state_region": " 等待教师复核 · 合成",
+      "picker_state": "等待教师复核",
+      "remediation_read_failure": null,
+      "document_width": {
+        "client": 390,
+        "scroll": 390
+      },
+      "passed": true
+    },
+    {
+      "mode": "student-remediation-fail",
+      "assignment_id": "assignment-1",
+      "initial_state_label": " 等待你补正 · 合成",
+      "expected_final_state_label": "等待你补正",
+      "task_state_region": " 等待你补正 · 合成",
+      "picker_state": "等待你补正",
+      "remediation_read_failure": "补正状态未知，API 读取失败。读取补正状态没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。 重新读取补正状态",
+      "document_width": {
+        "client": 390,
+        "scroll": 390
+      },
+      "passed": true
+    },
+    {
+      "mode": "student-switch-workspace-fail",
+      "assignment_id": "assignment-1",
+      "initial_state_label": " 进行中 · 合成",
+      "expected_final_state_label": "已暂停",
+      "task_state_region": " 已暂停 · 合成",
+      "picker_state": "任务已暂停；现在可以选择另一个任务。",
+      "remediation_read_failure": null,
+      "document_width": {
+        "client": 390,
+        "scroll": 390
+      },
+      "passed": true
+    }
+  ],
+  "excluded_attempt": "An initial FEEDBACK_REQUIRED check used the 20-second delayed student-remediation fixture and timed out while awaiting a failure that mode does not return; excluded. Final FEEDBACK_REQUIRED check uses student-remediation-fail with a one-shot 503.",
+  "limits": [
+    "local synthetic harness and in-memory records only",
+    "FEEDBACK_REQUIRED remediation read returns 503 in its separate region while workspace label remains visible",
+    "no real identity/data/model, student code execution, production integration, or full P4 claim"
+  ]
+}

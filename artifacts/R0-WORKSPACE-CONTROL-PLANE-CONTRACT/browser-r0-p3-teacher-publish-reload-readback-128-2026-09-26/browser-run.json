@@ -1,0 +1,104 @@
+{
+  "task_id": "R0-P3-128-TEACHER-PUBLISH-RELOAD-READBACK",
+  "browser": "Microsoft Edge via Playwright",
+  "origin": {
+    "host": "127.0.0.1",
+    "port": 62621
+  },
+  "synthetic_in_memory_only": true,
+  "request_attempt_count": 12,
+  "non_loopback_request_attempts": [],
+  "assignment_id": "assignment-1",
+  "checks": {
+    "first_publish_was_committed_before_only_browser_receipt_was_dropped": true,
+    "pre_reload_ui_keeps_unknown_publish_and_original_title": true,
+    "reload_performed_a_fresh_directory_read": true,
+    "reload_did_not_send_another_publish_post": true,
+    "directory_shows_exactly_one_confirmed_published_card": true,
+    "server_state_has_one_assignment_workspace_and_publish_event": true,
+    "all_browser_request_attempts_stayed_on_loopback": true,
+    "1280px_no_horizontal_overflow": true
+  },
+  "publish_request_count_before_reload": 1,
+  "publish_request_count_after_reload": 1,
+  "directory_read_count_before_reload": 1,
+  "directory_read_count_after_reload": 2,
+  "responses": [
+    {
+      "method": "GET",
+      "path": "/demo/teacher/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200
+    }
+  ],
+  "request_urls": [
+    "http://127.0.0.1:62621/demo/teacher/",
+    "http://127.0.0.1:62621/demo/teacher/styles.css",
+    "http://127.0.0.1:62621/demo/teacher/app.js",
+    "http://127.0.0.1:62621/demo/workspace-client.mjs",
+    "http://127.0.0.1:62621/api/v1/demo/teacher/assignments",
+    "http://127.0.0.1:62621/api/v1/demo/teacher/assignments",
+    "http://127.0.0.1:62621/api/v1/demo/teacher/assignments/assignment-1/publish",
+    "http://127.0.0.1:62621/demo/teacher/",
+    "http://127.0.0.1:62621/demo/teacher/styles.css",
+    "http://127.0.0.1:62621/demo/teacher/app.js",
+    "http://127.0.0.1:62621/demo/workspace-client.mjs",
+    "http://127.0.0.1:62621/api/v1/demo/teacher/assignments"
+  ],
+  "postcondition": {
+    "assignment_count": 1,
+    "assignment_state": "PUBLISHED",
+    "workspace_id": "workspace-1",
+    "publish_event_count": 1
+  },
+  "pass": true
+}

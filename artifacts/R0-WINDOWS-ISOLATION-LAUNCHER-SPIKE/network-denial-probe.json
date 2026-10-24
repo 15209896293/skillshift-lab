@@ -1,0 +1,17 @@
+{
+  "state": "FAIL",
+  "baseline_ipv4_ipv6": "PASS",
+  "appcontainer": {
+    "state": "FAIL",
+    "profile_name": "SkillShift.R0.PythonProbe.38b6afbc8f7e45e493c2cd486ac36e92",
+    "create_hresult": "0x00000000",
+    "delete_hresult": "0x00000000",
+    "process_pid": 14808,
+    "token_is_appcontainer": true,
+    "process_in_job": true,
+    "exit_code": 82,
+    "active_pids_after_exit": [],
+    "detail": "WindowsIsolationSpikeError: AppContainer Python evidence incomplete (token=True, job=True, exit=82, active=()); temporary runner directory removed"
+  },
+  "detail": "only local loopback baseline endpoints were used and closed"
+}

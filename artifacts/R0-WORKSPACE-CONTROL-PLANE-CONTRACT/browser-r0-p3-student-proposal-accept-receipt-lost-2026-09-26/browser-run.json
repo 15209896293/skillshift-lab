@@ -1,0 +1,82 @@
+{
+  "browser": "Edge via Playwright",
+  "viewport": "390x844",
+  "workspace_id": "workspace-1",
+  "proposal_id": "proposal-4",
+  "unknown_state": {
+    "proposal_status": "接受建议仍未确认。请留在当前页面，使用“接受并查看修改”重试同一请求；刷新会丢失本页重试信息。",
+    "api_state": "接受建议仍未确认。请留在当前页面，使用“接受并查看修改”重试同一请求；刷新会丢失本页重试信息。",
+    "decision_disabled": {
+      "accept": false,
+      "reject": true,
+      "takeover": true
+    },
+    "send_disabled": true,
+    "submit_disabled": true,
+    "editor_disabled": true,
+    "editor": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+    "selected_title": "学生建议决定回执丢失验证 A",
+    "width": {
+      "client": 390,
+      "scroll": 390
+    }
+  },
+  "while_unknown_switch_pause": {
+    "picker_value": "assignment-1",
+    "selected_title": "学生建议决定回执丢失验证 A",
+    "editor": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+    "api_state": "接受建议仍未确认。请留在当前页面，使用“接受并查看修改”重试同一请求；刷新会丢失本页重试信息。"
+  },
+  "decision_requests": [
+    {
+      "phase": "first",
+      "status": 200,
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/proposed-actions/proposal-4/decision",
+      "body": "{\"decision\":\"ACCEPTED\",\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "f2abd818-ff13-43a6-84fb-963b7ef28869",
+      "if_match": "4",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-9ee925466baf4e9c9f786d7612737540\",\"data\":{\"proposed_action\":{\"id\":\"proposal-4\",\"kind\":\"FILE_PATCH_PREVIEW\",\"target_artifact_ref\":\"artifact-main-py-v1\",\"status\":\"ACCEPTED\",\"diff\":\"固定差异预览：先计算 expected，再比较金额；不会写入或运行代码。\",\"decision_event_sequence\":5},\"workspace_revision\":5},\"revision\":5}"
+    },
+    {
+      "phase": "retry",
+      "status": 200,
+      "method": "POST",
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/proposed-actions/proposal-4/decision",
+      "body": "{\"decision\":\"ACCEPTED\",\"schema_version\":\"skillshift-api/v1\"}",
+      "idempotency_key": "f2abd818-ff13-43a6-84fb-963b7ef28869",
+      "if_match": "4",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-ebb546fa6566422d995f2d8af7326ad9\",\"data\":{\"proposed_action\":{\"id\":\"proposal-4\",\"kind\":\"FILE_PATCH_PREVIEW\",\"target_artifact_ref\":\"artifact-main-py-v1\",\"status\":\"ACCEPTED\",\"diff\":\"固定差异预览：先计算 expected，再比较金额；不会写入或运行代码。\",\"decision_event_sequence\":5},\"workspace_revision\":5},\"revision\":5}"
+    }
+  ],
+  "same_request": true,
+  "same_receipt_data": true,
+  "decision_events": [
+    {
+      "event_id": "event-5",
+      "sequence": 5,
+      "schema_version": "evidence-event/v1",
+      "workspace_id": "workspace-1",
+      "actor_role": "student",
+      "event_type": "agent.proposed_action_decided",
+      "resource_ref": "proposal-4",
+      "request_id": "req-demo-9ee925466baf4e9c9f786d7612737540",
+      "occurred_at": "2026-09-26T12:23:32Z"
+    }
+  ],
+  "decision_event_count": 1,
+  "original_editor": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+  "editor_after_retry": "import csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            expected = quantity * unit_price\n            if amount != expected:\n                print(\"需要核对\", row[\"order_id\"], expected)\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n",
+  "replacement_occurrences": 1,
+  "dirty_indicator_visible": true,
+  "proposal_status_after_retry": "建议已写入捕获的页面内存编辑上下文；未运行，也未保存到本机。你仍可继续修改或撤销编辑。",
+  "api_state_after_retry": "本机合成 API 已确认接受建议；页面内存中的编辑不会写回文件，也不会运行代码。",
+  "workspace_state": "IN_PROGRESS",
+  "pause_posts": 0,
+  "submission_posts": 0,
+  "decision_posts": 2,
+  "width": {
+    "client": 390,
+    "scroll": 390
+  }
+}

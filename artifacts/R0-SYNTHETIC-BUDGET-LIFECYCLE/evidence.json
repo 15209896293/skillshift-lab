@@ -1,0 +1,41 @@
+{
+  "monthly_limit_fen": 10000,
+  "rules": {
+    "real_provider_or_billing_data_used": false,
+    "release_requires_undispatched_state": true,
+    "settlement_is_bounded_by_reservation": true,
+    "unknown_dispatch_keeps_reservation": true
+  },
+  "schema_version": "synthetic-budget-lifecycle-evidence/v1",
+  "scope": "local-synthetic-only",
+  "self_scan": {
+    "finding_count": 0,
+    "result": "clean"
+  },
+  "state_machine": [
+    "RESERVED",
+    "RELEASED_BEFORE_DISPATCH",
+    "RECONCILIATION_REQUIRED",
+    "SETTLED"
+  ],
+  "synthetic_flow": {
+    "pending": {
+      "occupied_total_fen": 1000,
+      "state": "RECONCILIATION_REQUIRED"
+    },
+    "released": {
+      "occupied_total_fen": 400,
+      "state": "RELEASED_BEFORE_DISPATCH"
+    },
+    "reserved": {
+      "occupied_total_fen": 1000,
+      "state": "RESERVED"
+    },
+    "settled": {
+      "occupied_total_fen": 400,
+      "settled_fen": 400,
+      "state": "SETTLED"
+    }
+  },
+  "task_id": "R0-SYNTHETIC-BUDGET-LIFECYCLE-001"
+}

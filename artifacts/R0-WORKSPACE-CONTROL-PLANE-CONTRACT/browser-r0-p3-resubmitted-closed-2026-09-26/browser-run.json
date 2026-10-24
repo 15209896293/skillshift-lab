@@ -1,0 +1,212 @@
+{
+  "task_id": "R0-P3-A-RESUBMITTED-CLOSED-UI-SYNC-103",
+  "browser": "Microsoft Edge via Playwright",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "assignment_id": "assignment-1",
+  "flow": [
+    "student explicitly selected FEEDBACK_REQUIRED task",
+    "remediation initial read 503 then dedicated retry 200",
+    "student submitted version 2 and immediately saw RESUBMITTED in both status regions",
+    "teacher selected that task and ACK returned; review queue became zero",
+    "student reloaded, explicitly reselected task, read CLOSED and saw mapped label in both regions"
+  ],
+  "states": {
+    "after_resubmission": {
+      "task_state": " 已补交，等待教师复核 · 合成",
+      "picker_state": "已补交，等待教师复核",
+      "latest_submission": "本机 API 最近提交：submission-2 · 第 2 版 · RESUBMITTED\n\n学生说明：Synthetic resubmission: validated quantity and amount; remaining policy needs teacher confirmation.\n\nmain.py · 483 UTF-8 字节 · SHA-256 8559de9beff659d172daafd806813f11c51b756d1b114abe548dc65e035187a1\nimport csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n\norders.csv · 97 UTF-8 字节 · SHA-256 fa25d89edfa82b28b19d1ad0913aa44759d4c4c39516dc44040c5ad999888e79\norder_id,quantity,unit_price,amount\nO-104,1,45.00,45.00\nO-105,2,89.00,160.00\nO-106,3,12.00,36.00\n\nREADME.md · 287 UTF-8 字节 · SHA-256 827cc97eb5594a9f693d8ca560c8a1e83a47ed84df9d236b6ea305628b18c141\n# 合成订单核对项目\n\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\n\n提交时请说明：\n- 你发现了什么；\n- 如何验证；\n- 哪些业务规则仍需确认。\n\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\n\n\n记录来自当前服务进程的内存暂存；重启后清空，非生产。它只表示 API 当前返回的最近记录，不能证明某次回执未知的提交请求就是这条记录。",
+      "remediation": "教师补正请求（REQUEST_REMEDIATION）：请只在任务 A 补充一项合成验证步骤。"
+    },
+    "after_teacher_ack_and_student_readback": {
+      "task_state": " 本轮已结束 · 合成",
+      "picker_state": "本轮已结束",
+      "latest_submission": "本机 API 最近提交：submission-2 · 第 2 版 · ACCEPTED\n\n学生说明：Synthetic resubmission: validated quantity and amount; remaining policy needs teacher confirmation.\n\nmain.py · 483 UTF-8 字节 · SHA-256 8559de9beff659d172daafd806813f11c51b756d1b114abe548dc65e035187a1\nimport csv\n\n\ndef find_inconsistent_orders(path):\n    issues = []\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        for row in csv.DictReader(source):\n            quantity = int(row[\"quantity\"])\n            unit_price = float(row[\"unit_price\"])\n            amount = float(row[\"amount\"])\n            if amount != quantity * unit_price:\n                issues.append(row[\"order_id\"])\n    return issues\n\n\n# 固定合成示例：这里只展示代码，不会执行。\n\norders.csv · 97 UTF-8 字节 · SHA-256 fa25d89edfa82b28b19d1ad0913aa44759d4c4c39516dc44040c5ad999888e79\norder_id,quantity,unit_price,amount\nO-104,1,45.00,45.00\nO-105,2,89.00,160.00\nO-106,3,12.00,36.00\n\nREADME.md · 287 UTF-8 字节 · SHA-256 827cc97eb5594a9f693d8ca560c8a1e83a47ed84df9d236b6ea305628b18c141\n# 合成订单核对项目\n\n检查每条记录中的 amount 是否与 quantity × unit_price 一致。\n\n提交时请说明：\n- 你发现了什么；\n- 如何验证；\n- 哪些业务规则仍需确认。\n\n注意：这些文件只是页面内固定示例，不会运行或写入本机。\n\n\n记录来自当前服务进程的内存暂存；重启后清空，非生产。它只表示 API 当前返回的最近记录，不能证明某次回执未知的提交请求就是这条记录。"
+    }
+  },
+  "document_widths": {
+    "after_resubmission": {
+      "client": 390,
+      "scroll": 390
+    },
+    "closed_readback": {
+      "client": 390,
+      "scroll": 390
+    }
+  },
+  "api_responses": [
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments/assignment-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 503
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/review-history?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-2/review-history?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-2/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/review-queue",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-2/review-queue",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/review-history?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-2/review-history?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-2/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/review-queue",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-2/review-queue",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/events?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/submissions/submission-2/review-actions",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/review-history?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-2/review-history?after_sequence=0&limit=50",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/workspaces/workspace-2/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-1/review-queue",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/teacher/assignments/assignment-2/review-queue",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/assignments/assignment-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    }
+  ],
+  "assertions": {
+    "resubmitted_label_visible_in_current_and_picker_state": true,
+    "closed_label_visible_after_fresh_workspace_read_in_both_regions": true,
+    "teacher_ack_removed_pending_queue_item": true
+  },
+  "limits": [
+    "local synthetic process-memory records",
+    "fixed demo roles are not authenticated identities",
+    "no student code executed",
+    "not production integration or full P4"
+  ]
+}

@@ -5,12 +5,12 @@
 SkillShift Lab is a vocational digital skill transition platform for the Agent era.
 The project connects school-based foundation training with realistic human-agent work.
 
-The current stage is not full platform development. The current priority is:
+The current stage is research-led R0 specification, project alignment, and project-structure organization. Studio is a research infrastructure and productization carrier, not the project end in itself. This is not full-platform development. The current priority is:
 
-1. Build a minimal Agent Native Development OS.
-2. Run P0 research and planning work.
-3. Verify whether real traditional training tasks are changed by modern agents.
-4. Only then move into MVP engineering.
+1. Preserve and freeze an auditable R0/R0.5 asset and evidence baseline before feature expansion.
+2. Use `docs/PROJECT_ALIGNMENT_2026-10-17.md` as the current routing document; preserve but do not let P0 materials, V3.0, or dated handoffs override Active R0 decisions.
+3. Select one task family and a falsifiable Foundation—Process—Transfer study package before broad platform work.
+4. Treat local code execution, real models, real users/data, identity, persistence, and deployment as separately authorized gates.
 
 ## CURRENT DEVELOPMENT PHILOSOPHY
 
@@ -39,16 +39,19 @@ Do not build processes for appearance. Add a workflow only when it reduces more 
 
 Use this hierarchy:
 
-1. Project plan documents in `wenben/`: long-term strategy and research knowledge.
-2. `docs/PROJECT_BRIEF.md`: stable facts every agent must know.
-3. `AGENTS.md`: agent operating rules.
-4. `docs/architecture/`: current effective architecture.
-5. `docs/adr/`: architecture decisions and reasons.
-6. `specs/`: feature, research, bug, and documentation specs.
-7. GitHub Issues / Project: current work state, once GitHub is configured.
-8. Git: actual code history, once the repository is initialized.
-9. CI / Tests: machine evidence that work still functions.
-10. Release notes: current usable product state.
+1. `docs/PROJECT_ALIGNMENT_2026-10-17.md` for current project phase, routing, evidence labels, and work order; concrete product behavior still follows the Active documents below.
+2. `docs/product/R0_PRODUCT_REPOSITIONING_DECISION.md` and active R0 specifications in `docs/product/`, `docs/architecture/TECHNICAL_SPEC.md`, and `docs/quality/`.
+3. Approved R0 ADRs in `docs/adr/`.
+4. `docs/PROJECT_BRIEF.md`, `docs/CURRENT_STATE.md`, and dated `PROJECT_STATUS_*` files: stable facts or date-bound status only.
+5. `docs/PROJECT_ROADMAP_2026-10-17.md`: proposed long-term route pending owner confirmation.
+6. Project plan documents in `wenben/` and `SkillShift_Studio_软件工程总纲_V3.0.md`: preserved long-term strategy, research knowledge, or Draft context; they do not override current R0 decisions.
+7. `AGENTS.md`: agent operating rules.
+8. Other `docs/architecture/` files: long-term or historical architecture references unless marked active.
+9. `specs/`: feature, research, bug, and documentation specs.
+10. GitHub Issues / Project: current work state, once GitHub is configured.
+11. Git: actual code history, once the repository is initialized.
+12. CI / Tests: machine evidence that work still functions.
+13. Release notes: current usable product state.
 
 If two sources conflict, stop and report the conflict. Do not silently choose the convenient version.
 
@@ -58,7 +61,7 @@ Before changing code or project structure:
 
 1. Identify the task type: FEATURE, BUG, RESEARCH, REFACTOR, DOC, or DEV_OS.
 2. Check whether a spec or issue exists for significant work.
-3. Read only the necessary project context, starting from `docs/PROJECT_BRIEF.md`.
+3. Read only the necessary project context, starting from `README.md`, `docs/README.md`, `docs/PROJECT_FILE_GOVERNANCE.md`, and the active R0 specification.
 4. Define allowed scope and forbidden scope.
 5. Identify acceptance criteria and verification evidence.
 6. Check whether the work should happen in a separate branch or worktree.

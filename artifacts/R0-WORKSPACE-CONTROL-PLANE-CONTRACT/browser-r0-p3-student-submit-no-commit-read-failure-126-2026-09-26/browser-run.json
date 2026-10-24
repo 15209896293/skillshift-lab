@@ -1,0 +1,213 @@
+{
+  "task_id": "R0-P3-126-STUDENT-SUBMIT-NO-COMMIT-READ-FAILURE",
+  "browser": "Microsoft Edge via Playwright",
+  "origin": {
+    "host": "127.0.0.1",
+    "port": 56732
+  },
+  "synthetic_in_memory_only": true,
+  "external_calls": 0,
+  "fixture_code_executed": false,
+  "assignment_id": "assignment-1",
+  "checks": {
+    "post_was_aborted_before_api_commit": true,
+    "first_page_unknown_did_not_claim_submission_success": true,
+    "reload_did_not_auto_select_or_resend": true,
+    "latest_read_region_is_explicitly_unknown_with_its_own_retry": true,
+    "latest_get_503_is_confined_to_latest_submission_region": true,
+    "workspace_still_shows_in_progress_during_latest_read_failure": true,
+    "local_retry_recovers_to_confirmed_empty_state": true,
+    "retry_did_not_change_workspace_or_create_submission": true,
+    "retry_was_local_to_latest_region": true,
+    "390px_no_horizontal_overflow": true
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/demo/teacher/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/teacher/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/teacher/assignments/assignment-1/publish",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/teacher/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments/assignment-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/start",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions",
+      "injected": "aborted_before_api"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/styles.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/student/app.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/demo/workspace-client.mjs",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/assignments/assignment-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/remediation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 503,
+      "injected": "browser_boundary"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/demo/student/workspaces/workspace-1/submissions/latest",
+      "status": 200
+    }
+  ],
+  "workspace_postcondition": {
+    "state": "IN_PROGRESS",
+    "revision": 3,
+    "submission_count": 0
+  },
+  "pass": true
+}

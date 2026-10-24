@@ -1,0 +1,28 @@
+{
+  "initial_unknown": "提交复核意见没有收到 API 成功回执；请求状态未确认，请刷新核对后再操作。 目标为“教师多任务队列隔离验证 A”第 1 版提交，动作“认可并关闭”，理由已固定。当前只能点击同一动作，使用原 DTO、修订号和幂等键重试；不要编辑或改选动作。",
+  "posts_before_refresh": [
+    {
+      "status": 201,
+      "idempotency_key": "8238f200-9b3f-4e31-81db-37a12e713bd3",
+      "body": "{\"schema_version\":\"skillshift-api/v1\",\"kind\":\"ACKNOWLEDGE\",\"reason\":\"Synthetic ACK reload recovery reason for A.\"}",
+      "receipt": "{\"schema_version\":\"skillshift-api/v1\",\"request_id\":\"req-demo-bbb47977d16942e8bab1198007cc555b\",\"data\":{\"review_action\":{\"id\":\"review-2\",\"submission_id\":\"submission-1\",\"submission_version\":1,\"kind\":\"ACKNOWLEDGE\",\"reason\":\"Synthetic ACK reload recovery reason for A.\",\"created_event_sequence\":11},\"workspace_revision\":5},\"revision\":5}"
+    }
+  ],
+  "rows_after_reload": [
+    "教师多任务队列隔离验证 A · PUBLISHED · 待复核 0 项\n查看此任务",
+    "教师多任务队列隔离验证 B · PUBLISHED · 待复核 1 项\n查看此任务",
+    "教师多任务队列隔离验证 C · PUBLISHED · 待复核 0 项\n查看此任务"
+  ],
+  "review_history_after_reload": "教师多任务队列隔离验证 A · 动作记录：认可并关闭 · 目标提交 submission-1 第 1 版 · 理由：Synthetic ACK reload recovery reason for A. · 事件序号 11\n教师多任务队列隔离验证 C · 动作记录：请求补正 · 目标提交 submission-3 第 1 版 · 理由：任务 C：请补充一项固定合成核验步骤。 · 事件序号 10",
+  "review_result_visible_after_reload": false,
+  "api_state_after_reload": "教师任务目录读取成功；其他复核区域状态分别显示。",
+  "storage_keys": {
+    "local": [],
+    "session": []
+  },
+  "viewport": {
+    "w": 390,
+    "cw": 390,
+    "sw": 390
+  }
+}
